@@ -4,5 +4,4 @@
   connection: local
   roles:
     - geerlingguy.homebrew
-    - common
     - dev-machine

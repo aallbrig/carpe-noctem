@@ -8,9 +8,9 @@ jenkins:
     username: admin
     password: admin
   home: /var/lib/jenkins
-  plugins: []
-  # plugins:
-  #   - ansible
+  # plugins: []
+  plugins:
+    - ansible
 web:
   http_port: 80
   https_port: 443
