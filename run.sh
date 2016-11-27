@@ -19,22 +19,16 @@ function setup_osx {
   # - Provision
   ansible-playbook plays/spinup-env.yml --extra-vars "@config.yml"
   # - Deploy
-  # ansible-playbook
 
-  echo "process complete"
   exit 0
-}
-
-function setup_windows {
-  echo "windows"
 }
 
 echo "OSTYPE: $OSTYPE"
 case "$OSTYPE" in
-  solaris*) echo "SOLARIS" ;;
+  solaris*) echo "SOLARIS not supported (yet)." ;;
   darwin*) setup_osx ;;
-  linux*) echo "LINUX" ;;
-  bsd*) echo "BSD" ;;
-  msys*) setup_windows ;;
-  *) echo "unknown: $OSTYPE" ;;
+  linux*) echo "LINUX not supported (yet)." ;;
+  bsd*) echo "BSD not supported (yet)." ;;
+  msys*) "Windows not supported (yet)." ;;
+  *) echo "unknown: $OSTYPE not supported (yet)." ;;
 esac

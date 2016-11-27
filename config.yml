@@ -8,9 +8,12 @@ jenkins:
     username: admin
     password: admin
   home: /var/lib/jenkins
+  passwordFileDir: /var/lib/jenkins/secrets
+  passwordFileName: initialAdminPassword
   # plugins: []
   plugins:
     - ansible
+    - bitbucket
 web:
   http_port: 80
   https_port: 443

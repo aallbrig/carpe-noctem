@@ -1,6 +1,6 @@
 ---
 
-- name: Provision Jenkins
+- name: Provision Jenkins VM
   hosts: jenkins-{{env}}
   become: True
   roles:
@@ -10,12 +10,12 @@
     - debug: msg="{{jenkins.admin.username}}"
     - debug: msg="{{jenkins.admin.password}}"
 
-# - name: Provision Web
+# - name: Provision Web VM
 #   hosts: "web-{{env}}"
 #   roles:
 #     - web
 #
-# - name: Provision Build
+# - name: Provision Build VM
 #   hosts: "build-{{env}}"
 #   roles:
 #     - prod

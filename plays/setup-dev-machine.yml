@@ -1,7 +1,6 @@
 ---
 - name: Install prereq software to get developer up
   hosts: local
-  connection: local
   roles:
     - geerlingguy.homebrew
     - dev-machine

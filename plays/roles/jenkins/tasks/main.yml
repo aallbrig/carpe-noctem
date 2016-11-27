@@ -1,9 +1,9 @@
 ---
 - name: Create directory in case it does not exist.
-  file: path=/var/lib/jenkins/secrets state=directory
+  file: path={{jenkins.passwordFileDir}} state=directory
 
 - name: Copy password file into location
-  copy: src=password_file dest=/var/lib/jenkins/secrets/initialAdminPassword
+  template: src=password_file.j2 dest={{jenkins_admin_password_file}}
   become: True
 
 - name: Copy all jobs into target
