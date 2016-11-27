@@ -4,7 +4,6 @@
   hosts: jenkins-{{env}}
   become: True
   roles:
-    - geerlingguy.jenkins
     - jenkins
   pre_tasks:
     - debug: msg="{{jenkins.admin.username}}"

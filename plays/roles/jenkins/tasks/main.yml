@@ -3,7 +3,7 @@
   file: path={{jenkins.passwordFileDir}} state=directory
 
 - name: Copy password file into location
-  template: src=password_file.j2 dest={{jenkins_admin_password_file}}
+  template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
   become: True
 
 - name: Copy all jobs into target
