@@ -5,9 +5,6 @@
   become: True
   roles:
     - jenkins
-  pre_tasks:
-    - debug: msg="{{jenkins.admin.username}}"
-    - debug: msg="{{jenkins.admin.password}}"
 
 # - name: Provision Web VM
 #   hosts: "web-{{env}}"
