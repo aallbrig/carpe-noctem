@@ -1,0 +1,14 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+
+{% for name, config in [("jenkins", jenkins), ("web", web), ("build", build)] %}
+  config.vm.define "{{name}}-{{env}}" do |{{name}}|
+    {{name}}.vm.box = "ubuntu/trusty64"
+    {{name}}.vm.network "forwarded_port", guest: {{config.http_port}}, host: {{dev_machine[name].http_port}}
+    {{name}}.vm.network "forwarded_port", guest: {{config.https_port}}, host: {{dev_machine[name].https_port}}
+  end
+{% endfor %}
+
+end

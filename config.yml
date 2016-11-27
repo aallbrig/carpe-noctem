@@ -1,0 +1,29 @@
+---
+env: dev
+jenkins:
+  hostname: 127.0.0.1
+  http_port: 8080
+  https_port: 443
+  admin:
+    username: admin
+    password: admin
+  home: /var/lib/jenkins
+  plugins: []
+  # plugins:
+  #   - ansible
+web:
+  http_port: 80
+  https_port: 443
+build:
+  http_port: 80
+  https_port: 443
+dev_machine:
+  jenkins:
+    http_port: 8080
+    https_port: 8443
+  web:
+    http_port: 8081
+    https_port: 8444
+  build:
+    http_port: 8082
+    https_port: 8445

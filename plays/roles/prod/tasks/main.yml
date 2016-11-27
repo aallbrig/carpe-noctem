@@ -1,0 +1,3 @@
+---
+  - name: Test dev machine
+    shell: echo "testing dev machine"

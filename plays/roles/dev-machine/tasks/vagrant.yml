@@ -1,0 +1,19 @@
+---
+# - debug: msg="{{ansible_env}}"
+# - debug: msg="{{jenkins}}"
+# - debug: msg="{{jenkins.admin_username}}"
+
+- name: Copy vagrantfile onto dev machine
+  local_action: template src=roles/dev-machine/files/Vagrantfile.j2 dest={{playbook_dir}}/../Vagrantfile
+
+- name: Change CWD
+  local_action: command cd {{playbook_dir}}/..
+
+- name: Boot up VMs
+  command: vagrant up
+  # register: vagrantUpProc
+
+# - debug: msg="{{vagrantUpProc.stdout}}"
+
+# - name: Remove vagrantfile from machine
+#   file: path={{ansible_env.HOME}}/Vagrantfile state=absent

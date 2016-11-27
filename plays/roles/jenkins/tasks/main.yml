@@ -1,0 +1,4 @@
+---
+  - name: Copy all jobs into target
+    copy: src={{item}} dest={{jenkins.jenkins_home}}/jobs
+    with_fileglob: "files/jobs/*."

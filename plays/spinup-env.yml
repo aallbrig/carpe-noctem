@@ -1,0 +1,21 @@
+---
+
+- name: Provision Jenkins
+  hosts: jenkins-{{env}}
+  become: True
+  roles:
+    - geerlingguy.jenkins
+    - jenkins
+  pre_tasks:
+    - debug: msg="{{jenkins.admin.username}}"
+    - debug: msg="{{jenkins.admin.password}}"
+
+# - name: Provision Web
+#   hosts: "web-{{env}}"
+#   roles:
+#     - web
+# 
+# - name: Provision Build
+#   hosts: "build-{{env}}"
+#   roles:
+#     - prod

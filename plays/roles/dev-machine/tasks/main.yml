@@ -1,0 +1,3 @@
+---
+  # - include: atom.yml
+  - include: vagrant.yml
