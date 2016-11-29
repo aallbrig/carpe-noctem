@@ -13,5 +13,3 @@ linter@1.11.16
 linter-docker@0.1.2
 linter-eslint@7.3.2
 set-syntax@0.3.0
-
-

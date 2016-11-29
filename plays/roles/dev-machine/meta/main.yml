@@ -1,0 +1,24 @@
+---
+dependencies:
+  - role: geerlingguy.homebrew
+    homebrew_taps: []
+    homebrew_installed_packages:
+    - git
+    - node
+    - groovysdk
+    - scala
+    homebrew_cask_apps:
+    - java
+    - virtualbox
+    - vagrant
+    - atom
+    - adobe-photoshop-cc
+    - adobe-animate-cc
+    - adobe-creative-cloud
+  # - role: jdauphant.intellij
+  # - role: jgkim.atom
+  #   atom_packages: []
+  # - {
+  #     role: jgkim.atom,
+  #     atom_packages: lookup('file', '{{playbook_dir}}/roles/files/atom-requirements')
+  #   }

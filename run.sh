@@ -12,7 +12,7 @@ function setup_osx {
     echo "No valid ansible installed.  Installing..."
     sudo pip install ansible
   fi
-  ansible-galaxy install -r requirements.yml
+  sudo ansible-galaxy install -r requirements.yml
 
   # - setup dev machine
   ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"

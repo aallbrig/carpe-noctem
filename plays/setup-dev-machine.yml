@@ -2,5 +2,4 @@
 - name: Install prereq software to get developer up
   hosts: local
   roles:
-    - geerlingguy.homebrew
     - dev-machine

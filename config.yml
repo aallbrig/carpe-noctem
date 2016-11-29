@@ -4,7 +4,7 @@ jenkins:
   version: 2.33
   hostname: 127.0.0.1
   http_port: 8080
-  https_port: 443
+  https_port: 8443
   admin:
     username: admin
     password: admin
@@ -19,18 +19,33 @@ jenkins:
     - job-dsl
     - workflow-aggregator
 web:
-  http_port: 80
-  https_port: 443
+  http_port: 8080
+  https_port: 8443
 build:
   http_port: 80
   https_port: 443
 dev_machine:
   jenkins:
-    http_port: 8080
-    https_port: 8443
+    forwarded_port:
+      - guest: "{{jenkins.http_port}}"
+        host: 8080
+      # TODO: Create SSL certification by lets encrypt
+      # - guest: "{{jenkins.https_port}}"
+      #   host:
   web:
-    http_port: 8081
-    https_port: 8444
+    forwarded_port:
+      - guest: "{{web.http_port}}"
+        host: 8000
+      # TODO: Create SSL certification by lets encrypt
+      # - guest: "{{web.https_port}}"
+      #   host: 8443
+      # LiveReload
+      - guest: 35729
+        host: 35729
   build:
-    http_port: 8082
-    https_port: 8445
+    forwarded_port:
+      - guest: "{{build.http_port}}"
+        host: 80
+      # TODO: Create SSL certification by lets encrypt
+      # - guest: "{{build.https_port}}"
+      #   port: 443

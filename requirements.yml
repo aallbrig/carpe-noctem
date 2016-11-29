@@ -1,3 +1,5 @@
 # from galaxy
 - src: geerlingguy.homebrew
 - src: geerlingguy.jenkins
+- src: jgkim.atom
+- src: jdauphant.intellij

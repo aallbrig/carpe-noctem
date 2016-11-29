@@ -1,3 +1,4 @@
 ---
-  # - include: atom.yml
+  - debug: msg="{{ playbook_dir }}"
+  # - debug: msg="{{ lookup('file', '{{playbook_dir}}/roles/files/atom-requirements') }}"
   - include: vagrant.yml
