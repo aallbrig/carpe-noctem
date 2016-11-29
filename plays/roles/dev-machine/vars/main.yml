@@ -2,7 +2,15 @@
 homebrew_installed_packages:
   - git
   - node
+  - groovysdk
+  - scala
 homebrew_cask_apps:
+  - java
   - virtualbox
   - vagrant
   - atom
+  - adobe-photoshop-cs6
+  - adobe-photoshop-cc
+  - adobe-illustrator-cc
+  - adobe-photoshop-cc
+  - adobe-creative-cloud

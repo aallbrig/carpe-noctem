@@ -9,12 +9,15 @@ jenkins:
     username: admin
     password: admin
   home: /var/lib/jenkins
+  cli: /opt/jenkins-cli.jar
   passwordFileDir: /var/lib/jenkins/secrets
   passwordFileName: initialAdminPassword
   plugins:
     - ansible
     - bitbucket
     - github-pullrequest
+    - job-dsl
+    - workflow-aggregator
 web:
   http_port: 80
   https_port: 443
