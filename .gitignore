@@ -1,3 +1,4 @@
 *.retry
 Vagrantfile
 .vagrant
+.DS_Store
