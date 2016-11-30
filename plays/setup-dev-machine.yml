@@ -2,4 +2,12 @@
 - name: Install prereq software to get developer up
   hosts: local
   roles:
-    - dev-machine
+    - developer
+    - artist
+  post_tasks:
+    # - name: Update jenkins home directory permissions
+    #   file:
+    #     path: "{{jenkins.home}}"
+    #     mode: u=rwX,g=rX,o=rX
+    #     recurse: yes
+    - debug: msg="post-tasks!"

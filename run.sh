@@ -5,16 +5,16 @@ function setup_osx {
   pip --version
   if [[ $? != 0 ]] ; then
     echo "No valid pip installed.  Installing..."
-    sudo easy_install pip
+    easy_install pip
   fi
   ansible --version
   if [[ $? != 0 ]] ; then
     echo "No valid ansible installed.  Installing..."
-    sudo pip install ansible
+    pip install ansible
   fi
-  sudo ansible-galaxy install -r requirements.yml
+  ansible-galaxy install -r requirements.yml
 
-  # - setup dev machine
+  # - Setup local machine
   ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"
   # - Provision
   ansible-playbook plays/spinup-env.yml --extra-vars "@config.yml"

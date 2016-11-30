@@ -6,7 +6,13 @@
   template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
   become: True
 
-- debug: msg="{{jenkins.home}}/jobs"
+- name: Copy password file into location
+  template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
+  become: True
 
-- name: Copy all jobs into target
-  copy: src=jobs dest={{jenkins.home}}
+# - name: Jenkins Folder Update
+#   file: src="{{playbook_dir}}/roles/jenkins/files/home/jobs" dest="{{jenkins.home}}/jobs" owner=jenkins group=jenkins
+#   wait_for: host=0.0.0.0 port="{{jenkins.http_port}}" delay=10
+
+# - name: Copy all jobs into target
+#   copy: src=jobs dest={{jenkins.home}}

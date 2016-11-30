@@ -1,4 +1,9 @@
 *.retry
 .vagrant
+Vagrantfile
 .DS_Store
 .idea
+**/latest/**/*
+**/builds/**/*
+**/plugins/**/*
+**/fingerprints/**/*
