@@ -1,13 +1,13 @@
 ---
 dependencies:
-  - {
-      role: geerlingguy.jenkins,
-      jenkins_version: "{{jenkins.version}}",
-      jenkins_hostname: "{{jenkins.hostname}}",
-      jenkins_http_port: "{{jenkins.http_port}}",
-      jenkins_admin_username: "{{jenkins.admin.username}}",
-      jenkins_admin_password: "{{jenkins.admin.password}}",
-      jenkins_admin_password_file: "{{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}",
-      jenkins_home: "{{jenkins.home}}",
-      jenkins_plugins: "{{jenkins.plugins}}"
-    }
+  - role: python
+  - role: scala
+  - role: geerlingguy.jenkins
+    jenkins_version: "{{jenkins.version}}"
+    jenkins_hostname: "{{jenkins.hostname}}"
+    jenkins_http_port: "{{jenkins.http_port}}"
+    jenkins_admin_username: "{{jenkins.admin.username}}"
+    jenkins_admin_password: "{{jenkins.admin.password}}"
+    jenkins_admin_password_file: "{{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}"
+    jenkins_home: "{{jenkins.home}}"
+    jenkins_plugins: "{{jenkins.plugins}}"

@@ -26,6 +26,53 @@ apm list --installed --bare > plays/roles/dev-machine/files/atom-requirements.tx
 #### Manual
 TODO
 
+### Common commands
+```
+ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml" --tags "vagrant"
+```
+```
+ansible local -a "echo 'hello'"
+```
+```
+> ansible all -m setup -a 'filter=ansible_distribution'
+
+# example run
+jenkins-dev | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu"
+    },
+    "changed": false
+}
+127.0.0.1 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "MacOSX"
+    },
+    "changed": false
+}
+database-dev | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu"
+    },
+    "changed": false
+}
+build-dev | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu"
+    },
+    "changed": false
+}
+web-dev | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu"
+    },
+    "changed": false
+}
+
+```
+```
+ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml" --tags "vagrant"
+```
+
 
 ### Known Issues
 #### Vagrant

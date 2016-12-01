@@ -10,6 +10,16 @@
   template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
   become: True
 
+# - name:
+
+
+# - name: Process Jenkins Job Builder
+#   command: python
+#   with_items:
+
+# - name: Install apt packages
+#   apt: url=
+
 # - name: Jenkins Folder Update
 #   file: src="{{playbook_dir}}/roles/jenkins/files/home/jobs" dest="{{jenkins.home}}/jobs" owner=jenkins group=jenkins
 #   wait_for: host=0.0.0.0 port="{{jenkins.http_port}}" delay=10

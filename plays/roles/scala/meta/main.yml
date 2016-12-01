@@ -1,8 +1,8 @@
 ---
 dependencies:
   - role: geerlingguy.homebrew
+    homebrew_installed_packages:
+    - scala
     homebrew_cask_apps:
-    - adobe-photoshop-cc
-    - adobe-animate-cc
-    - adobe-creative-cloud
+    - java
     when: "ansible_os_family == 'MacOSX'"

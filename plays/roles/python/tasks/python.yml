@@ -1,0 +1,7 @@
+---
+- name: Process Jenkins Job Builder
+  pip: name="{{ item }}"
+  with_items:
+    - virtualenv
+    - jenkins-job-builder
+  become: True

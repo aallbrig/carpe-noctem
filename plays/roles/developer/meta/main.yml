@@ -12,6 +12,9 @@ dependencies:
     - virtualbox
     - vagrant
     - atom
+    when: "ansible_os_family == 'MacOSX'"
+  - role: python
+  - role: scala
   # - role: jdauphant.intellij
   # - role: jgkim.atom
   #   atom_packages:
