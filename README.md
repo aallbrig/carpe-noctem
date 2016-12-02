@@ -92,4 +92,6 @@ URL and error message are shown below:
 URL: ["https://atlas.hashicorp.com/ubuntu/trusty64"]
 Error:
 ```
-Fortunately, denizens of the internet have been able to work out a solution.  As an OSX on late 2015 Macbook user myself, I was able to resolve my issue by following /u/newrulez' suggestion [found in this thread](https://github.com/mitchellh/vagrant/issues/5016)
+Fortunately, denizens of the internet have been able to work out a solution.  As a `MacOSX` on late 2015 Macbook model myself I was interested and able to resolve my issue by following /u/newrulez' suggestion [found in this thread](https://github.com/mitchellh/vagrant/issues/5016).
+
+The fix was interesting because you have to download a better version of `curl` and let `vagrant` know about it.  Only then with running `vagrant up` be able to send those pesky XHRs to download the appropriate VM images.  Neat, eh?
