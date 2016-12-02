@@ -1,4 +1,8 @@
 ---
+- job:
+    name: job-name-global
+
+
 - defaults:
     name: global
     project-type: freestyle

@@ -29,9 +29,17 @@
 - name: Copy jenkins jobs onto server
   copy:
     src: files/jobs
-    dest: "{{ ansible_env.PWD }}/jobs"
+    dest: "{{ ansible_env.PWD }}"
     directory_mode: yes
   register: jobsDirExists
+  tags:
+    - jenkins
+
+- name: Make jenkins jobs directory tree readable
+  file:
+    path: "{{ ansible_env.PWD }}/jobs"
+    mode: u=rwX,g=rX,o=rX
+    recurse: yes
   tags:
     - jenkins
 
