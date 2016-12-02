@@ -4,7 +4,8 @@
   hosts: jenkins-{{env}}
   become: True
   roles:
-    - python
+    - git
+    - scala
     - jenkins
 
 # - name: Provision Web VM

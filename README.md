@@ -29,6 +29,7 @@ TODO
 ### Common commands
 ```
 ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml" --tags "vagrant"
+ansible-playbook plays/spinup-env.yml --extra-vars "@config.yml" --tags "jenkins"
 ```
 ```
 ansible local -a "echo 'hello'"
@@ -68,9 +69,6 @@ web-dev | SUCCESS => {
     "changed": false
 }
 
-```
-```
-ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml" --tags "vagrant"
 ```
 
 

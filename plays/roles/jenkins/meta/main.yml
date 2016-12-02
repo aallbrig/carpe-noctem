@@ -1,7 +1,6 @@
 ---
 dependencies:
   - role: python
-  - role: scala
   - role: geerlingguy.jenkins
     jenkins_version: "{{jenkins.version}}"
     jenkins_hostname: "{{jenkins.hostname}}"

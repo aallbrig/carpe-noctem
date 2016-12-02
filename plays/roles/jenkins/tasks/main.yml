@@ -1,14 +1,95 @@
 ---
 - name: Create directory in case it does not exist.
   file: path={{jenkins.passwordFileDir}} state=directory
+  tags:
+    - jenkins
 
 - name: Copy password file into location
   template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
   become: True
+  tags:
+    - jenkins
 
 - name: Copy password file into location
   template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
   become: True
+  tags:
+    - jenkins
+
+- copy: src={{ item }} dest={{ ansible_env.PWD }} owner=jenkins mode=0644
+  with_fileglob: jobs/*.yaml
+  tags:
+    - jenkins
+
+- name: Create Jenkins Job directory in case it does not exist.
+  file: path={{ ansible_env.PWD }}/jobs state=directory
+  tags:
+    - jenkins
+
+- name: Copy jenkins jobs onto server
+  copy:
+    src: files/jobs
+    dest: "{{ ansible_env.PWD }}/jobs"
+    directory_mode: yes
+  register: jobsDirExists
+  tags:
+    - jenkins
+
+- name: Ensure directory's existance
+  command: ls -a
+  register: commandLineResults
+  tags:
+    - jenkins
+
+- debug: msg="{{ commandLineResults }}"
+  tags:
+    - jenkins
+
+- name: Ensure jobs' existance
+  command: ls -a {{ ansible_env.PWD }}/jobs
+  register: commandLineResults
+  tags:
+    - jenkins
+
+- debug: msg="{{ commandLineResults }}"
+  tags:
+    - jenkins
+
+- debug: msg="{{ jobsDirExists }}"
+  tags:
+    - jenkins
+
+- name: Test all jenkins job using JJB
+  command: jenkins-jobs test "{{ ansible_env.PWD }}/jobs/{{ item }}"
+  with_items: "{{ commandLineResults.stdout_lines | difference(['.', '..', 'jobs']) }}"
+  register: debug
+  tags:
+    - jenkins
+
+- debug: msg="{{ debug }}"
+  tags:
+    - jenkins
+
+- name: Deploy all jenkins job using JJB
+  command: jenkins-jobs test "{{ ansible_env.PWD }}/jobs/{{ item }}" "{{ jenkins.home }}/jobs/{{ item }}.xml"
+  with_items: "{{ commandLineResults.stdout_lines | difference(['.', '..', 'jobs']) }}"
+  become: True
+  register: debug
+  tags:
+    - jenkins
+
+- name: Deploy all jenkins job using JJB
+  command: jenkins-jobs update {{ item }}
+  with_items: "{{ commandLineResults.stdout_lines | difference(['.', '..', 'jobs']) }}"
+  register: debug
+  notify:
+    - restart jenkins
+  tags:
+    - jenkins
+
+- debug: msg="{{ debug }}"
+  tags:
+    - jenkins
 
 # - name:
 
