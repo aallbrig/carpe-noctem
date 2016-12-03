@@ -2,12 +2,12 @@
 - name: Copy vagrantfile onto dev machine
   local_action:
     template src=Vagrantfile.j2
-    dest={{playbook_dir}}/../Vagrantfile
+    dest={{playbook_dir}}/../../Vagrantfile
   tags:
     - vagrant
 
 - name: Change CWD
-  local_action: command cd {{playbook_dir}}/..
+  local_action: command cd {{playbook_dir}}/../..
   tags:
     - vagrant
 

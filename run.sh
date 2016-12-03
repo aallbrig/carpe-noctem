@@ -12,12 +12,12 @@ function setup_osx {
     echo "No valid ansible installed.  Installing..."
     pip install ansible
   fi
-  ansible-galaxy install -r requirements.yml
+  ansible-galaxy install -r provisioning/requirements.yml
 
   # - Setup local machine
-  ansible-playbook plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"
+  ansible-playbook provisioning/plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"
   # - Provision
-  ansible-playbook plays/spinup-env.yml --extra-vars "@config.yml"
+  ansible-playbook provisioning/plays/spinup-env.yml --extra-vars "@config.yml"
   # - Deploy
 
   exit 0

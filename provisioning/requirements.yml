@@ -4,3 +4,4 @@
 - src: ScorpionResponse.pip
 - src: jgkim.atom
 - src: jdauphant.intellij
+- src: geerlingguy.nodejs
