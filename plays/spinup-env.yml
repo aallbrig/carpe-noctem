@@ -7,6 +7,21 @@
     - git
     - scala
     - jenkins
+  vars:
+    hostname: "BLANK"
+    port: "why do you think node uses port 8080?"
+  post_tasks:
+    - debug: msg="URL for {{ item.name }} is at {{ item.url }}"
+      with_items:
+        - name: jenkins
+          url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}"
+        - name: template
+          url: "http://{{ hostname }}:{{ port }}"
+        - name: web
+          url: "http://{{ hostname }}:{{ port }}"
+        - name: buildbox
+          url: "http://{{ hostname }}:{{ port }}"
+
 
 # - name: Provision Web VM
 #   hosts: "web-{{env}}"
