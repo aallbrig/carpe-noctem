@@ -99,9 +99,9 @@ web-dev | SUCCESS => {
       1. Build environment infrastructure (e.g. I use Ansible & AWS CloudFormation to build a staging ENV)
         - `ansible-playbook spinup-env` where ENV variables are set up target inventories.
 
-          AWS Cloud Formation is commonly used to spin up AWS cloud infrastructure.  They come in `*.json` form or `*.yaml` form (yaml is better).
-
           A local Vagrant VM ecosystem helps provide developer sandboxing of mock production (subset of anonymized user info along with game info).
+
+          AWS Cloud Formation is commonly used to spin up AWS cloud infrastructure.  They come in `*.json` form or `*.yaml` form (yaml is better).
       1. Create DB, populate with appropriate data for higher fidelity testing.
         - TODO: `sh create-or-migrate-database.sh` or `ansible-playbook create-database` or it's a part of existing play?
       1. Deploy software artifacts onto infrastructure
@@ -121,7 +121,7 @@ web-dev | SUCCESS => {
 
         Test Load Balancing, autoscaling groups (static asset server, application server, database connection pool)
   1. Release Phase
-      1. Can be manual "one button" click; Green/Blue deploy infrastructure with new code
+      1. Can be manual "one button" click if desired but this launches a Green/Blue deploy infrastructure with new code and slowly transfers all traffic to new boxes.
       1. Hit health checks and slowly change reality so that all servers are of the alt color's code type
   1. Production Monitoring Phase (continuous)
       1. Health checks are constantly pinged to ensure maximum up time.  At this stage if you have any issues you store the logs and spin up a new environment (Immutable infrastructure) with ready to go auto-scalable VM images.

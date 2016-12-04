@@ -1,0 +1,6 @@
+- job:
+    name: package-artifacts
+    description: >
+      This job packages artifacts of code into
+      external artifact repository
+      (`artifactory` or `dockerhub`).

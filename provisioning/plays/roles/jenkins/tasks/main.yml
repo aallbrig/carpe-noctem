@@ -10,12 +10,6 @@
   tags:
     - jenkins
 
-- name: Copy password file into location
-  template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
-  become: True
-  tags:
-    - jenkins
-
 - copy: src={{ item }} dest={{ ansible_env.PWD }} owner=jenkins mode=0644
   with_fileglob: jobs/*.yaml
   tags:
@@ -75,14 +69,6 @@
     - jenkins
 
 - debug: msg="{{ debug }}"
-  tags:
-    - jenkins
-
-- name: Deploy all jenkins job using JJB
-  command: jenkins-jobs test "{{ ansible_env.PWD }}/jobs/{{ item }}" "{{ jenkins.home }}/jobs/{{ item }}.xml"
-  with_items: "{{ commandLineResults.stdout_lines | difference(['.', '..', 'jobs']) }}"
-  become: True
-  register: debug
   tags:
     - jenkins
 

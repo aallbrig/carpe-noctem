@@ -1,6 +1,6 @@
 ---
 - job:
-    name: job-name-global
+    name: Default values example.
 
 
 - defaults:

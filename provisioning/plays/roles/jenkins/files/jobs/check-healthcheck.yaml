@@ -1,0 +1,5 @@
+- job:
+    name: check-healthcheck
+    description: >
+      This job checks all health checks of the
+      system.

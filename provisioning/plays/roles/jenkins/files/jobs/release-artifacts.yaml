@@ -1,0 +1,9 @@
+- job:
+    name: release-artifacts
+    description: >
+      This job deploys latest production ready
+      artifacts available and delivers to
+      production.
+
+      Green/blue deploy so infrastructure slowly
+      becomes the alternating color's artifact.

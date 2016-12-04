@@ -1,0 +1,6 @@
+- job:
+    name: functional-test
+    description: >
+      This job runs all Selenium and other
+      functional UI oriented or API contract
+      tests.

@@ -1,0 +1,5 @@
+- job:
+    name: load-test
+    description: >
+      This job runs a performance laod tests
+      on target environment infrastructure.
