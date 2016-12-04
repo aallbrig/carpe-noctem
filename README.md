@@ -133,10 +133,10 @@ web-dev | SUCCESS => {
   At all steps of this process should you log out to some developer accessible log, such as a slack integration with the build tool.  Always documenting these steps in chat form is good for historical record, which can all be stored in AWS Glacier when the facts grow too old.
 
   ### Value Stream Diagram
-  <img width="1282" alt="screen shot 2016-12-04 at 8 25 50 am" src="https://cloud.githubusercontent.com/assets/3106250/20866468/ec946a12-b9fb-11e6-97ae-3e6cd679ee93.png">
+  <img width="1282" alt="screen shot 2016-12-04 at 8 25 50 am" src="https://cloud.githubusercontent.com/assets/3106250/20867151/c7af10f2-ba0b-11e6-86a7-5674dd8fdf14.png">
 
   
-  (Diagram source is a screenshots from _Devops in the Cloud_ on Safari: https://www.safaribooksonline.com/library/view/devops-in-the/9780132836357/part17.html, which is the nicest diagram I could find at time of writing)
+  (Diagram source is a screenshots from _Devops in the Cloud_ on Safari: https://www.safaribooksonline.com/library/view/devops-in-the/9780132836357/part17.html with the water mark left in for maximum sourcability (thanks @2012 Pearson), notes by myself
 
 
 ### Known Issues
