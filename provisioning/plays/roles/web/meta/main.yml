@@ -1,5 +1,5 @@
 ---
-- role: node
+- role: geerlingguy.nodejs
   nodejs_version: 6
   nodejs_npm_global_packages:
     - nodemon

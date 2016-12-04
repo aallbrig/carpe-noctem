@@ -71,19 +71,36 @@ web-dev | SUCCESS => {
 
 ```
 ### Core design of system
-  Continuous Delivery pipeline deploys the latest artifacts the instant they become available and acceptable.  This is all done in an automated fashion.  Below I will document the steps of this process.
+  The philosophy behind this stem is there exists a automated continuous delivery pipeline that always deploys the latest production artifacts to production.
 
-  1. Commit Phase
+  <img width="1282" alt="screen shot 2016-12-04 at 8 25 50 am" src="https://cloud.githubusercontent.com/assets/3106250/20867177/5316a6d2-ba0c-11e6-9d86-6768afe9b46c.png">
+
+  (Diagram source is a screenshots from _Devops in the Cloud_ on Safari: https://www.safaribooksonline.com/library/view/devops-in-the/9780132836357/part17.html with the water mark left in for maximum sourcability (thanks @2012 Pearson), notes by myself)
+
+  If anything in the system changes (e.g. configuration, source code, infrastructure), an automated process will spring to life whose conclusion is that the new system is delivered to all end users.
+
+  Since this continuous delivery is at the core of this project I will now document the phases and steps of this process.
+
+  1. Commit Phase - Developer
       1. Changes
+        Fork & branch:
+        - `git fork ${URL for source code repository}`
+        - `cd ${repository name}`
+        - `git checkout -b ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
+        Already cloned & branch:
+        - `git checkout master && git pull`
         - `git checkout -b ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
       1. Test
-        - Ensure all code pass developer standard lint rules.  A violation of this rules stops the pipeline
-        - Run low-fidelity functional tests like request/response contract rule tests and application unit tests
-        - TODO: Create way to test (`sh tests.sh` or `ansible-playbook test-env`?)
+        - Ensure all code passes the developer standards' lint rules.
+        - Run low-fidelity functional tests like request/response contract rule tests and other highly mocked application unit tests
+        - TODO: Create way to test (`sh tests.sh` or `ansible-playbook test-env` or part of `sh run.sh`?).
       1. Commit
         - `git commit -m "Description of solution and how cool of a developer you feel after making the changes"`
         - `gc` to enter `vim` editor where you can scroll through the changes being committed.  It's handy once you know `vim` or `vi`.
-  1. Acceptance Phase
+      1. Create PR
+        - `git push -u origin ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
+        - Go to GitHub Repository Source URL and hit "create PR"; tag project maintainers.
+  1. Acceptance Phase - Automated Continuous Delivery Pipeline
       1. Checkout
         - `foreach ${application} git checkout ${application repository URL}`
       1. Static Code Analysis (does it meet dev standards?).  Developer who pushed gets notified if not.
@@ -95,7 +112,7 @@ web-dev | SUCCESS => {
       1. Package software (generate artifacts, put into artifact repository)
         - `foreach ${imagining software} pack up according to ${image software image file} located at ${source code location on disk}`
         - `foreach ${image on disk} send to ${artifact repository}`
-  1. Load & Perf Phase
+  1. Load & Perf Phase - Automated Continuous Delivery Pipeline
       1. Build environment infrastructure (e.g. I use Ansible & AWS CloudFormation to build a staging ENV)
         - `ansible-playbook spinup-env` where ENV variables are set up target inventories.
 
@@ -108,36 +125,30 @@ web-dev | SUCCESS => {
         - `foreach ${artifact image} in ${artifact repository} deploy onto foreach ${target infrastructure resource}`
       1. Run highest-fidelity tests (since a real costly environment exists now) (Selenium tests)
 
-        Robotic clicks, robotic clicks.  These should be parallelized for maximum effect.
+        Robotic programatic clicking through the application system to ensure delivery of core business value (e.g. Purchasing E-Com units) in the highest fidelity environment for the system.
 
-        - part of `sh test.sh` or a step in an Ansible playbook play (cool Ender's Game reference).
+        These should be parallelized to the point of reasonable cost to minimize time waiting for results and minimize time a high fidelity environment has to be spun up in `stage`. Selenium tests must be created in units that are easy to run in parallel.
+
+        - TODO: part of `sh test.sh` or a step in an Ansible playbook play?
           `selenium test foreach UI application`
       1. Load testing and manual exploration phase (optional).
 
-        If I wanted to show this off to others from my phone I could set up a VPN, have a staging environment always showcasing current production artifacts.
-
-        Upon further consideration I believe this is necessary until production environment exists.
+        Compute resources must always have production artifacts on `stage` and one must use a `VPN` into my VPN network in order to see latest.
       1. Perf testing (does application meet business specifications? e.g. low amount of delay for static asset requests)
 
         Test Load Balancing, autoscaling groups (static asset server, application server, database connection pool)
-  1. Release Phase
-      1. Can be manual "one button" click if desired but this launches a Green/Blue deploy infrastructure with new code and slowly transfers all traffic to new boxes.
-      1. Hit health checks and slowly change reality so that all servers are of the alt color's code type
-  1. Production Monitoring Phase (continuous)
+  1. Release Phase - Automated Continuous Delivery Pipeline
+      1. Can be manual "one button" click if desired but this phase launches a Green/Blue deploy process that slowly changes the infrastructure to run new code while simultaneously transferring all traffic to new infrastructure.
+        - Populate S3 bucket with static site assets and downloadable units (e.g. Desktop app dists, mobile app dists)
+  1. Production Monitoring Phase - Automated Continuous Delivery Pipeline and Operation Engineers
       1. Health checks are constantly pinged to ensure maximum up time.  At this stage if you have any issues you store the logs and spin up a new environment (Immutable infrastructure) with ready to go auto-scalable VM images.
       1. Logs go into logstash where a ops can constantly check the health of production.  Hooks into AWS email (SES?), AWS SMS using AWS SQS if things do go south (like if your image artifacts have gone corrupt and nothing can spin up any longer).
 
 
-  A continuous delivery pipeline delivers a value stream from developer's laptop to production where everything is automated and problem types can be easily isolated.  Above are listed out the phases, the steps where manual steps can be placed if a business desires to have someone explore before releasing.
+  A continuous delivery pipeline delivers a value stream from developer's laptop to production where everything is automated and problem types can be easily isolated.  To truly achieve a culture of continuous delivery you must reconfigure you development and operations to support each other.  This means allowing operations see developer source code and allow developers to see operations source code.  This also means keeping production in focus meaning that all engineers should know how to use op tools to monitor health of production.
 
-  At all steps of this process should you log out to some developer accessible log, such as a slack integration with the build tool.  Always documenting these steps in chat form is good for historical record, which can all be stored in AWS Glacier when the facts grow too old.
+  At all steps of this automated continuous delivery process should generate logs to some developer accessible system, such as slack or discord ("ChatOps") or more traditional e-mail, SMS or pager.  Always documenting these steps in chat form is good for historical record, which can all be stored in AWS Glacier when facts grow too old.
 
-  ### Architecture CD Pipeline for Carpe Noctem
-  <img width="1282" alt="screen shot 2016-12-04 at 8 25 50 am" src="https://cloud.githubusercontent.com/assets/3106250/20867177/5316a6d2-ba0c-11e6-9d86-6768afe9b46c.png">
-
-  
-  (Diagram source is a screenshots from _Devops in the Cloud_ on Safari: https://www.safaribooksonline.com/library/view/devops-in-the/9780132836357/part17.html with the water mark left in for maximum sourcability (thanks @2012 Pearson), notes by myself)
-  
 
 ### Known Issues
 #### Vagrant
