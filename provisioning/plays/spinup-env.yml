@@ -1,0 +1,34 @@
+---
+
+- name: Provision Jenkins VM
+  hosts: jenkins-{{env}}
+  become: True
+  roles:
+    - git
+    - scala
+    - jenkins
+  vars:
+    hostname: localhost
+    port: "fake port"
+  post_tasks:
+    - debug: msg="URL for {{ item.name }} is at {{ item.url }}"
+      with_items:
+        - name: jenkins
+          url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}"
+        # - name: template
+        #   url: "http://{{ hostname }}:{{ port }}"
+        # - name: web
+        #   url: "http://{{ hostname }}:{{ port }}"
+        # - name: buildbox
+        #   url: "http://{{ hostname }}:{{ port }}"
+
+
+# - name: Provision Web VM
+#   hosts: "web-{{env}}"
+#   roles:
+#     - web
+
+# - name: Provision Build VM
+#   hosts: "build-{{env}}"
+#   roles:
+#     - prod

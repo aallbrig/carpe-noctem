@@ -1,0 +1,5 @@
+- job:
+    name: compile-dist
+    description: >
+      This job compiles source code into
+      distributable artifacts on disk.

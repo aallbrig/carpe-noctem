@@ -1,0 +1,18 @@
+---
+dependencies:
+  - role: node
+  - role: scala
+  - role: python
+  - role: geerlingguy.homebrew
+    homebrew_taps: []
+    homebrew_installed_packages:
+    - git
+    - node
+    - groovysdk
+    - scala
+    homebrew_cask_apps:
+    - java
+    - virtualbox
+    - vagrant
+    - atom
+    when: "ansible_os_family == 'MacOSX'"

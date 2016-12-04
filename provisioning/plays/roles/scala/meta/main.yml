@@ -1,0 +1,8 @@
+---
+dependencies:
+  - role: geerlingguy.homebrew
+    homebrew_installed_packages:
+    - scala
+    homebrew_cask_apps:
+    - java
+    when: "ansible_os_family == 'MacOSX'"

@@ -42,6 +42,9 @@ dev_machine:
       # LiveReload
       - guest: 35729
         host: 35729
+    shared_folders:
+      - guest: /directory/placeholder
+        host: /directory/placeholder
   build:
     forwarded_port:
       - guest: "{{build.http_port}}"

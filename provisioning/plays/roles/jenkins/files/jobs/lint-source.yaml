@@ -1,0 +1,5 @@
+- job:
+    name: lint-source
+    description: >
+      This job lints the all source code in
+      repository on disk.

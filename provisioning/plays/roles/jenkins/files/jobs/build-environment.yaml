@@ -1,0 +1,6 @@
+- job:
+    name: build-environment
+    description: >
+      This job spins up a infrastructure in
+      AWS using Cloud Formation, appropriate for
+      deliverying required resources for system.

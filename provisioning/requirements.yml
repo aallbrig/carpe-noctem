@@ -1,0 +1,7 @@
+# from galaxy
+- src: geerlingguy.homebrew
+- src: geerlingguy.jenkins
+- src: ScorpionResponse.pip
+- src: jgkim.atom
+- src: jdauphant.intellij
+- src: geerlingguy.nodejs

@@ -1,6 +1,0 @@
----
-- name: Install package "python"
-  apt:
-    name: python
-    state: present
-  when: "ansible_os_family == 'Ubuntu'"

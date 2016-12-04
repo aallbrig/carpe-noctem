@@ -1,0 +1,5 @@
+- job:
+    name: unit-test
+    description: >
+      This job unit tests all relavent
+      applications on disk.

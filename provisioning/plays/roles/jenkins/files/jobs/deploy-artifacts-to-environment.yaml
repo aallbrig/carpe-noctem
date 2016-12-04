@@ -1,0 +1,7 @@
+- job:
+    name: deploy-artifacts-to-environment
+    description: >
+      This job pulls latest artifacts from
+      external artifact repository to
+      deploy onto target environment's
+      infrastructure.

@@ -1,0 +1,6 @@
+- job:
+    name: checkout-repositories
+    description: >
+      This job saves the current from `master` branch
+      (or other target) of all relevant external
+      repositories to disk.

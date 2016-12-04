@@ -1,0 +1,5 @@
+- job:
+    name: performance-test
+    description: >
+      This job ensures system meets expected
+      performance metrics (e.g. < 1s load times).

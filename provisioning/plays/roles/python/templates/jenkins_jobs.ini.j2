@@ -1,0 +1,8 @@
+[job_builder]
+allow_duplicates=False
+
+[jenkins]
+user={{ jenkins.admin.username }}
+password={{ jenkins.admin.password }}
+url=http://{{ jenkins.hostname }}:{{ jenkins.http_port }}
+query_plugins_info=False

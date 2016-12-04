@@ -1,0 +1,5 @@
+- job:
+    name: create-database
+    description: >
+      This job spins up schemas for all
+      application's persistence requirements.
