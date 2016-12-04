@@ -132,12 +132,12 @@ web-dev | SUCCESS => {
 
   At all steps of this process should you log out to some developer accessible log, such as a slack integration with the build tool.  Always documenting these steps in chat form is good for historical record, which can all be stored in AWS Glacier when the facts grow too old.
 
-  ### Value Stream Diagram
+  ### Architecture CD Pipeline for Carpe Noctem
   <img width="1282" alt="screen shot 2016-12-04 at 8 25 50 am" src="https://cloud.githubusercontent.com/assets/3106250/20867177/5316a6d2-ba0c-11e6-9d86-6768afe9b46c.png">
 
   
-  (Diagram source is a screenshots from _Devops in the Cloud_ on Safari: https://www.safaribooksonline.com/library/view/devops-in-the/9780132836357/part17.html with the water mark left in for maximum sourcability (thanks @2012 Pearson), notes by myself
-
+  (Diagram source is a screenshots from _Devops in the Cloud_ on Safari: https://www.safaribooksonline.com/library/view/devops-in-the/9780132836357/part17.html with the water mark left in for maximum sourcability (thanks @2012 Pearson), notes by myself)
+  
 
 ### Known Issues
 #### Vagrant
