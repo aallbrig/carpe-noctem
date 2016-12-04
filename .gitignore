@@ -8,3 +8,4 @@ Vagrantfile
 **/plugins/**/*
 **/fingerprints/**/*
 dist/**/*
+**/node_modules/**/*
