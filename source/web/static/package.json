@@ -1,0 +1,11 @@
+{
+  "name": "carpe-noctem-static-site-assets",
+  "version": "1.0.0",
+  "description": "Static web assets generated for site using gulp, webpack to developer and publish dist artifacts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Allbright",
+  "license": "ISC"
+}
