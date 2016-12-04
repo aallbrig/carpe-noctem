@@ -87,11 +87,11 @@ web-dev | SUCCESS => {
         Fork & branch strategy:
         - `git fork ${URL for source code repository}`
         - `cd ${repository name}`
-        - `git checkout -b ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
+        - `git checkout -b Issue#${Issue number}/${Author of Developer}-${Title of branch}`
 
         Already cloned & branch strategy:
         - `git checkout master && git pull`
-        - `git checkout -b ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
+        - `git checkout -b Issue#${Issue number}/${Author of Developer}-${Title of branch}`
       1. Test changes on localhost
         - Ensure all code passes the developer standards' lint rules.
         - Run low-fidelity functional tests like request/response contract rule tests and other highly mocked application unit tests
@@ -99,7 +99,7 @@ web-dev | SUCCESS => {
       1. Commit source code changes
         - `git commit -m "Description of solution and how cool of a developer you feel after making the changes"`
         - `gc` to enter `vim` editor where you can scroll through the changes being committed.  It's handy once you know `vim` or `vi`.
-        - `git push -u origin ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
+        - `git push -u origin Issue#${Issue number}/${Author of Developer}-${Title of branch}`
       1. Create PR against target root
         - Go to GitHub Repository Source URL and hit "create PR"; tag project maintainers.
   1. Acceptance Phase - Automated Continuous Delivery Pipeline
@@ -112,7 +112,7 @@ web-dev | SUCCESS => {
       1. Compile
         - `foreach ${technology} ${technology build tool} generate_dist() using ${source code location on disk}`
       1. Package software (generate artifacts, put into artifact repository)
-        - `foreach ${imagining software} pack up according to ${image software image file} located at ${source code location on disk}`
+        - `foreach ${imagining software} pack up according to ${image software image file} using ${distributable code location on disk}`
         - `foreach ${image on disk} send to ${artifact repository}`
   1. Load & Perf Phase - Automated Continuous Delivery Pipeline
       1. Build environment infrastructure (e.g. I use Ansible & AWS CloudFormation to build a staging ENV)
