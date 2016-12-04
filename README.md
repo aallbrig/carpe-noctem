@@ -82,23 +82,25 @@ web-dev | SUCCESS => {
   Since this continuous delivery is at the core of this project I will now document the phases and steps of this process.
 
   1. Commit Phase - Developer
-      1. Changes
-        Fork & branch:
+      1. Source code changes
+
+        Fork & branch strategy:
         - `git fork ${URL for source code repository}`
         - `cd ${repository name}`
         - `git checkout -b ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
-        Already cloned & branch:
+
+        Already cloned & branch strategy:
         - `git checkout master && git pull`
         - `git checkout -b ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
-      1. Test
+      1. Test changes on localhost
         - Ensure all code passes the developer standards' lint rules.
         - Run low-fidelity functional tests like request/response contract rule tests and other highly mocked application unit tests
         - TODO: Create way to test (`sh tests.sh` or `ansible-playbook test-env` or part of `sh run.sh`?).
-      1. Commit
+      1. Commit source code changes
         - `git commit -m "Description of solution and how cool of a developer you feel after making the changes"`
         - `gc` to enter `vim` editor where you can scroll through the changes being committed.  It's handy once you know `vim` or `vi`.
-      1. Create PR
         - `git push -u origin ${Issue}#${Issue Number}/${Author of Developer}-${Description of branch}`
+      1. Create PR against target root
         - Go to GitHub Repository Source URL and hit "create PR"; tag project maintainers.
   1. Acceptance Phase - Automated Continuous Delivery Pipeline
       1. Checkout
