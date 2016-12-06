@@ -3,4 +3,4 @@
   apt:
     name: python
     state: present
-  when: "ansible_os_family == 'Ubuntu'"
+  when: "ansible_distribution == 'Ubuntu'"

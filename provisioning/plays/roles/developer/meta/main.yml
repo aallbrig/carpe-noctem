@@ -15,4 +15,4 @@ dependencies:
     - virtualbox
     - vagrant
     - atom
-    when: "ansible_os_family == 'MacOSX'"
+    when: "ansible_distribution == 'MacOSX'"

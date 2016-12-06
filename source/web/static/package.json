@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "echo \"Error: no dev script specified\" && exit 1",
-    "serve": "echo \"Error: no serve static assets script specified\" && exit 1"
+    "dev": "node_modules/.bin/webpack-dev-server --content-base dist --progress --colors --hot --inline"
   },
   "author": "Andrew Allbright",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "copy-webpack-plugin": "^4.0.1",
     "typescript": "^2.0.10",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-livereload-plugin": "^0.9.0"
+  },
+  "dependencies": {
+    "phaser": "^2.6.2"
   }
 }

@@ -1,16 +1,2 @@
 ---
-- role: geerlingguy.nodejs
-  nodejs_version: 6
-  nodejs_npm_global_packages:
-    - nodemon
-    - mocha
-    - eslint
-  when: "ansible_os_family != 'MacOSX'"
-- role: geerlingguy.homebrew
-  homebrew_taps: []
-  homebrew_installed_packages:
-  - git
-  - node
-  homebrew_cask_apps:
-  - atom
-  when: "ansible_os_family == 'MacOSX'"
+- role: node

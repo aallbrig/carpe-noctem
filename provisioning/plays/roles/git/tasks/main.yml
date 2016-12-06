@@ -3,4 +3,4 @@
   apt:
     name=git
     state=present
-  when: "ansible_os_family != 'MacOSX'"
+  when: "ansible_distribution != 'MacOSX'"

@@ -1,7 +1,7 @@
 function setup_osx {
   echo "osx"
 
-  # - Install prerequisites
+  # Prerequisites
   pip --version
   if [[ $? != 0 ]] ; then
     echo "No valid pip installed.  Installing..."
@@ -13,22 +13,34 @@ function setup_osx {
     pip install ansible
   fi
   ansible-galaxy install -r provisioning/requirements.yml
+  if [[ $? != 0 ]] ; then
+    echo "ERROR: Try `sudo ansible-galaxy install -r provisioning/requirements.yml`"
+    exit 1
+  fi
 
   # - Setup local machine
   ansible-playbook provisioning/plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"
+  if [[ $? != 0 ]] ; then
+    echo "ERROR: Rerun \`ansible-playbook provisioning/plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars \"@config.yml\"\`"
+    exit 1
+  fi
   # - Provision
   ansible-playbook provisioning/plays/spinup-env.yml --extra-vars "@config.yml"
+  if [[ $? != 0 ]] ; then
+    echo "ERROR: Rerun \`ansible-playbook provisioning/plays/spinup-env.yml --extra-vars \"@config.yml\"\`"
+    exit 1
+  fi
   # - Deploy
-
+  echo "$(echo pwd)/source/web/static/node_modules/.bin"
+  export PATH="$(echo pwd)/source/web/static/node_modules/.bin:$PATH"
   exit 0
 }
 
-echo "OSTYPE: $OSTYPE"
 case "$OSTYPE" in
-  solaris*) echo "SOLARIS not supported (yet)." ;;
+  solaris*) echo "SOLARIS" ;;
   darwin*) setup_osx ;;
-  linux*) echo "LINUX not supported (yet)." ;;
-  bsd*) echo "BSD not supported (yet)." ;;
-  msys*) "Windows not supported (yet)." ;;
-  *) echo "unknown: $OSTYPE not supported (yet)." ;;
+  linux*) echo "LINUX" ;;
+  bsd*) echo "BSD" ;;
+  msys*) echo "windows" ;;
+  *) echo "unknown: $OSTYPE" ;;
 esac

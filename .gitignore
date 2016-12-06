@@ -9,4 +9,5 @@ Vagrantfile
 **/fingerprints/**/*
 dist/**/*
 **/node_modules/**/*
+**/dist/**/*
 **/npm-debug.log

@@ -5,4 +5,4 @@ dependencies:
     - adobe-photoshop-cc
     - adobe-animate-cc
     - adobe-creative-cloud
-    when: "ansible_os_family == 'MacOSX'"
+    when: "ansible_distribution == 'MacOSX'"

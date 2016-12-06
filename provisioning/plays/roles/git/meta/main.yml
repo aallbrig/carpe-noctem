@@ -3,4 +3,4 @@ dependencies:
   - role: geerlingguy.homebrew
     homebrew_installed_packages:
     - git
-    when: "ansible_os_family == 'MacOSX'"
+    when: "ansible_distribution == 'MacOSX'"

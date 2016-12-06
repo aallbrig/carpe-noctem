@@ -19,6 +19,7 @@ jenkins:
     - job-dsl
     - workflow-aggregator
 web:
+  hostname: 127.0.0.1
   http_port: 8080
   https_port: 8443
 build:
@@ -32,6 +33,7 @@ dev_machine:
       # TODO: Create SSL certification by lets encrypt
       # - guest: "{{jenkins.https_port}}"
       #   host:
+    shared_folder: []
   web:
     forwarded_port:
       - guest: "{{web.http_port}}"
@@ -42,9 +44,10 @@ dev_machine:
       # LiveReload
       - guest: 35729
         host: 35729
-    shared_folders:
-      - guest: /directory/placeholder
-        host: /directory/placeholder
+    # shared_folder: []
+    shared_folder:
+      - guest: /var/www/
+        host: /source/web/static
   build:
     forwarded_port:
       - guest: "{{build.http_port}}"
@@ -52,3 +55,4 @@ dev_machine:
       # TODO: Create SSL certification by lets encrypt
       # - guest: "{{build.https_port}}"
       #   port: 443
+    shared_folder: []
