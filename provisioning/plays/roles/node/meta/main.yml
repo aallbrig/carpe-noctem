@@ -1,11 +1,7 @@
 ---
 dependencies:
-- role: geerlingguy.nodejs
-  nodejs_version: 6
-  nodejs_npm_global_packages:
-  - nodemon
-  - mocha
-  - eslint
+- role: leonidas.nvm
+  become: true
   when: ansible_distribution == "Ubuntu"
 - role: geerlingguy.homebrew
   homebrew_taps: []

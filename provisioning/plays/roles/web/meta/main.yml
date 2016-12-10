@@ -1,2 +1,3 @@
 ---
-- role: node
+dependencies:
+- role: leonidas.nvm

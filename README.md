@@ -13,6 +13,25 @@ The is the main entry point if you want to change system configs.
 #### Manual
 TODO
 
+#### Startup
+For static site
+1. `cd ./source/web/static`
+1. `npm i && npm run compile && npm run serve`
+
+### Technologies
+1. [Vagrant](https://www.vagrantup.com/) (with Virtualbox VM runner) for development
+1. [Ansible](https://www.ansible.com/) (interpreted by the ever so common `Python` language) for provisioning & configuration system
+1. [Jenkins](https://jenkins.io/) (CI/CD automated task runner to continuously deliver prod artifacts) to constantly watch and deploy latest prod artifacts
+1. [Webpack + Node](https://webpack.github.io/) for static site development (see: `source/web/static`)
+  - [TypeScript](https://www.typescriptlang.org/) (ES2015 + types!  It's basically scala!)
+  - [React](https://facebook.github.io/react/) views
+  - [Redux](http://redux.js.org/docs/basics/UsageWithReact.html) for game logic
+  - [Phaser.io](http://phaser.io/) video game runner
+
+1. [Scala play](https://www.playframework.com/) and [sbt](http://www.scala-sbt.org/download.html) (typed, functional language that is dev & maintenance friendly)
+1. [AWS](https://aws.amazon.com/) + Cloud Formation for cheap, live infrastructure (which is stubbed out by VMs for developers)
+1. [Creative Cloud](http://www.adobe.com/creativecloud.html) for art asset creation and general visual scripting.
+
 ##### Updating Dev Machine files
 * If you find another atom package, update and commit the `atom-requirements` using this command:
 ```

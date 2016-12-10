@@ -4,5 +4,5 @@
 - src: ScorpionResponse.pip
 - src: jgkim.atom
 - src: jdauphant.intellij
-- src: geerlingguy.nodejs
+- src: leonidas.nvm
 - src: geerlingguy.java

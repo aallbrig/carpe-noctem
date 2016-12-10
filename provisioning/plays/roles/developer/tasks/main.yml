@@ -1,3 +1,2 @@
 ---
 - include: vagrant.yml
-- include: configure_shell.yml

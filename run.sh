@@ -25,7 +25,7 @@ function setup_osx {
     exit 1
   fi
   # - Provision
-  ansible-playbook provisioning/plays/spinup-env.yml --extra-vars "@config.yml"
+  ansible-playbook provisioning/plays/spinup-env.yml --ask-sudo-pass --extra-vars "@config.yml"
   if [[ $? != 0 ]] ; then
     echo "ERROR: Rerun \`ansible-playbook provisioning/plays/spinup-env.yml --extra-vars \"@config.yml\"\`"
     exit 1
