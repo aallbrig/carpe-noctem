@@ -29,7 +29,17 @@ class PhaserRunner extends React.Component {
           player.animations.add('walk');
           player.animations.play('walk', 48, true);
         },
-        update:  () => {
+        update: () => {
+          const {W, A, S, D} = Phaser.Keyboard;
+          if (game.input.keyboard.isDown(W)) {
+            player.y += -10;
+          } else if (game.input.keyboard.isDown(A)) {
+            player.x += -10;
+          } else if (game.input.keyboard.isDown(S)) {
+            player.y += 10;
+          } else if (game.input.keyboard.isDown(D)) {
+            player.x += 10;
+          }
         }
       }
     );
