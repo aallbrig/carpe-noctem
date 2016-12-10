@@ -6,13 +6,10 @@
   tags:
     - vagrant
 
-- name: Change CWD
-  local_action: command cd {{playbook_dir}}/../..
-  tags:
-    - vagrant
-
 - name: Boot up VMs
   command: vagrant up
+  args:
+    chdir: "{{playbook_dir}}/../.."
   register: vagrantUpResults
   tags:
     - vagrant
