@@ -19,15 +19,15 @@ function setup_osx {
   fi
 
   # - Setup local machine
-  ansible-playbook provisioning/plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"
+  ansible-playbook provisioning/setup-dev-machine.yml --ask-sudo-pass --extra-vars "@config.yml"
   if [[ $? != 0 ]] ; then
-    echo "ERROR: Rerun \`ansible-playbook provisioning/plays/setup-dev-machine.yml --ask-sudo-pass --extra-vars \"@config.yml\"\`"
+    echo "ERROR: Rerun \`ansible-playbook provisioning/setup-dev-machine.yml --ask-sudo-pass --extra-vars \"@config.yml\"\`"
     exit 1
   fi
   # - Provision
-  ansible-playbook provisioning/plays/spinup-env.yml --ask-sudo-pass --extra-vars "@config.yml"
+  ansible-playbook provisioning/spinup-env.yml --ask-sudo-pass --extra-vars "@config.yml"
   if [[ $? != 0 ]] ; then
-    echo "ERROR: Rerun \`ansible-playbook provisioning/plays/spinup-env.yml --extra-vars \"@config.yml\"\`"
+    echo "ERROR: Rerun \`ansible-playbook provisioning/spinup-env.yml --extra-vars \"@config.yml\"\`"
     exit 1
   fi
   # - Deploy
