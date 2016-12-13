@@ -1,4 +1,4 @@
-ansible-playbook provisioning/plays/teardown-dev-machine.yml
+ansible-playbook provisioning/teardown-dev-machine.yml
 
 vagrant destroy --force
 
