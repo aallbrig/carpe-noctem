@@ -5,7 +5,6 @@ dependencies:
     homebrew_installed_packages:
     - git
     - node
-    - groovysdk
     - scala
     homebrew_cask_apps:
     - java

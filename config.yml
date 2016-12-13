@@ -16,7 +16,6 @@ jenkins:
     - ansible
     - bitbucket
     - github-pullrequest
-    - job-dsl
     - workflow-aggregator
 web:
   hostname: 127.0.0.1
