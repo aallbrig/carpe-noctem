@@ -1,8 +1,5 @@
 ---
 dependencies:
-  - role: node
-  - role: scala
-  - role: python
   - role: geerlingguy.homebrew
     homebrew_taps: []
     homebrew_installed_packages:

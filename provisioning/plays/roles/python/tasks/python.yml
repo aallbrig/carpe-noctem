@@ -1,52 +1,36 @@
 ---
-- name: Process Jenkins Job Builder
-  pip: name="{{ item }}"
-  with_items:
-    - virtualenv
-    - jenkins-job-builder
-  become: True
-  tags:
-    - jenkins
-    - python
+- block:
+  - name: Process Jenkins Job Builder
+    pip: name="{{ item }}"
+    with_items:
+      - virtualenv
+      - jenkins-job-builder
+    become: True
 
-- file:
-    path: "{{ ansible_env.HOME }}/.config/jenkins_jobs/"
-    state: directory
-    mode: 0755
-    recurse: yes
-  tags:
-    - jenkins
-    - python
+  - file:
+      path: "{{ ansible_env.HOME }}/.config/jenkins_jobs/"
+      state: directory
+      mode: 0755
+      recurse: yes
 
-- name: Copy over jenkins_jobs.ini to expected Folder
-  template:
-    src: jenkins_jobs.ini.j2
-    dest: "{{ ansible_env.HOME }}/.config/jenkins_jobs/jenkins_jobs.ini"
-    mode: 0644
-  tags:
-    - jenkins
-    - python
+  - name: Copy over jenkins_jobs.ini to expected Folder
+    template:
+      src: jenkins_jobs.ini.j2
+      dest: "{{ ansible_env.HOME }}/.config/jenkins_jobs/jenkins_jobs.ini"
+      mode: 0644
 
-- name: Collect info
-  command: pwd
-  register: debug
-  tags:
-    - jenkins
-    - python
+  - name: Collect info
+    command: pwd
+    register: debug
 
-- debug: msg="{{ debug }}"
-  tags:
-    - jenkins
-    - python
+  - debug: msg="{{ debug }}"
 
-- name: Collect more info
-  command: "cat {{ ansible_env.HOME }}/.config/jenkins_jobs/jenkins_jobs.ini"
-  register: debug
-  tags:
-    - jenkins
-    - python
+  - name: Collect more info
+    command: "cat {{ ansible_env.HOME }}/.config/jenkins_jobs/jenkins_jobs.ini"
+    register: debug
 
-- debug: msg="{{ debug }}"
+  - debug: msg="{{ debug }}"
+
   tags:
-    - jenkins
-    - python
+  - jenkins
+  - python

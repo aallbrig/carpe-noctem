@@ -2,7 +2,7 @@
 - name: Install prereq software to get developer up
   hosts: local
   roles:
-    - developer
-    - artist
+  - developer
+  - artist
   post_tasks:
-    - debug: msg="post developer/artist tasks!"
+  - debug: msg="post developer/artist tasks!"

@@ -31,6 +31,8 @@ function setup_osx {
     exit 1
   fi
   # - Deploy
+  #
+  # Temporarily add node_modules/.bin to $PATH
   echo "$(echo pwd)/source/web/static/node_modules/.bin"
   export PATH="$(echo pwd)/source/web/static/node_modules/.bin:$PATH"
   exit 0

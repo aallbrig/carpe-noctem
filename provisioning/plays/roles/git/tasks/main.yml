@@ -4,3 +4,5 @@
     name=git
     state=present
   when: "ansible_distribution != 'MacOSX'"
+  tags:
+  - git

@@ -1,19 +1,17 @@
 ---
-- name: Copy vagrantfile onto dev machine
-  local_action:
-    template src=Vagrantfile.j2
-    dest={{playbook_dir}}/../../Vagrantfile
-  tags:
-    - vagrant
+- block:
+  - name: Copy vagrantfile onto dev machine
+    local_action:
+      template src=Vagrantfile.j2
+      dest={{playbook_dir}}/../../Vagrantfile
 
-- name: Boot up VMs
-  command: vagrant up
-  args:
-    chdir: "{{playbook_dir}}/../.."
-  register: vagrantUpResults
-  tags:
-    - vagrant
+  - name: Boot up VMs
+    command: vagrant up
+    args:
+      chdir: "{{playbook_dir}}/../.."
+    register: vagrantUpResults
 
-- debug: msg="{{vagrantUpResults}}"
+  - debug: msg="{{vagrantUpResults}}"
+
   tags:
-    - vagrant
+  - vagrant

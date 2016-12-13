@@ -1,61 +1,43 @@
 ---
-- command: "whoami"
-  register: debug
-  tags:
-  - node
+- block:
+  - command: "whoami"
+    register: debug
 
-- debug: msg="{{ debug }}"
-  tags:
-  - node
+  - debug: msg="{{ debug }}"
 
-- command: "pwd"
-  register: debug
-  tags:
-  - node
+  - command: "pwd"
+    register: debug
 
-- debug: msg="{{ debug }}"
-  tags:
-  - node
+  - debug: msg="{{ debug }}"
 
-- name: LS
-  command: "ls -l {{ web.home }}"
-  register: ls
-  tags:
-  - node
+  - name: LS
+    command: "ls -l {{ web.home }}"
+    register: ls
 
-- debug: msg="{{ ls }}"
-  tags:
-  - node
+  - debug: msg="{{ ls }}"
 
-- name: Generate directory
-  file:
-    path: "{{ ansible_env.HOME }}/static"
-    state: directory
-    mode: 0755
-  tags:
-  - node
+  - name: Generate directory
+    file:
+      path: "{{ ansible_env.HOME }}/static"
+      state: directory
+      mode: 0755
 
-- name: LS
-  command: "ls -a {{ web.home }}"
-  register: ls
-  tags:
-  - node
+  - name: LS
+    command: "ls -a {{ web.home }}"
+    register: ls
 
-- name: Copy from vagrant sync folder
-  become: true
-  become_user: vagrant
-  copy:
-    src: /var/www
-    dest: "{{ ansible_env.HOME }}/static"
-  tags:
-  - node
+  - name: Copy from vagrant sync folder
+    become: true
+    become_user: vagrant
+    copy:
+      src: /var/www
+      dest: "{{ ansible_env.HOME }}/static"
 
-- name: Change CWD
-  command: "cd {{ web.home }}"
-  tags:
-  - node
+  - name: Change CWD
+    command: "cd {{ web.home }}"
 
-- name: Install package.json
-  command: npm install
+  - name: Install package.json
+    command: npm install
+
   tags:
   - node

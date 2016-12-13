@@ -1,2 +1,5 @@
 ---
-- include: node.yml
+- block:
+  - include: node.yml
+  tags:
+  - web

@@ -1,31 +1,29 @@
 ---
-# - name: Provision Jenkins VM
-#   hosts: jenkins-{{env}}
-#   become: true
-#   roles:
-#     - git
-#     - scala
-#     - jenkins
+- name: Provision Jenkins VM
+  hosts: jenkins-{{env}}
+  become: true
+  roles:
+  - git
+  - scala
+  - jenkins
 
 
 - name: Provision Web VM
   hosts: "web-{{env}}"
   become: true
   roles:
-    - web
+  - web
   post_tasks:
-    - debug: msg="URL for {{ item.name }} is at {{ item.url }}"
-      with_items:
-        - name: jenkins
-          url: "http://{{ jenkins.hostname }}:{{ jenkins.http_port }}"
-        - name: web
-          url: "http://{{ web.hostname }}:{{ web.http_port }}"
-        # - name: template
-        #   url: "http://{{ hostname }}:{{ port }}"
-        # - name: web
-        #   url: "http://{{ hostname }}:{{ port }}"
-        # - name: buildbox
-        #   url: "http://{{ hostname }}:{{ port }}"
+  - debug: msg="URL for {{ item.name }} is at {{ item.url }}"
+    with_items:
+      - name: jenkins
+        url: "http://{{ jenkins.hostname }}:{{ jenkins.http_port }}"
+      - name: web
+        url: "http://{{ web.hostname }}:{{ web.http_port }}"
+      # - name: template
+      #   url: "http://{{ hostname }}:{{ port }}"
+      # - name: buildbox
+      #   url: "http://{{ hostname }}:{{ port }}"
 
 # - name: Provision Build VM
 #   hosts: "build-{{env}}"
