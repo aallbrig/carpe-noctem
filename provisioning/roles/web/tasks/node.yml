@@ -1,11 +1,11 @@
 ---
 - block:
-  - command: "whoami"
+  - command: whoami
     register: debug
 
   - debug: msg="{{ debug }}"
 
-  - command: "pwd"
+  - command: pwd
     register: debug
 
   - debug: msg="{{ debug }}"
@@ -16,28 +16,11 @@
 
   - debug: msg="{{ ls }}"
 
-  - name: Generate directory
-    file:
-      path: "{{ ansible_env.HOME }}/static"
-      state: directory
-      mode: 0755
-
-  - name: LS
-    command: "ls -a {{ web.home }}"
-    register: ls
-
-  - name: Copy from vagrant sync folder
-    become: true
-    become_user: vagrant
-    copy:
-      src: /var/www
-      dest: "{{ ansible_env.HOME }}/static"
-
-  - name: Change CWD
-    command: "cd {{ web.home }}"
-
-  - name: Install package.json
-    command: npm install
+  # TODO: Find out why I can't "cd" into web.home but I can "ls" it.
+  # - name: Install package.json
+  #   command: npm install
+  #   args:
+  #     chdir: "{{ web.home }}"
 
   tags:
   - node
