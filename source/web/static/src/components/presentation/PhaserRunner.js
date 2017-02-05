@@ -10,6 +10,7 @@ class PhaserRunner extends React.Component {
     const { canvas } = this.refs;
     let sprite;
     let player;
+    let cursors;
     const game = new Phaser.Game(
       width,
       height,
@@ -22,32 +23,40 @@ class PhaserRunner extends React.Component {
           game.load.image('deathscythe', 'assets/deathscythe.png');
         },
         create: () => {
-          sprite = game.add.sprite(48, 48, 'deathscythe');
+          game.world.setBounds(0, 0, 1920, 1920);
+          game.physics.startSystem(Phaser.Physics.P2JS);
+
+          sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'deathscythe');
           sprite.height = 100;
           sprite.width = 100;
-          // sprite.animations.add('walk');
-          // sprite.animations.play('walk', 48, true);
+
           game.add.tween(sprite)
             .to({ x: game.width }, Math.random() * 5000, Phaser.Easing.Linear.None, true);
-          player = game.add.sprite(100, 250, 'sandrock');
+          player = game.add.sprite(game.world.centerX, game.world.centerY, 'sandrock');
           player.height = 100;
           player.width = 100;
-          game.camera.follow(player);
-          // player.animations.add('walk');
-          // player.animations.play('walk', 48, true);
+
+          game.physics.p2.enable(player);
+          game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
+          cursors = game.input.keyboard.createCursorKeys();
         },
         update: () => {
           game.debug.cameraInfo(game.camera, 32, 32);
+          game.debug.spriteCoords(player, 32, 500);
+          player.body.setZeroVelocity();
           const {W, A, S, D} = Phaser.Keyboard;
-          if (game.input.keyboard.isDown(W)) {
-            player.y += -10;
-          } else if (game.input.keyboard.isDown(A)) {
-            player.x += -10;
-          } else if (game.input.keyboard.isDown(S)) {
-            player.y += 10;
-          } else if (game.input.keyboard.isDown(D)) {
-            player.x += 10;
+
+          if (cursors.up.isDown || game.input.keyboard.isDown(W)) {
+              player.body.moveUp(300);
+          } else if (cursors.down.isDown || game.input.keyboard.isDown(S)) {
+              player.body.moveDown(300);
           }
+          if (cursors.left.isDown || game.input.keyboard.isDown(A)) {
+              player.body.velocity.x = -300;
+          } else if (cursors.right.isDown || game.input.keyboard.isDown(D)) {
+              player.body.moveRight(300);
+          }
+          
         }
       }
     );
