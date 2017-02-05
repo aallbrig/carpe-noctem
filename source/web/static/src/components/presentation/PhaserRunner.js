@@ -18,18 +18,26 @@ class PhaserRunner extends React.Component {
       {
         preload: () => {
           game.load.spritesheet('mech', 'assets/MechSheet-Raw.png', 48, 48, 12);
+          game.load.image('sandrock', 'assets/sandrock.png');
+          game.load.image('deathscythe', 'assets/deathscythe.png');
         },
         create: () => {
-          sprite = game.add.sprite(48, 48, 'mech');
-          sprite.animations.add('walk');
-          sprite.animations.play('walk', 48, true);
+          sprite = game.add.sprite(48, 48, 'deathscythe');
+          sprite.height = 100;
+          sprite.width = 100;
+          // sprite.animations.add('walk');
+          // sprite.animations.play('walk', 48, true);
           game.add.tween(sprite)
             .to({ x: game.width }, Math.random() * 5000, Phaser.Easing.Linear.None, true);
-          player = game.add.sprite(150, 150, 'mech');
-          player.animations.add('walk');
-          player.animations.play('walk', 48, true);
+          player = game.add.sprite(100, 250, 'sandrock');
+          player.height = 100;
+          player.width = 100;
+          game.camera.follow(player);
+          // player.animations.add('walk');
+          // player.animations.play('walk', 48, true);
         },
         update: () => {
+          game.debug.cameraInfo(game.camera, 32, 32);
           const {W, A, S, D} = Phaser.Keyboard;
           if (game.input.keyboard.isDown(W)) {
             player.y += -10;
