@@ -64,14 +64,8 @@ class PhaserRunner extends React.Component {
           player.body.setCollisionGroup(playerCollisionGroup);
           player.body.collides(spriteCollisionGroup, function x(a, b) {
             game.camera.shake(0.05, 500);
-            console.log('collision!');
             moveSprite();
           }, this);
-          // playerCollisionGroup.collides(spriteCollisionGroup, () => {
-          //   console.log('collision!');
-          //   // moveSprite();
-            // game.camera.shake(0.05, 500);
-          // }, this);
           game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
           cursors = game.input.keyboard.createCursorKeys();
         },
@@ -91,18 +85,6 @@ class PhaserRunner extends React.Component {
           } else if (cursors.right.isDown || game.input.keyboard.isDown(D)) {
             player.body.moveRight(300);
           }
-
-          // If player is colliding with sprite
-          game.physics.arcade.collide(playerCollisionGroup, spriteCollisionGroup, () => {
-            console.log('Is colliding');
-            game.camera.shake(0.05, 500);
-            moveSprite();
-          }, null, this);
-          game.physics.arcade.collide(sprite, player, () => {
-            console.log('asklfjasj colliding');
-            game.camera.shake(0.05, 500);
-            moveSprite();
-          });
         }
       }
     );
