@@ -46,26 +46,26 @@ class PhaserRunner extends React.Component {
           sprite.height = 150;
           sprite.width = 150;
           sprite.body.setRectangle(100, 100);
+          sprite.enableBody = true;
           sprite.physicsBodyType = Phaser.Physics.P2JS;
           sprite.body.setCollisionGroup(spriteCollisionGroup);
-          sprite.body.collides([playerCollisionGroup, playerCollisionGroup]);
+          sprite.body.collides([spriteCollisionGroup, playerCollisionGroup]);
+
           moveSprite = () => game.add.tween(sprite)
             .to({
               x: game.world.bounds.width * Math.random(),
               y: game.world.bounds.height * Math.random()
-            }, 10000, Phaser.Easing.Linear.None, true);
+            }, 2000, Phaser.Easing.Linear.None, true);
           moveSprite();
           player = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'sandrock');
           player.height = 250;
           player.width = 250;
           game.physics.p2.enable(player);
-          player.body.setRectangle(100, 100);
           player.body.setCollisionGroup(playerCollisionGroup);
-          player.body.collides([playerCollisionGroup, spriteCollisionGroup]);
-          console.log(playerCollisionGroup);
-          player.body.collides(spriteCollisionGroup, () => {
+          player.body.collides(spriteCollisionGroup, function x(a, b) {
             game.camera.shake(0.05, 500);
             console.log('collision!');
+            moveSprite();
           }, this);
           // playerCollisionGroup.collides(spriteCollisionGroup, () => {
           //   console.log('collision!');
