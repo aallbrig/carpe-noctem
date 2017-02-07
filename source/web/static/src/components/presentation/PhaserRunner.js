@@ -25,41 +25,52 @@ class PhaserRunner extends React.Component {
           // game.scale.pageAlignHorizontally = true;
           // game.scale.pageAlignVertically = true;
           game.stage.backgroundColor = '#eee';
+          game.load.image('background','assets/debug-grid-1920x1920.png');
           game.load.spritesheet('mech', 'assets/MechSheet-Raw.png', 48, 48, 12);
           game.load.image('sandrock', 'assets/sandrock.png');
-          game.load.image('deathscythe', 'assets/deathscythe.png');
+          game.load.image('deathscythe', 'assets/deathscythe-2.png');
         },
         create: () => {
+          game.add.tileSprite(0, 0, 1920, 1920, 'background');
           game.world.setBounds(0, 0, 1920, 1920);
+
           game.physics.startSystem(Phaser.Physics.P2JS);
           game.physics.p2.setImpactEvents(true);
+          game.physics.p2.restitution = 0.8;
           playerCollisionGroup = game.physics.p2.createCollisionGroup();
           spriteCollisionGroup = game.physics.p2.createCollisionGroup();
           game.physics.p2.updateBoundsCollisionGroup();
 
           sprite = game.add.sprite(game.world.centerX, game.world.centerY, 'deathscythe');
           game.physics.p2.enable(sprite);
-          sprite.height = 200;
-          sprite.width = 200;
+          sprite.height = 150;
+          sprite.width = 150;
+          sprite.body.setRectangle(100, 100);
+          sprite.physicsBodyType = Phaser.Physics.P2JS;
           sprite.body.setCollisionGroup(spriteCollisionGroup);
-          // moveSprite = () => game.add.tween(sprite)
-          //   .to({
-          //     x: game.world.centerX/*game.world.bounds.width * Math.random()*/,
-          //     y: game.world.centerY/*game.world.bounds.height * Math.random()*/
-          //   }, 10000, Phaser.Easing.Linear.None, true);
-          // moveSprite();
+          sprite.body.collides([playerCollisionGroup, playerCollisionGroup]);
+          moveSprite = () => game.add.tween(sprite)
+            .to({
+              x: game.world.bounds.width * Math.random(),
+              y: game.world.bounds.height * Math.random()
+            }, 10000, Phaser.Easing.Linear.None, true);
+          moveSprite();
           player = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'sandrock');
-          player.height = 400;
-          player.width = 400;
-          sprite.scale.set(0.2);
+          player.height = 250;
+          player.width = 250;
           game.physics.p2.enable(player);
+          player.body.setRectangle(100, 100);
           player.body.setCollisionGroup(playerCollisionGroup);
           player.body.collides([playerCollisionGroup, spriteCollisionGroup]);
           console.log(playerCollisionGroup);
+          player.body.collides(spriteCollisionGroup, () => {
+            game.camera.shake(0.05, 500);
+            console.log('collision!');
+          }, this);
           // playerCollisionGroup.collides(spriteCollisionGroup, () => {
           //   console.log('collision!');
           //   // moveSprite();
-          //   game.camera.shake(0.05, 500);
+            // game.camera.shake(0.05, 500);
           // }, this);
           game.camera.follow(player, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);
           cursors = game.input.keyboard.createCursorKeys();
