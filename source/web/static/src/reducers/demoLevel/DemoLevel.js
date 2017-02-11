@@ -1,7 +1,4 @@
-const initialState = {
-  height: 540,
-  width: 540
-};
+const initialState = {};
 module.exports = {
   DemoLevel: (state = initialState, action) => {
     switch (action.type) {
