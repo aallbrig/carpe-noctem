@@ -1,21 +1,9 @@
-import { combineReducers } from 'redux'
-
+import { combineReducers } from 'redux';
+import { Game as game } from './game';
+import { DemoLevel as demoLevel } from 'demoLevel';
 module.exports = {
   DemoLevel: combineReducers({
-    exampleReducer: (state = {}, action) => {
-      switch (action.type) {
-        default:
-          return state
-      }
-    },
-    game: (state = {
-      height: 540,
-      width: 540
-    }, action) => {
-      switch (action.type) {
-        default:
-          return state
-      }
-    }
+    game,
+    demoLevel
   })
 }
