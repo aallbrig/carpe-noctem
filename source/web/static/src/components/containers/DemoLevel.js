@@ -12,7 +12,7 @@ const DemoLevelContainer = connect(
 )(PhaserRunner);
 const store = createStore(DemoLevel);
 
-module.exports = () => (
+export default () => (
   <Provider store={store}>
     <DemoLevelContainer />
   </Provider>
