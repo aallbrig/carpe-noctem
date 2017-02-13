@@ -58,9 +58,5 @@ module.exports = {
         { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` }
       ]),
       new LiveReloadPlugin({port: 35729, hostname: 'localhost'})
-    ],
-    externals: {
-      'react': 'React',
-      'react-dom': 'ReactDOM'
-    }
+    ]
 };
