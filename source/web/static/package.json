@@ -12,6 +12,9 @@
   "author": "Andrew Allbright",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^7.0.5",
+    "@types/react": "^15.0.9",
+    "@types/react-dom": "^0.14.23",
     "awesome-typescript-loader": "^3.0.4-rc.2",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
@@ -28,6 +31,7 @@
   "dependencies": {
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
+    "phase-2-e": "^0.2.0",
     "phaser": "^2.6.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

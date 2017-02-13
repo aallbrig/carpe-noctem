@@ -6,9 +6,19 @@
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "allowJs": true
+    "allowJs": true,
+    "lib": ["es2015", "es2016", "es2017", "dom"]
   },
   "include": [
     "./src/**/*"
+  ],
+  "types": [
+    "node"
+  ],
+  "typeroots": [
+    "node_modules/@types"
+  ],
+  "files": [
+    "typings/globals/phaser/index.d.ts"
   ]
 }
