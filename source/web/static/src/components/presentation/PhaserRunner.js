@@ -1,10 +1,12 @@
-import React from 'react'
-import { findDOMNode } from 'react-dom'
+import React from 'react';
+import { findDOMNode } from 'react-dom';
+
 const moveSprite = (game, sprite) => game.add.tween(sprite)
   .to({
     x: game.world.bounds.width * Math.random(),
     y: game.world.bounds.height * Math.random()
   }, 2000, Phaser.Easing.Linear.None, true);
+
 class PhaserRunner extends React.Component {
   shouldComponentUpdate() {
     return false;
