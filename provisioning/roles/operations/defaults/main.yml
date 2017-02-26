@@ -1,0 +1,5 @@
+---
+DOCKER_TLS_VERIFY: "DOCKER_TLS_VERIFY needs to be set"
+DOCKER_CERT_PATH: "DOCKER_CERT_PATH needs to be set"
+DOCKER_MACHINE_NAME: "DOCKER_MACHINE_NAME needs to be set"
+DOCKER_HOST: "DOCKER_HOST needs to be set"

@@ -7,9 +7,10 @@ dependencies:
     - node
     - scala
     homebrew_cask_apps:
+    - visual-studio-code
     - java
     - virtualbox
     - vagrant
-    - visual-studio-code
     - docker-toolbox
     when: "ansible_distribution == 'MacOSX'"
+  - role: FGtatsuro.vagrant

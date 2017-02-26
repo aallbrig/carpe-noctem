@@ -3,6 +3,7 @@
   hosts: local
   roles:
   - developer
+  - operations
   - artist
   post_tasks:
-  - debug: msg="post developer/artist tasks!"
+  - debug: msg="post developer/operations/artist tasks!"
