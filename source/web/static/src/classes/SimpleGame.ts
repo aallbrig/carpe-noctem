@@ -7,6 +7,10 @@ class SimpleGame {
     const text = "Hello World!";
     const style = { font: "65px Arial", fill: "#ff0000", align: "center" };
     this.game.add.text(0, 0, text, style);
+    this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+  }
+  render() {
+    this.game.debug.inputInfo(32, 32);
   }
 }
 
