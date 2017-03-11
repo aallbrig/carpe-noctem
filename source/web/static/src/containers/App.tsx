@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, IMapStateToProps, IMapDispatchToProps } from 'react-redux';
 import { IInjectedProps, Link} from 'react-router';
+import { incrementCounter } from '../actions/SimpleGame';
 
 class App extends React.Component<IInjectedProps, void> {
   render() {
@@ -15,7 +16,9 @@ class App extends React.Component<IInjectedProps, void> {
     );
   };
 };
+const mapStateToProps:IMapStateToProps = (store) => ({});
+const mapDispatchToProps:IMapDispatchToProps = (dispatch) => ({});
 export default connect(
-  () => ({}),
-  () => ({})
+  mapStateToProps,
+  mapDispatchToProps
 )(App);

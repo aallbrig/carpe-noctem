@@ -17,12 +17,10 @@
   ],
   "typeroots": [
     "node_modules/@types",
-    "typings/modules",
-    "typings/globals"
+    "typings/modules"
   ],
   "files": [
-    "typings/globals/phaser/index.d.ts",
-    "typings/modules/immutable/index.d.ts",
+    "node_modules/phaser/typescript/phaser.d.ts",
     "typings/modules/react-redux/index.d.ts",
     "typings/modules/react-router/index.d.ts",
     "typings/modules/react-router-redux/index.d.ts"
