@@ -11,12 +11,12 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   game:Game;
   canvasId:string = 'simpleGameCanvas';
   componentDidMount() {
-    const canvas = this.refs[this.canvasId];
+    const canvas = findDOMNode(this.refs[this.canvasId]);
     this.game = new Game(
       800,
       600,
       Phaser.AUTO,
-      findDOMNode(canvas),
+      canvas,
       {
         create: this.create
       }

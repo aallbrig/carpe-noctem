@@ -22,11 +22,11 @@ class App extends React.Component<IInjectedProps, void> {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                {/*<LinkContainer to='/'>
+                <LinkContainer to='/'>
                   <NavItem>
                     Home
                   </NavItem>
-                </LinkContainer>*/}
+                </LinkContainer>
               </Nav>
               <Nav pullRight>
                 <LinkContainer to='/game'>
