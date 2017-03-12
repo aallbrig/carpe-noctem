@@ -3,17 +3,16 @@ import * as SimpleGameActions from '../../actions/SimpleGame'
 import { Record } from 'immutable';
 import { handleActions } from 'redux-actions';
 
-interface InitialState {
+export interface ISimpleGameState {
   count: Number;
   height: Number;
   width: Number;
 }
-const initialState:InitialState = {
+const INITIAL_STATE = Record({
   count: 0,
   height: 540,
   width: 540
-};
-const INITIAL_STATE = Record(initialState)();
+} as ISimpleGameState)();
 
 export default handleActions({
   [constants.INCREMENT_COUNTER]: (state, action) => state.update('count', (value) => value + 1),

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect, IMapStateToProps, IMapDispatchToProps } from 'react-redux';
-import { IInjectedProps, Link} from 'react-router';
+import { IInjectedProps } from 'react-router';
 import { Grid, Row, Navbar, Nav, NavItem, MenuItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { incrementCounter } from '../actions/SimpleGame';
 
 class App extends React.Component<IInjectedProps, void> {
@@ -10,22 +11,29 @@ class App extends React.Component<IInjectedProps, void> {
     return (
       <Grid>
         <Row>
-          <h4 className='text-center'>TODO: Banner Image Promoting Video Game</h4>
           <Navbar inverse>
             <Navbar.Header>
               <Navbar.Brand>
-                Carpe Noctem
+                <LinkContainer to='/'>
+                  <span>Carpe Noctem</span>
+                </LinkContainer>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <NavItem eventKey={1} href="#">Link</NavItem>
-                <NavItem eventKey={2} href="#">Link</NavItem>
+                {/*<LinkContainer to='/'>
+                  <NavItem>
+                    Home
+                  </NavItem>
+                </LinkContainer>*/}
               </Nav>
               <Nav pullRight>
-                <NavItem eventKey={1} href="#">Link Right</NavItem>
-                <NavItem eventKey={2} href="#">Link Right</NavItem>
+                <LinkContainer to='/game'>
+                  <NavItem>
+                    Play Game
+                  </NavItem>
+                </LinkContainer>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

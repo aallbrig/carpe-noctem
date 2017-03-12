@@ -1,14 +1,8 @@
 import * as React from 'react';
 
-interface TodoTextInputProps {
-  onSave: Function;
-  text?: string;
-  placeholder?: string,
-  editing?: boolean;
-  newTodo?: boolean;
-}
+interface SimpleGameRunnerProps {}
 
-class SimpleGameRunner extends React.Component<TodoTextInputProps, void> {
+export default class SimpleGameRunner extends React.Component<SimpleGameRunnerProps, void> {
   render() {
     return (
       <div>
@@ -17,5 +11,3 @@ class SimpleGameRunner extends React.Component<TodoTextInputProps, void> {
     );
   }
 }
-
-export default SimpleGameRunner;

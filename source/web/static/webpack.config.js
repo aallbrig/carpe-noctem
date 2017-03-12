@@ -17,7 +17,10 @@ module.exports = {
     },
     devtool: 'source-map',
     devServer: {
-      outputPath: `${__dirname}/dist`
+      outputPath: `${__dirname}/dist`,
+      compress: true,
+      hot: true,
+      overlay: true
     },
     module: {
       preLoaders: [
@@ -63,7 +66,7 @@ module.exports = {
         { from: `${__dirname}/src/**/*.html`, to: `${__dirname}/dist` },
         { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` }
       ]),
-      new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
+      // new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
     //   new webpack.ProvidePlugin({
     //     jQuery: 'jquery',
     //     $: 'jquery',
