@@ -3,10 +3,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const webpack = require('webpack');
 
-const phaserModule = path.join(__dirname, '/node_modules/phaser/');
-const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
-const pixi = path.join(phaserModule, 'build/custom/pixi.js');
-const p2 = path.join(phaserModule, 'build/custom/p2.js');
+// const phaserModule = path.join(__dirname, '/node_modules/phaser/');
+// const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
+// const pixi = path.join(phaserModule, 'build/custom/pixi.js');
+// const p2 = path.join(phaserModule, 'build/custom/p2.js');
 
 module.exports = {
     context: `${__dirname}/src`,
@@ -30,7 +30,12 @@ module.exports = {
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: { 
+            presets: [ 
+              'es2015' 
+            ] 
+          }
         },
         { test: /pixi.js/, loader: 'script' },
         { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
@@ -44,19 +49,13 @@ module.exports = {
       ]
     },
     resolve: {
-      root: [
-        path.resolve('./src/components'),
-        path.resolve('./src/actions'),
-        path.resolve('./src/reducers'),
-        path.resolve('./src/stores')
-      ],
       extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
       modulesDirectories: ['node_modules'],
-      alias: {
-        'phaser': phaser,
-        'pixi.js': pixi,
-        'p2': p2,
-      }
+      // alias: {
+      //   'phaser': phaser,
+      //   'pixi.js': pixi,
+      //   'p2': p2,
+      // }
     },
     plugins: [
       // new CopyWebpackPlugin([
@@ -69,7 +68,7 @@ module.exports = {
     //     $: 'jquery',
     //     jquery: 'jquery'
     // }),
-      new webpack.optimize.OccurrenceOrderPlugin,
-      new webpack.optimize.UglifyJsPlugin({minimize: true})
+      // new webpack.optimize.OccurrenceOrderPlugin,
+      // new webpack.optimize.UglifyJsPlugin({minimize: true})
     ]
 };
