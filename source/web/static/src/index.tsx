@@ -8,7 +8,7 @@ import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import Routes from './routers/Routes';
 import store from './store/store';
-const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={ history }>
