@@ -1,3 +1,6 @@
+// import 'bootstrap/less/bootstrap.less';
+import 'bootswatch/united/bootstrap.css';
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

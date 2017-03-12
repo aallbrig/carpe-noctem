@@ -23,6 +23,7 @@
     "node_modules/phaser/typescript/phaser.d.ts",
     "typings/modules/react-redux/index.d.ts",
     "typings/modules/react-router/index.d.ts",
-    "typings/modules/react-router-redux/index.d.ts"
+    "typings/modules/react-router-redux/index.d.ts",
+    "typings/modules/react-bootstrap/index.d.ts"
   ]
 }

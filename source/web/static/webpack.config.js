@@ -20,6 +20,9 @@ module.exports = {
       outputPath: `${__dirname}/dist`
     },
     module: {
+      preLoaders: [
+        { test: /\.js$/, loader: 'source-map-loader' }
+      ],
       loaders: [
         {
           test: /\.js$/,
@@ -30,11 +33,14 @@ module.exports = {
           }
         },
         { test: /pixi.js/, loader: 'script' },
-        { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
-      ],
-      preLoaders: [
-        // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-        { test: /\.js$/, loader: "source-map-loader" }
+        { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+        { test: /\.less$/, loader: 'style!css!less' },
+        {
+          test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          loader: "file?name=fonts/[name].[ext]"
+        },
+        { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' },
+        { test: /\.css$/, loader: 'style!css' }
       ]
     },
     resolve: {
@@ -57,6 +63,11 @@ module.exports = {
         { from: `${__dirname}/src/**/*.html`, to: `${__dirname}/dist` },
         { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` }
       ]),
-      new LiveReloadPlugin({port: 35729, hostname: 'localhost'})
+      new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+    })
     ]
 };
