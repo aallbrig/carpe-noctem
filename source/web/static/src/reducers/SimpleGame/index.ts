@@ -4,14 +4,14 @@ import { Record } from 'immutable';
 import { handleActions } from 'redux-actions';
 
 export interface ISimpleGameState {
-  count: Number;
-  height: Number;
-  width: Number;
+  count: number;
+  height: number;
+  width: number;
 }
 const INITIAL_STATE = Record({
   count: 0,
-  height: 540,
-  width: 540
+  height: 600,
+  width: 750
 } as ISimpleGameState)();
 
 export default handleActions({

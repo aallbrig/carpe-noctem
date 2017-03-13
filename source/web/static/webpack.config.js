@@ -2,6 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const webpack = require('webpack');
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 // const phaserModule = path.join(__dirname, '/node_modules/phaser/');
 // const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
@@ -62,13 +63,14 @@ module.exports = {
       //   { from: `${__dirname}/src/**/*.html`, to: `${__dirname}/dist` },
       //   { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` }
       // ]),
-      // new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
+      new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
     //   new webpack.ProvidePlugin({
     //     jQuery: 'jquery',
     //     $: 'jquery',
     //     jquery: 'jquery'
     // }),
       // new webpack.optimize.OccurrenceOrderPlugin,
-      // new webpack.optimize.UglifyJsPlugin({minimize: true})
+      // new webpack.optimize.UglifyJsPlugin({minimize: true}),
+      new CheckerPlugin()
     ]
 };
