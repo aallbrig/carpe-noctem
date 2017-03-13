@@ -1,16 +1,35 @@
-class SimpleGame {
-  game: Phaser.Game;
-  constructor() {
-    this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', { create: this.create });
+import { Game, IGameConfig } from 'phaser';
+
+export class SimpleGame {
+  game: Game;
+  constructor(canvas:Element, height:number, width:number) {
+    // this.game = new Game(gameConfig);
+    this.game = new Game(
+      height,
+      width,
+      Phaser.AUTO,
+      canvas,
+      {
+        preload: this.preload,
+        create: this.create,
+        update: this.update
+      }
+    );
+  }
+  preload() {
+    console.log('on preload');
   }
   create() {
-    const text = "Hello World!";
-    const style = { font: "65px Arial", fill: "#ff0000", align: "center" };
+    console.log('on create');
+    const text = 'Carpe Noctem Game';
+    const style = {
+      font: "65px Arial", fill: "#ff0000", align: "center"
+    }
+    // this.simpleGame.game.add.text(0, 0, text, style);
     this.game.add.text(0, 0, text, style);
-    this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
   }
-  render() {
-    this.game.debug.inputInfo(32, 32);
+  update() {
+    console.log('on update');
   }
 }
 

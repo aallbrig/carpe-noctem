@@ -25,7 +25,7 @@ class GameEntity implements GameEntityInterface {
     value: "" // TODO: Find placeholder asset...?
   };
   game: Phaser.Game;
-  constructor(game:Phaser.Game, asset: Image | SpriteSheet) {
+  constructor(game:Phaser.Game, asset:Image | SpriteSheet) {
     this.game = game;
     // "case class" approximation
     if (<Image>asset) {
