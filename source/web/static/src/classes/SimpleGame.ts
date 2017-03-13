@@ -3,7 +3,8 @@ import { Game, IGameConfig } from 'phaser';
 export class SimpleGame {
   game: Game;
   constructor(canvas:Element, height:number, width:number) {
-    // this.game = new Game(gameConfig);
+    // TODO: Refactor to use IGameConfig instead of "normal" config
+    // this.game = new Game(gameConfig as IGameConfig);
     this.game = new Game(
       height,
       width,
@@ -25,7 +26,6 @@ export class SimpleGame {
     const style = {
       font: "65px Arial", fill: "#ff0000", align: "center"
     }
-    // this.simpleGame.game.add.text(0, 0, text, style);
     this.game.add.text(0, 0, text, style);
   }
   update() {
