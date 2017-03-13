@@ -1,3 +1,4 @@
+// TODO: Remove this file when it has been extracted into classes/SimpleGame
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 
