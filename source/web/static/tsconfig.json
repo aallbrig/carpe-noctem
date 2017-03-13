@@ -7,18 +7,28 @@
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "lib": ["es2015", "es2016", "es2017", "dom"]
+    "lib": ["es2015", "es2016", "es2017", "dom"],
+    "skipLibCheck": true
   },
   "include": [
     "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "typings"
   ],
   "types": [
     "node"
   ],
   "typeroots": [
-    "node_modules/@types"
+    "node_modules/@types",
+    "typings/modules"
   ],
   "files": [
-    "typings/globals/phaser/index.d.ts"
+    "node_modules/phaser/typescript/phaser.d.ts",
+    "typings/modules/react-redux/index.d.ts",
+    "typings/modules/react-router/index.d.ts",
+    "typings/modules/react-router-redux/index.d.ts",
+    "typings/modules/react-bootstrap/index.d.ts"
   ]
 }

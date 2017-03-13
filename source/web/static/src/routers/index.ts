@@ -1,1 +1,4 @@
-// Silence is bliss
+import Routes from './Routes';
+export default {
+  Routes
+};
