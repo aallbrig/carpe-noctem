@@ -15,7 +15,7 @@ export class TitleScreenState extends State {
     this.input.onTap.addOnce(this.titleClicked, this);
   }
   render() {
-    this.game.debug.text("(Carpe Noctem Video Game Debugger)", 20, 120);
+    this.game.debug.text("(Carpe Noctem::TitleScreenState Debugger)", 20, 120);
   }
   titleClicked() {
     this.game.state.start('GameRunningState');
