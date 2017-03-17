@@ -1,12 +1,12 @@
 const keyMirror = require('keymirror');
 
-interface Constants {
+interface IConstants {
   INCREMENT_COUNTER: string,
   DECREMENT_COUNTER: string,
   LOGOUT_USER: string
 }
 
-export const constants:Constants = keyMirror({
+export const constants:IConstants = keyMirror({
   INCREMENT_COUNTER: null,
   DECREMENT_COUNTER: null,
   LOGOUT_USER: null

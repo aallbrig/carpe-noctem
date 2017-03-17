@@ -1,17 +1,13 @@
-import constants from './constants';
 import * as SimpleGameActions from '../../actions/SimpleGame'
 import { Record } from 'immutable';
 import { handleActions } from 'redux-actions';
+import { default as constants } from  '../../constants/SimpleGame';
 
 export interface ISimpleGameState {
   count: number;
-  height: number;
-  width: number;
 }
 const INITIAL_STATE = Record({
-  count: 0,
-  height: 600,
-  width: 750
+  count: 0
 } as ISimpleGameState)();
 
 export default handleActions({

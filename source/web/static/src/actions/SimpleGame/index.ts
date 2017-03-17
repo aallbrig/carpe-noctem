@@ -1,4 +1,4 @@
-import { constants } from '../../reducers/SimpleGame/constants';
+import { constants } from '../../constants';
 import { createAction } from 'redux-actions';
 
 export const incrementCounter = createAction(constants.INCREMENT_COUNTER);

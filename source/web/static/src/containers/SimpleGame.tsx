@@ -4,6 +4,7 @@ import { connect, IMapStateToProps, IMapDispatchToProps } from 'react-redux';
 import { default as SimpleGameStore } from '../store/store';
 import { ISimpleGameState } from '../reducers/SimpleGame';
 import { IReduxResponsiveState, IRootReducerState } from '../reducers';
+import { default as SimpleGameActions } from '../actions/SimpleGame';
 import { SimpleGame } from '../classes';
 
 const getResponsiveWidth = (responsive:IReduxResponsiveState):number => {
@@ -22,7 +23,8 @@ const getResponsiveWidth = (responsive:IReduxResponsiveState):number => {
 
 interface ISimpleGameContainerProps extends React.Props<any> {
   game: ISimpleGameState,
-  responsive: IReduxResponsiveState
+  responsive: IReduxResponsiveState,
+  incrementCounter: Function
 };
 class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
   canvasId:string = 'simpleGameCanvas';
@@ -59,7 +61,9 @@ const mapStateToProps:IMapStateToProps = (state:IRootReducerState, componentProp
   responsive: state.responsive,
   width: getResponsiveWidth(state.responsive)
 });
-const mapDispatchToProps:IMapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps:IMapDispatchToProps = (dispatch) => ({
+  incrementCounter: dispatch(SimpleGameActions.incrementCounter())
+});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
