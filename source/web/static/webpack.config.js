@@ -59,10 +59,9 @@ module.exports = {
       // }
     },
     plugins: [
-      // new CopyWebpackPlugin([
-      //   { from: `${__dirname}/src/**/*.html`, to: `${__dirname}/dist` },
-      //   { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` }
-      // ]),
+      new CopyWebpackPlugin([
+        { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` }
+      ]),
       new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
     //   new webpack.ProvidePlugin({
     //     jQuery: 'jquery',
