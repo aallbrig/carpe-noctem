@@ -1,12 +1,12 @@
-interface Image {
+export interface Image {
   name: string,
   value: string
 }
-interface SpriteSheet {
+export interface SpriteSheet {
   name: string,
   value: string
 }
-interface GameEntityInterface {
+export interface GameEntityInterface {
   name: string,
   image?: Image,
   spritesheet?: SpriteSheet,
@@ -14,7 +14,7 @@ interface GameEntityInterface {
   update(): void
 };
 
-class GameEntity implements GameEntityInterface {
+export class GameEntity implements GameEntityInterface {
   name = "GameEntity";
   image = {
     name: "Placeholder Image",
