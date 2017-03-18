@@ -9,7 +9,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import { createHashHistory } from 'history';
 import Routes from './routers/Routes';
 import store from './store/store';
-// TODO: Resolve situation where History != History.History
+// TODO: Resolve situation where History !== History.History, even though they both reference the same type..?
 const history = syncHistoryWithStore(createHashHistory(), store);
 ReactDOM.render(
   <Provider store={ store }>
