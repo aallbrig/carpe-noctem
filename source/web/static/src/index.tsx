@@ -1,4 +1,3 @@
-// import 'bootstrap/less/bootstrap.less';
 import 'bootswatch/united/bootstrap.css';
 
 import * as React from 'react';
