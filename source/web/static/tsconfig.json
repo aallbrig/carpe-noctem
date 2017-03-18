@@ -15,20 +15,16 @@
   ],
   "exclude": [
     "node_modules",
-    "typings"
+    "typings",
+    "**/typings.json"
   ],
   "types": [
     "node"
   ],
   "typeroots": [
-    "node_modules/@types",
-    "typings/modules"
+    "node_modules/@types"
   ],
   "files": [
-    "node_modules/phaser/typescript/phaser.d.ts",
-    "typings/modules/react-redux/index.d.ts",
-    "typings/modules/react-router/index.d.ts",
-    "typings/modules/react-router-redux/index.d.ts",
-    "typings/modules/react-bootstrap/index.d.ts"
+    "node_modules/phaser/typescript/phaser.d.ts"
   ]
 }

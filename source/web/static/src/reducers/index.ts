@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from 'redux';
-import { routerReducer, IRouterState } from 'react-router-redux';
-// TODO: Ignore below typescript error
-import { createResponsiveStateReducer, calculateResponsiveState } from 'redux-responsive';
+import { routerReducer, RouterState } from 'react-router-redux';
+const reduxResponsive = require('redux-responsive');
+const { createResponsiveStateReducer, calculateResponsiveState } = reduxResponsive;
 import { default as SimpleGameReducer, ISimpleGameState } from './SimpleGame';
 
 // TODO: Create redux-responsive type mapping and release onto NPM
@@ -43,7 +43,7 @@ export interface IReduxResponsiveState {
 
 export interface IRootReducerState {
   simpleGame: ISimpleGameState,
-  routing: IRouterState,
+  routing: RouterState,
   responsive: IReduxResponsiveState
 };
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
-import { connect, IMapStateToProps, IMapDispatchToProps } from 'react-redux';
+import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
 import { default as SimpleGameStore } from '../store/store';
 import { ISimpleGameState } from '../reducers/SimpleGame';
 import { IReduxResponsiveState, IRootReducerState } from '../reducers';
@@ -56,12 +56,12 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   };
 };
 
-const mapStateToProps:IMapStateToProps = (state:IRootReducerState, componentProps:ISimpleGameContainerProps) => ({
+const mapStateToProps:MapStateToProps<{}, {}> = (state:IRootReducerState, componentProps:ISimpleGameContainerProps) => ({
   game: state.simpleGame,
   responsive: state.responsive,
   width: getResponsiveWidth(state.responsive)
 });
-const mapDispatchToProps:IMapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps:MapDispatchToPropsFunction<{}, {}> = (dispatch) => ({
   incrementCounter: dispatch(SimpleGameActions.incrementCounter())
 });
 export default connect(

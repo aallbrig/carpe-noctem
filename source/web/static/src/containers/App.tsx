@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { connect, IMapStateToProps, IMapDispatchToProps } from 'react-redux';
-import { IInjectedProps } from 'react-router';
+import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
+import { RouterContext } from 'react-router';
 import { Grid, Row, Navbar, Nav, NavItem, MenuItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { IRootReducerState } from '../reducers';
 import { incrementCounter } from '../actions/SimpleGame';
 
-class App extends React.Component<IInjectedProps, void> {
+class App extends React.Component<RouterContext.RouterContextProps, any> {
   render() {
-    const { children } = this.props;
+    const { children, location: { pathname } } = this.props;
     return (
       <Grid>
         <Row>
@@ -38,6 +39,9 @@ class App extends React.Component<IInjectedProps, void> {
             </Navbar.Collapse>
           </Navbar>
           <div>
+            Breadcrumbs: { pathname }
+          </div>
+          <div>
             { children }
           </div>
         </Row>
@@ -45,9 +49,5 @@ class App extends React.Component<IInjectedProps, void> {
     );
   };
 };
-const mapStateToProps:IMapStateToProps = (store) => ({});
-const mapDispatchToProps:IMapDispatchToProps = (dispatch) => ({});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+const mapStateToProps:MapStateToProps<{}, {}> = (store: IRootReducerState) => ({});
+export default connect(mapStateToProps)(App);
