@@ -52,11 +52,6 @@ module.exports = {
     resolve: {
       extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
       modulesDirectories: ['node_modules'],
-      // alias: {
-      //   'phaser': phaser,
-      //   'pixi.js': pixi,
-      //   'p2': p2,
-      // }
     },
     plugins: [
       new CopyWebpackPlugin([
@@ -64,11 +59,6 @@ module.exports = {
         { from: `${__dirname}/src/index.html`, to: `${__dirname}/dist` }
       ]),
       new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
-    //   new webpack.ProvidePlugin({
-    //     jQuery: 'jquery',
-    //     $: 'jquery',
-    //     jquery: 'jquery'
-    // }),
       // new webpack.optimize.OccurrenceOrderPlugin,
       // new webpack.optimize.UglifyJsPlugin({minimize: true}),
       new CheckerPlugin()
