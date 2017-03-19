@@ -4,7 +4,6 @@
   "description": "Static web assets generated for site using gulp, webpack to developer and publish dist artifacts.",
   "main": "index.js",
   "scripts": {
-    "install": "npm i",
     "start": "node_modules/.bin/webpack-dev-server -d --host 0.0.0.0 --port 3000 --content-base dist --progress --colors --hot --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "node_modules/.bin/webpack --inline --optimize-minimize"
