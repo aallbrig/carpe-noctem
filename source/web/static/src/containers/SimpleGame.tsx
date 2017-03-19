@@ -35,8 +35,8 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
     const height = this.props.responsive.height - 200;
     this.simpleGame = new SimpleGame(canvas, height, width);
   }
-  update() {
-    console.log('on update');
+  componentWillUnmount() {
+    this.simpleGame.game.destroy();
   }
   shouldComponentUpdate() {
     return false;
