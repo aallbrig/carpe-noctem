@@ -32,7 +32,7 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   componentDidMount() {
     const canvas = findDOMNode(this.refs[this.canvasId]);
     const width = getResponsiveWidth(this.props.responsive);
-    const height = this.props.responsive.height;
+    const height = this.props.responsive.height - 200;
     this.simpleGame = new SimpleGame(canvas, height, width);
   }
   update() {

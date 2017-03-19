@@ -7,8 +7,8 @@ export class SimpleGame {
     // TODO: Refactor to use IGameConfig instead of "normal" config
     // this.game = new Game(gameConfig as IGameConfig);
     this.game = new Game(
-      height,
       width,
+      height,
       Phaser.AUTO,
       canvas
     );
