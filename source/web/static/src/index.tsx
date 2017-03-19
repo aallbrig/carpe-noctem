@@ -9,7 +9,10 @@ import { createHashHistory } from 'history';
 import Routes from './routers/Routes';
 import store from './store/store';
 // TODO: Resolve situation where History !== History.History, even though they both reference the same type..?
-const history = syncHistoryWithStore(createHashHistory(), store);
+const history = syncHistoryWithStore(
+  createHashHistory(),
+  store
+);
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={ history }>
