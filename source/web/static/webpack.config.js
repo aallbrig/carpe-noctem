@@ -2,12 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const webpack = require('webpack');
-const { CheckerPlugin } = require('awesome-typescript-loader')
-
-// const phaserModule = path.join(__dirname, '/node_modules/phaser/');
-// const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
-// const pixi = path.join(phaserModule, 'build/custom/pixi.js');
-// const p2 = path.join(phaserModule, 'build/custom/p2.js');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
     context: `${__dirname}/src`,
