@@ -44,10 +44,10 @@ dev_machine:
       # LiveReload
       - guest: 35729
         host: 35729
-    # shared_folder: []
-    shared_folder:
-      - guest: "{{ web.home }}"
-        host: source/web/static
+    shared_folder: []
+    # shared_folder:
+    #   - guest: "{{ web.home }}"
+    #     host: source/web/static
   build:
     forwarded_port:
       - guest: "{{ build.http_port }}"

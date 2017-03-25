@@ -8,8 +8,5 @@ dependencies:
     - scala
     homebrew_cask_apps:
     - java
-    - virtualbox
-    - vagrant
     - visual-studio-code
-    - docker-toolbox
     when: "ansible_distribution == 'MacOSX'"

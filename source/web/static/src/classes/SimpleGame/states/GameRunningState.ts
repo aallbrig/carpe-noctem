@@ -77,6 +77,7 @@ export class GameRunningState extends State {
       0.1
     );
     this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.game.input.touch.enabled = true;
   }
   render() {
     this.game.debug.text("(Carpe Noctem::GameRunningState Debugger)", 10, 10);
