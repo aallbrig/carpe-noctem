@@ -12,7 +12,6 @@
       command vagrant up
     environment:
       VAGRANT_CWD: "{{playbook_dir}}/.."
-      VAGRANT_VAGRANTFILE: "{{playbook_dir}}/../Vagrantfile"
     register: vagrantUpResults
 
   - debug: msg="{{vagrantUpResults}}"
