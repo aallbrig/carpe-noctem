@@ -4,8 +4,6 @@ dependencies:
     homebrew_taps: []
     homebrew_installed_packages:
     - git
-    - node
-    - scala
     homebrew_cask_apps:
     - visual-studio-code
     - java
