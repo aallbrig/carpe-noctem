@@ -10,11 +10,11 @@
 
   - debug: msg="{{ debug }}"
 
-  # - name: LS
-  #   command: "ls -l {{ web.home }}"
-  #   register: ls
+  - name: LS
+    command: "ls -l {{ web.home }}"
+    register: ls
 
-  # - debug: msg="{{ ls }}"
+  - debug: msg="{{ ls }}"
 
   # TODO: Find out why I can't "cd" into web.home but I can "ls" it.
   # - name: Install package.json
