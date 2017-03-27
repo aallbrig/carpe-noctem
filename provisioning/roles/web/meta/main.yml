@@ -1,3 +1,7 @@
 ---
 dependencies:
 - role: leonidas.nvm
+  nvm:
+    version: v0.32.1
+    node_version: '7'
+    user: vagrant

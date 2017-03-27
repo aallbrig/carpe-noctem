@@ -17,10 +17,11 @@
   - debug: msg="{{ ls }}"
 
   # TODO: Find out why I can't "cd" into web.home but I can "ls" it.
-  # - name: Install package.json
-  #   command: npm install
-  #   args:
-  #     chdir: "{{ web.home }}"
-
+  - name: Install package.json
+    command: npm install
+    args:
+      chdir: "{{ web.home }}"
+    become: True
+    become_user: vagrant
   tags:
   - node
