@@ -6,4 +6,4 @@
   - operations
   - artist
   post_tasks:
-  - debug: msg="post developer/operations/artist tasks!"
+  - debug: msg="developer/operations/artist tasks!"
