@@ -1,6 +1,6 @@
 ---
 - block:
-  - debug: msg="{{playbook_dir}}"
+  - debug: msg="Playbook directory- {{playbook_dir}}"
 
   - name: Copy vagrantfile onto dev machine
     local_action:
