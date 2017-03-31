@@ -3,8 +3,6 @@
   hosts: jenkins-{{env}}
   become: true
   roles:
-  - git
-  - scala
   - jenkins
 
 - name: Provision Web VM
@@ -12,6 +10,11 @@
   become: true
   roles:
   - web
+
+- name: Provision Build VM
+  hosts: "build-{{env}}"
+  roles:
+    - angstwad.docker_ubuntu
   post_tasks:
   - debug: msg="URL for {{ item.name }} is at {{ item.url }}"
     with_items:
@@ -19,12 +22,7 @@
       url: "http://{{ jenkins.hostname }}:{{ jenkins.http_port }}"
     - name: web
       url: "http://{{ web.hostname }}:{{ web.http_port }}"
-    # - name: template
-    #   url: "http://{{ hostname }}:{{ port }}"
-    # - name: buildbox
-    #   url: "http://{{ hostname }}:{{ port }}"
-
-# - name: Provision Build VM
-#   hosts: "build-{{env}}"
-#   roles:
-#     - prod
+    - name: template
+      url: "http://{{ hostname }}:{{ port }}"
+    - name: buildbox
+      url: "http://{{ hostname }}:{{ port }}"
