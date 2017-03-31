@@ -1,13 +1,13 @@
 ---
 - name: Provision Jenkins VM
   hosts: jenkins-{{env}}
-  become: true
+  become: True
   roles:
   - jenkins
 
 - name: Provision Web VM
   hosts: "web-{{env}}"
-  become: true
+  become: True
   roles:
   - web
 
@@ -15,14 +15,15 @@
   hosts: "build-{{env}}"
   roles:
     - angstwad.docker_ubuntu
+  become: True
   post_tasks:
-  - debug: msg="URL for {{ item.name }} is at {{ item.url }}"
+  - local_action: command vagrant port {{ item }}
+    become: "{{ ansible_user_id }}"
     with_items:
-    - name: jenkins
-      url: "http://{{ jenkins.hostname }}:{{ jenkins.http_port }}"
-    - name: web
-      url: "http://{{ web.hostname }}:{{ web.http_port }}"
-    - name: template
-      url: "http://{{ hostname }}:{{ port }}"
-    - name: buildbox
-      url: "http://{{ hostname }}:{{ port }}"
+      - jenkins-dev
+      - web-dev
+      - build-dev
+    register: openPorts
+  - name: Display vagrant ports
+    debug: msg={{ item.stdout }}
+    with_items: "{{ openPorts.results }}"
