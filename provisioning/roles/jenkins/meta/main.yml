@@ -1,6 +1,11 @@
 ---
 dependencies:
-  - role: python
+  - role: geerlingguy.homebrew
+    homebrew_installed_packages:
+    - python3
+    when: "ansible_distribution == 'MacOSX'"
+  - role: ScorpionResponse.pip
+    when: "ansible_distribution != 'MacOSX'"
   - role: geerlingguy.jenkins
     jenkins_version: 2.33
     jenkins_hostname: 127.0.0.1
