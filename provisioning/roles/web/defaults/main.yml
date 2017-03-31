@@ -1,0 +1,6 @@
+---
+web:
+  hostname: 127.0.0.1
+  http_port: 8080
+  https_port: 8443
+  home: /var/www/

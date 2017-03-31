@@ -4,17 +4,23 @@
   become: True
   roles:
   - jenkins
+  vars:
+    env: dev
 
 - name: Provision Web VM
   hosts: "web-{{env}}"
   become: True
   roles:
   - web
+  vars:
+    env: dev
 
 - name: Provision Build VM
   hosts: "build-{{env}}"
   roles:
     - angstwad.docker_ubuntu
+  vars:
+    env: dev
   become: True
   post_tasks:
   - local_action: command vagrant port {{ item }}

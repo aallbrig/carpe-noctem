@@ -15,5 +15,4 @@ jenkins:
     - ansible
     - bitbucket
     - github-pullrequest
-    - job-dsl
     - workflow-aggregator
