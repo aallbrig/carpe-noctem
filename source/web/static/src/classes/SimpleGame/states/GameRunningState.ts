@@ -76,7 +76,7 @@ export class GameRunningState extends State {
     this.game.input.touch.enabled = true;
   }
   render() {
-    this.game.debug.text("(Carpe Noctem::GameRunningState Debugger)", 10, 10);
+    this.game.debug.text('(Carpe Noctem::GameRunningState Debugger)', 10, 10);
   }
   update() {
     const {W, A, S, D} = Keyboard;

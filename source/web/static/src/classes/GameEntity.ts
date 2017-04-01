@@ -15,14 +15,14 @@ export interface GameEntityInterface {
 };
 
 export class GameEntity implements GameEntityInterface {
-  name = "GameEntity";
+  name = 'GameEntity';
   image = {
-    name: "Placeholder Image",
-    value: "" // TODO: Find placeholder asset
+    name: 'Placeholder Image',
+    value: '' // TODO: Find placeholder asset
   };
   spritesheet = {
-    name: "Placeholder SpriteSheet",
-    value: "" // TODO: Find placeholder asset...?
+    name: 'Placeholder SpriteSheet',
+    value: '' // TODO: Find placeholder asset...?
   };
   game: Phaser.Game;
   constructor(game:Phaser.Game, asset:Image | SpriteSheet) {

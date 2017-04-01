@@ -10,6 +10,7 @@
         "transform": "lodash/${member}",
         "preventFullImport": true
       }
-    }]
+    }],
+    "babel-plugin-transform-object-rest-spread"
   ]
 }

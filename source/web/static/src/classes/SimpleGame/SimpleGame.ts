@@ -1,8 +1,10 @@
 import { Game, IGameConfig, Text, State, Sprite } from 'phaser';
 import { GameRunningState, TitleScreenState } from '.';
+import { Store } from 'redux';
 
 export class SimpleGame {
   game: Game;
+  store: Store<{}>;
   constructor(canvas:Element, height:number, width:number) {
     // TODO: Refactor to use IGameConfig instead of "normal" config
     // this.game = new Game(gameConfig as IGameConfig);

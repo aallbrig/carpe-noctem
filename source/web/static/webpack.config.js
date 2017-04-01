@@ -26,14 +26,27 @@ module.exports = {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
           use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015', 'env'],
-              plugins: [require('babel-plugin-transform-object-rest-spread')]
+            loader: 'babel-loader'
+          }
+        },
+        {
+          enforce: 'pre',
+          test: /\.ts(x)?$/,
+          loader: 'tslint-loader',
+          exclude: /(node_modules)/,
+          options: {
+            tsConfigFile: 'tsconfig.json',
+            tslint: {
+              emitErrors: true,
+              failOnHint: true
             }
           }
         },
-        { test: /\.ts(x)?$/, use: 'ts-loader' },
+        {
+          test: /\.ts(x)?$/,
+          use: 'ts-loader',
+          exclude: /(node_modules)/
+        },
         { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
         {
           test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,

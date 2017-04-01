@@ -9,13 +9,13 @@ export class TitleScreenState extends State {
   create() {
     const text = 'Click/tap to begin';
     const style = {
-      font: "65px Arial", fill: "#ff0000", align: "center"
+      font: '65px Arial', fill: '#ff0000', align: 'center'
     };
     this.textSprite = this.game.add.text(20, 20, text, style);
     this.input.onTap.addOnce(this.titleClicked, this);
   }
   render() {
-    this.game.debug.text("(Carpe Noctem::TitleScreenState Debugger)", 20, 120);
+    this.game.debug.text('(Carpe Noctem::TitleScreenState Debugger)', 20, 120);
   }
   titleClicked() {
     this.game.state.start('GameRunningState');
