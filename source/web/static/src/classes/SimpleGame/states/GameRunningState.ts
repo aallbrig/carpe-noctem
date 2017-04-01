@@ -45,8 +45,6 @@ export class GameRunningState extends State {
     this.enemy.height = 150;
     this.enemy.width = 150;
     this.enemy.body.setRectangle(100, 100);
-    this.enemy.enableBody = true;
-    this.enemy.physicsBodyType = Phaser.Physics.P2JS;
     this.enemy.body.setCollisionGroup(this.enemyCollisionGroup);
     this.enemy.body.collides([
       this.enemyCollisionGroup,
@@ -62,8 +60,6 @@ export class GameRunningState extends State {
     this.player.height = 200;
     this.player.width = 100;
     this.game.physics.p2.enable(this.player);
-    this.enemy.enableBody = true;
-    this.enemy.physicsBodyType = Phaser.Physics.P2JS;
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
     this.player.body.collides(this.enemyCollisionGroup, function collisionFn() {
       this.game.camera.shake(0.05, 500);

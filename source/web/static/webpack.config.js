@@ -5,57 +5,59 @@ const webpack = require('webpack');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
-    context: `${__dirname}/src`,
-    entry: `${__dirname}/src/index.tsx`,
+    entry: path.join(__dirname, 'src/index.tsx'),
     output: {
       path: `${__dirname}/dist`,
       filename: 'bundle.js',
     },
-    devtool: 'source-map',
+    // devtool: 'source-map',
     devServer: {
-      outputPath: `${__dirname}/dist`,
+      host: process.env.HOST || '0.0.0.0',
+      port: process.env.PORT || '3000',
+      contentBase: 'dist',
       compress: true,
       hot: true,
       overlay: true
     },
     module: {
-      preLoaders: [
-        { test: /\.js$/, loader: 'source-map-loader' }
-      ],
-      loaders: [
+      rules: [
+        { test: /\.js$/, use: 'source-map-loader' },
         {
           test: /\.js$/,
           exclude: /(node_modules|bower_components)/,
-          loader: 'babel-loader',
-          options: { 
-            presets: [ 
-              'es2015' 
-            ] 
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'env'],
+              plugins: [require('babel-plugin-transform-object-rest-spread')]
+            }
           }
         },
-        { test: /pixi.js/, loader: 'script' },
-        { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
-        { test: /\.less$/, loader: 'style!css!less' },
+        { test: /\.ts(x)?$/, use: 'ts-loader' },
+        { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
         {
           test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          loader: "file?name=fonts/[name].[ext]"
+          use: "file-loader?name=fonts/[name].[ext]"
         },
-        { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' },
-        { test: /\.css$/, loader: 'style!css' }
+        { test: /bootstrap\/dist\/js\/umd\//, use: 'imports?jQuery=jquery' },
+        { test: /\.css$/, use: ['style-loader', 'css-loader'] }
       ]
     },
     resolve: {
-      extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-      modulesDirectories: ['node_modules'],
+      extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+      modules: [
+        path.join(__dirname, 'src'),
+        'node_modules'
+      ],
     },
     plugins: [
       new CopyWebpackPlugin([
-        { from: `${__dirname}/src/assets/*`, to: `${__dirname}/dist` },
-        { from: `${__dirname}/src/index.html`, to: `${__dirname}/dist` }
+        { from: path.join(__dirname, 'src/assets/*'), to: path.join(__dirname, 'dist') },
+        { from: path.join(__dirname, 'src/*.html'), to: path.join(__dirname, 'dist') }
       ]),
-      new LiveReloadPlugin({port: 35729, hostname: 'localhost'}),
+      new webpack.HotModuleReplacementPlugin()
+      // TODO: selectively do this if process.env.ENV != 'dev'
       // new webpack.optimize.OccurrenceOrderPlugin,
       // new webpack.optimize.UglifyJsPlugin({minimize: true}),
-      new CheckerPlugin()
     ]
 };
