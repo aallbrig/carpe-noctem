@@ -27,21 +27,21 @@ interface ISimpleGameContainerProps extends React.Props<any> {
   incrementCounter: Function
 };
 class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
-  canvasId:string = 'simpleGameCanvas';
-  simpleGame:SimpleGame;
-  componentDidMount() {
+  private canvasId:string = 'simpleGameCanvas';
+  private simpleGame:SimpleGame;
+  public componentDidMount() {
     const canvas = findDOMNode(this.refs[this.canvasId]);
     const width = getResponsiveWidth(this.props.responsive);
     const height = this.props.responsive.height - 200;
     this.simpleGame = new SimpleGame(canvas, height, width);
   }
-  componentWillUnmount() {
+  public componentWillUnmount() {
     this.simpleGame.game.destroy();
   }
-  shouldComponentUpdate() {
+  public shouldComponentUpdate() {
     return false;
   }
-  componentWillReceiveProps(nextProps:ISimpleGameContainerProps) {
+  public componentWillReceiveProps(nextProps:ISimpleGameContainerProps) {
     console.log('receiving new props!');
     if (this.simpleGame.game.height !== nextProps.responsive.height) {
       console.log(' height is not the same!');
@@ -49,7 +49,7 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
       console.log(' width is not the same!');
     }
   }
-  render() {
+  public render() {
     return (
       <div id={this.canvasId} ref={this.canvasId} />
     );

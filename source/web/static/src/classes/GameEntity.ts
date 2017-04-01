@@ -15,16 +15,16 @@ export interface GameEntityInterface {
 };
 
 export class GameEntity implements GameEntityInterface {
-  name = 'GameEntity';
-  image = {
+  public name = 'GameEntity';
+  public image = {
     name: 'Placeholder Image',
     value: '' // TODO: Find placeholder asset
   };
-  spritesheet = {
+  public spritesheet = {
     name: 'Placeholder SpriteSheet',
     value: '' // TODO: Find placeholder asset...?
   };
-  game: Phaser.Game;
+  public game: Phaser.Game;
   constructor(game:Phaser.Game, asset:Image | SpriteSheet) {
     this.game = game;
     // "case class" approximation
@@ -34,7 +34,7 @@ export class GameEntity implements GameEntityInterface {
       this.spritesheet = asset;
     }
   }
-  update():void {
+  public update():void {
     console.log('update!');
   }
 };

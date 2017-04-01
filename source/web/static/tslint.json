@@ -1,6 +1,7 @@
 {
   "rules": {
     "quotemark": [true, "single"],
-    "indent": [true, "spaces"]
+    "indent": [true, "spaces"],
+    "member-access": [true, "check-accessor"]
   }
 }

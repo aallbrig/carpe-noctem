@@ -5,7 +5,7 @@ import { IRootReducerState } from '../reducers';
 
 interface ISimpleGameContainerProps extends React.Props<any> {};
 class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
-  render() {
+  public render() {
     return (
       <Row>
         <Col xs={12}>

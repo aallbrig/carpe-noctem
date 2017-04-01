@@ -10,21 +10,21 @@ const moveSprite = (game:Game, sprite:Sprite) => game.add.tween(sprite)
   }, 2000, Phaser.Easing.Linear.None, true);
 
 export class GameRunningState extends State {
-  titleScreenImage: Sprite;
-  player: Sprite;
-  enemy: Sprite;
-  playerCollisionGroup: Physics.P2.CollisionGroup;
-  enemyCollisionGroup: Physics.P2.CollisionGroup;
-  cursors: CursorKeys;
+  private titleScreenImage: Sprite;
+  private player: Sprite;
+  private enemy: Sprite;
+  private playerCollisionGroup: Physics.P2.CollisionGroup;
+  private enemyCollisionGroup: Physics.P2.CollisionGroup;
+  private cursors: CursorKeys;
   constructor() {
     super();
   }
-  preload() {
+  public preload() {
     this.load.image('backgroundImage', 'assets/debug-grid-1920x1920.png');
     this.game.load.image('sandrock', 'assets/EW-Sandrock-Bazooka-Up.png');
     this.game.load.image('deathscythe', 'assets/deathscythe-2.png');
   }
-  create() {
+  public create() {
     this.titleScreenImage = this.add.sprite(0, 0, 'backgroundImage');
     this.game.world.setBounds(0, 0, 1920, 1920);
     this.game.physics.startSystem(Physics.P2JS);
@@ -75,10 +75,10 @@ export class GameRunningState extends State {
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.game.input.touch.enabled = true;
   }
-  render() {
+  public render() {
     this.game.debug.text('(Carpe Noctem::GameRunningState Debugger)', 10, 10);
   }
-  update() {
+  public update() {
     const {W, A, S, D} = Keyboard;
     this.game.debug.cameraInfo(this.game.camera, 10, 32);
     this.game.debug.spriteCoords(this.player, 10, 128);

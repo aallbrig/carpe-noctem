@@ -11,7 +11,7 @@ interface AppProps {
   location: Location;
 }
 class App extends React.Component<AppProps, any> {
-  render() {
+  public render() {
     const { children, location: { pathname } } = this.props;
     return (
       <Grid>
