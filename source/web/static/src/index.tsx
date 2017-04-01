@@ -1,5 +1,7 @@
 import 'bootswatch/united/bootstrap.css';
-
+import 'pixi';
+import 'p2';
+import 'phaser';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -12,6 +14,11 @@ const history = syncHistoryWithStore(
   hashHistory,
   store
 );
+
+const appDiv = document.createElement('div');
+appDiv.id = 'app';
+document.getElementsByTagName('body')[0].appendChild(appDiv);
+
 ReactDOM.render(
   <Provider store={ store }>
     <Router history={ history }>
