@@ -82,7 +82,7 @@ module.exports = {
       new CopyWebpackPlugin([
         {
           from: path.join(__dirname, 'src/assets/*'),
-          to: path.join(__dirname, 'dist/*'),
+          to: path.join(__dirname, 'dist/assets'),
           flatten: true
         }
       ]),
