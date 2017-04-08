@@ -28,6 +28,7 @@
       "check-typecast"
     ],
     "align": [true, "arguments", "parameters", "statements"],
-    "prefer-const": true
+    "prefer-const": true,
+    "eofline": true
   }
 }
