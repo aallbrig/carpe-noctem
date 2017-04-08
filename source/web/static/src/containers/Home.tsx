@@ -20,8 +20,8 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   };
 };
 
-const mapStateToProps:MapStateToProps<ISimpleGameContainerProps, {}> = () => ({});
-const mapDispatchToProps:MapDispatchToPropsFunction<{}, {}> = () => ({});
+const mapStateToProps: MapStateToProps<ISimpleGameContainerProps, {}> = () => ({});
+const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps

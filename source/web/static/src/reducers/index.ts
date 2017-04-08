@@ -47,7 +47,7 @@ export interface IRootReducerState {
   responsive: IReduxResponsiveState;
 };
 
-const responsiveReducer:Reducer<IReduxResponsiveState> = createResponsiveStateReducer({
+const responsiveReducer: Reducer<IReduxResponsiveState> = createResponsiveStateReducer({
   extraSmall: 480,
   small: 768,
   medium: 992,

@@ -5,7 +5,7 @@ import { GameRunningState, TitleScreenState } from '.';
 export class SimpleGame {
   public game: Game;
   // private store: Store<{}>;
-  constructor(canvas:Element, height:number, width:number) {
+  constructor(canvas: Element, height: number, width: number) {
     // TODO: Refactor to use IGameConfig instead of "normal" config
     // this.game = new Game(gameConfig as IGameConfig);
     this.game = new Game(

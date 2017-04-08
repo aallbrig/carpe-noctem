@@ -3,7 +3,7 @@ import {
   Camera, CursorKeys, Keyboard
 } from 'phaser';
 
-const moveSprite = (game:Game, sprite:Sprite) => game.add.tween(sprite)
+const moveSprite = (game: Game, sprite: Sprite) => game.add.tween(sprite)
   .to({
     x: game.world.bounds.width * Math.random(),
     y: game.world.bounds.height * Math.random()

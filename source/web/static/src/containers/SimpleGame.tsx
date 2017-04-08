@@ -6,7 +6,7 @@ import { IReduxResponsiveState, IRootReducerState } from '../reducers';
 import { default as SimpleGameActions } from '../actions/SimpleGame';
 import { SimpleGame } from '../classes';
 
-const getResponsiveWidth = (responsive:IReduxResponsiveState):number => {
+const getResponsiveWidth = (responsive: IReduxResponsiveState): number => {
   if (responsive.is.extraSmall) {
     return responsive.breakpoints.extraSmall;
   } else if (responsive.is.small) {
@@ -26,8 +26,8 @@ interface ISimpleGameContainerProps extends React.Props<any> {
   incrementCounter: Function;
 };
 class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
-  private canvasId:string = 'simpleGameCanvas';
-  private simpleGame:SimpleGame;
+  private canvasId: string = 'simpleGameCanvas';
+  private simpleGame: SimpleGame;
   public componentDidMount() {
     const canvas = findDOMNode(this.refs[this.canvasId]);
     const width = getResponsiveWidth(this.props.responsive);
@@ -40,7 +40,7 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   public shouldComponentUpdate() {
     return false;
   }
-  public componentWillReceiveProps(nextProps:ISimpleGameContainerProps) {
+  public componentWillReceiveProps(nextProps: ISimpleGameContainerProps) {
     console.log('receiving new props!');
     if (this.simpleGame.game.height !== nextProps.responsive.height) {
       console.log(' height is not the same!');
@@ -55,12 +55,12 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   };
 };
 
-const mapStateToProps:MapStateToProps<{}, {}> = (state:IRootReducerState) => ({
+const mapStateToProps: MapStateToProps<{}, {}> = (state: IRootReducerState) => ({
   game: state.simpleGame,
   responsive: state.responsive,
   width: getResponsiveWidth(state.responsive)
 });
-const mapDispatchToProps:MapDispatchToPropsFunction<{}, {}> = (dispatch) => ({
+const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = (dispatch) => ({
   incrementCounter: dispatch(SimpleGameActions.incrementCounter())
 });
 export default connect(
