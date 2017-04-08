@@ -35,6 +35,9 @@
     "no-shadowed-variable": true,
     "no-string-literal": true,
     "no-switch-case-fall-through": true,
-    "no-unused-variable": [true, "check-parameters", {"ignore-pattern": "React"}]
+    "no-unused-variable": [true, "check-parameters", {"ignore-pattern": "React"}],
+    "no-var-keyword": true,
+    "radix": true,
+    "switch-default": true
   }
 }
