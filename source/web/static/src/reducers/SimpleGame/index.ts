@@ -9,8 +9,11 @@ const INITIAL_STATE = Record({
   count: 0
 } as ISimpleGameState)();
 
-export default handleActions({
-  [constants.INCREMENT_COUNTER]: (state) => state.update('count', (value) => value + 1),
-  [constants.DECREMENT_COUNTER]: (state) => state.update('count', (value) => value - 1),
-  [constants.LOGOUT_USER]: (state) => state.merge(INITIAL_STATE)
-}, INITIAL_STATE);
+export default handleActions(
+  {
+    [constants.INCREMENT_COUNTER]: (state) => state.update('count', (value) => value + 1),
+    [constants.DECREMENT_COUNTER]: (state) => state.update('count', (value) => value - 1),
+    [constants.LOGOUT_USER]: (state) => state.merge(INITIAL_STATE)
+  }, 
+  INITIAL_STATE
+);

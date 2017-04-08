@@ -4,10 +4,15 @@ import {
 } from 'phaser';
 
 const moveSprite = (game: Game, sprite: Sprite) => game.add.tween(sprite)
-  .to({
-    x: game.world.bounds.width * Math.random(),
-    y: game.world.bounds.height * Math.random()
-  }, 2000, Phaser.Easing.Linear.None, true);
+  .to(
+    {
+      x: game.world.bounds.width * Math.random(),
+      y: game.world.bounds.height * Math.random()
+    },
+    2000,
+    Phaser.Easing.Linear.None,
+    true
+  );
 
 export class GameRunningState extends State {
   private titleScreenImage: Sprite;
@@ -61,10 +66,14 @@ export class GameRunningState extends State {
     this.player.width = 100;
     this.game.physics.p2.enable(this.player);
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
-    this.player.body.collides(this.enemyCollisionGroup, function collisionFn() {
-      this.game.camera.shake(0.05, 500);
-      moveSprite(this.game, this.enemy);
-    }, this);
+    this.player.body.collides(
+      this.enemyCollisionGroup,
+      function collisionFn() {
+        this.game.camera.shake(0.05, 500);
+        moveSprite(this.game, this.enemy);
+      },
+      this
+    );
 
     this.game.camera.follow(
       this.player,

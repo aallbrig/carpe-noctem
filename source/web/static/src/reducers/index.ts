@@ -47,25 +47,28 @@ export interface IRootReducerState {
   responsive: IReduxResponsiveState;
 };
 
-const responsiveReducer: Reducer<IReduxResponsiveState> = createResponsiveStateReducer({
-  extraSmall: 480,
-  small: 768,
-  medium: 992,
-  large: 1200,
-  extraLarge: 1200,
-} as {
-  extraSmall: number;
-  small: number;
-  medium: number;
-  large: number;
-  extraLarge: number;
-}, {
-  extraFields: () => ({
-    width: window.innerWidth,
-    height: window.innerHeight,
-    media: window.matchMedia
-  }),
-});
+const responsiveReducer: Reducer<IReduxResponsiveState> = createResponsiveStateReducer(
+  {
+    extraSmall: 480,
+    small: 768,
+    medium: 992,
+    large: 1200,
+    extraLarge: 1200,
+  } as {
+    extraSmall: number;
+    small: number;
+    medium: number;
+    large: number;
+    extraLarge: number;
+  },
+  {
+    extraFields: () => ({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      media: window.matchMedia
+    }),
+  }
+);
 
 export const rootReducer = combineReducers({
   simpleGame: SimpleGameReducer,
