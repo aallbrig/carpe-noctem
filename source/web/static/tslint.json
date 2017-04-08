@@ -29,6 +29,7 @@
     ],
     "align": [true, "arguments", "parameters", "statements"],
     "prefer-const": true,
-    "eofline": true
+    "eofline": true,
+    "no-duplicate-super": true
   }
 }
