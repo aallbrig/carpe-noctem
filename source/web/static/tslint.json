@@ -7,14 +7,15 @@
       true,
       {
         "order": [
-            "static-field",
-            "instance-field",
-            "constructor",
-            "public-instance-method",
-            "protected-instance-method",
-            "private-instance-method"
+          "static-field",
+          "instance-field",
+          "constructor",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
         ]
       }
-    ]
+    ],
+    "semicolon": [true, "always"]
   }
 }

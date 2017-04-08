@@ -18,12 +18,12 @@ const getResponsiveWidth = (responsive:IReduxResponsiveState):number => {
   } else if (responsive.is.extraLarge) {
     return responsive.breakpoints.extraLarge;
   }
-}
+};
 
 interface ISimpleGameContainerProps extends React.Props<any> {
-  game: ISimpleGameState,
-  responsive: IReduxResponsiveState,
-  incrementCounter: Function
+  game: ISimpleGameState;
+  responsive: IReduxResponsiveState;
+  incrementCounter: Function;
 };
 class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
   private canvasId:string = 'simpleGameCanvas';

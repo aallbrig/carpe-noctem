@@ -6,45 +6,45 @@ import { default as SimpleGameReducer, ISimpleGameState } from './SimpleGame';
 
 // TODO: Create redux-responsive type mapping and release onto NPM
 export interface IReduxResponsiveState {
-  width: number,
-  height: number,
-  mediaType: string,
-  orientation: string | null,
+  width: number;
+  height: number;
+  mediaType: string;
+  orientation: string | null;
   breakpoints: {
-    extraSmall: number,
-    small: number,
-    medium: number,
-    large: number,
-    extraLarge: number,
-    infinity: number  // Why track this value?
-  },
+    extraSmall: number;
+    small: number;
+    medium: number;
+    large: number;
+    extraLarge: number;
+    infinity: number;  // Why track this value?
+  };
   is: {
-    extraSmall: boolean,
-    small: boolean,
-    medium: boolean,
-    large: boolean,
+    extraSmall: boolean;
+    small: boolean;
+    medium: boolean;
+    large: boolean;
     extraLarge: boolean
-  }
+  };
   greaterThan: {
-    extraSmall: boolean,
-    small: boolean,
-    medium: boolean,
-    large: boolean,
+    extraSmall: boolean;
+    small: boolean;
+    medium: boolean;
+    large: boolean;
     extraLarge: boolean
-  },
+  };
   lessThan: {
-    extraSmall: boolean,
-    small: boolean,
-    medium: boolean,
-    large: boolean,
-    extraLarge: boolean
-  }
+    extraSmall: boolean;
+    small: boolean;
+    medium: boolean;
+    large: boolean;
+    extraLarge: boolean;
+  };
 };
 
 export interface IRootReducerState {
-  simpleGame: ISimpleGameState,
-  routing: RouterState,
-  responsive: IReduxResponsiveState
+  simpleGame: ISimpleGameState;
+  routing: RouterState;
+  responsive: IReduxResponsiveState;
 };
 
 const responsiveReducer:Reducer<IReduxResponsiveState> = createResponsiveStateReducer({
@@ -54,11 +54,11 @@ const responsiveReducer:Reducer<IReduxResponsiveState> = createResponsiveStateRe
   large: 1200,
   extraLarge: 1200,
 } as {
-  extraSmall: number,
-  small: number,
-  medium: number,
-  large: number,
-  extraLarge: number
+  extraSmall: number;
+  small: number;
+  medium: number;
+  large: number;
+  extraLarge: number;
 }, {
   extraFields: () => ({
     width: window.innerWidth,

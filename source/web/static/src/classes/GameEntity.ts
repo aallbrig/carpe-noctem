@@ -1,17 +1,17 @@
 export interface Image {
-  name: string,
-  value: string
+  name: string;
+  value: string;
 }
 export interface SpriteSheet {
-  name: string,
-  value: string
+  name: string;
+  value: string;
 }
 export interface GameEntityInterface {
-  name: string,
-  image?: Image,
-  spritesheet?: SpriteSheet,
-  game: Phaser.Game,
-  update(): void
+  name: string;
+  image?: Image;
+  spritesheet?: SpriteSheet;
+  game: Phaser.Game;
+  update(): void;
 };
 
 export class GameEntity implements GameEntityInterface {
