@@ -27,6 +27,7 @@
       "check-type",
       "check-typecast"
     ],
-    "align": [true, "arguments", "parameters", "statements"]
+    "align": [true, "arguments", "parameters", "statements"],
+    "prefer-const": true
   }
 }
