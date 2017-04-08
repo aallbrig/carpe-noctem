@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
-import { default as SimpleGameStore } from '../store/store';
 import { ISimpleGameState } from '../reducers/SimpleGame';
 import { IReduxResponsiveState, IRootReducerState } from '../reducers';
 import { default as SimpleGameActions } from '../actions/SimpleGame';
@@ -56,7 +55,7 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   };
 };
 
-const mapStateToProps:MapStateToProps<{}, {}> = (state:IRootReducerState, componentProps:ISimpleGameContainerProps) => ({
+const mapStateToProps:MapStateToProps<{}, {}> = (state:IRootReducerState) => ({
   game: state.simpleGame,
   responsive: state.responsive,
   width: getResponsiveWidth(state.responsive)

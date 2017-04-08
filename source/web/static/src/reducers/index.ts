@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from 'redux';
 import { routerReducer, RouterState } from 'react-router-redux';
 const reduxResponsive = require('redux-responsive');
-const { createResponsiveStateReducer, calculateResponsiveState } = reduxResponsive;
+const { createResponsiveStateReducer } = reduxResponsive;
 import { default as SimpleGameReducer, ISimpleGameState } from './SimpleGame';
 
 // TODO: Create redux-responsive type mapping and release onto NPM

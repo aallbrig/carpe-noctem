@@ -6,9 +6,11 @@
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
-    "allowJs": true,
+    "allowJs": false,  // Feelsgoodman.png
     "lib": ["es2015", "es2016", "es2017", "dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": [
     "./src/**/*"

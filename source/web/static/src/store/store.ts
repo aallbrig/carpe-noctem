@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { default as reducers } from '../reducers';
 const reduxResponsive = require('redux-responsive');
 const { calculateResponsiveState } = reduxResponsive;

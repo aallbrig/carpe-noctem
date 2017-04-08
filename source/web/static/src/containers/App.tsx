@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
-import { RouterContext, routerShape } from 'react-router';
+import { connect } from 'react-redux';
 import { Location } from 'history';
-import { Grid, Row, Navbar, Nav, NavItem, MenuItem } from 'react-bootstrap';
+import { Grid, Row, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { IRootReducerState } from '../reducers';
-import { incrementCounter } from '../actions/SimpleGame';
 
 interface AppProps {
   location: Location;

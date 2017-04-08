@@ -1,4 +1,4 @@
-import { Game, State, Sprite, Text } from 'phaser';
+import { Game, State, Text } from 'phaser';
 
 export class TitleScreenState extends State {
   public game: Game;
