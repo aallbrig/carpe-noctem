@@ -22,7 +22,7 @@ function setup_osx {
   # - Setup local machine
   ansible-playbook provisioning/setup-dev-machine.yml \
   --ask-sudo-pass \
-  --extra-vars "developer=False operations=False artist=False vagrant=False"
+  --extra-vars "developer=False operations=False artist=False vagrant=False sampleRuns=False"
 
   if [[ $? != 0 ]] ; then
     echo EndOfMessage
