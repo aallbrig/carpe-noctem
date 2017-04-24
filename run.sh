@@ -12,16 +12,22 @@ function setup_osx {
     echo "No valid ansible installed.  Installing..."
     pip install ansible
   fi
-  ansible-galaxy install -r provisioning/requirements.yml
+  ansible-galaxy install \
+  -r provisioning/requirements.yml
   if [[ $? != 0 ]] ; then
     echo "ERROR: Try `sudo ansible-galaxy install -r provisioning/requirements.yml`"
     exit 1
   fi
 
   # - Setup local machine
-  ansible-playbook provisioning/setup-dev-machine.yml --ask-sudo-pass
+  ansible-playbook provisioning/setup-dev-machine.yml \
+  --ask-sudo-pass \
+  --extra-vars "developer=False operations=False artist=False vagrant=False"
+
   if [[ $? != 0 ]] ; then
-    echo "ERROR: Rerun \`ansible-playbook provisioning/setup-dev-machine.yml --ask-sudo-pass\`"
+    echo EndOfMessage
+ERROR: Rerun ansible-playbook provisioning/setup-dev-machine.yml --ask-sudo-pass --extra-vars "developer=false operations=false artist=false"
+EndOfMessage
     exit 1
   fi
   # - Provision
