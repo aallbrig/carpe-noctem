@@ -10,7 +10,7 @@ export const store = createStore(
 );
 
 store.dispatch(calculateResponsiveState(window));
-const onResize = debounce(() => store.dispatch(calculateResponsiveState(window)), 1000);
+const onResize = debounce(():void => store.dispatch(calculateResponsiveState(window)), 1000);
 window.addEventListener('resize', onResize);
 
 export default store;
