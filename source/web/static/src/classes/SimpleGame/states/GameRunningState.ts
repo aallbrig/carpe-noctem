@@ -28,6 +28,7 @@ export class GameRunningState extends State {
     this.load.image('backgroundImage', 'assets/debug-grid-1920x1920.png');
     this.game.load.image('sandrock', 'assets/EW-Sandrock-Bazooka-Up.png');
     this.game.load.image('deathscythe', 'assets/deathscythe-2.png');
+    this.game.load.spritesheet('ms', 'assets/w500_h486_WalkCycle.png', 500, 486, 10);
   }
   public create() {
     this.titleScreenImage = this.add.sprite(0, 0, 'backgroundImage');
@@ -55,15 +56,18 @@ export class GameRunningState extends State {
       this.enemyCollisionGroup,
       this.playerCollisionGroup
     ]);
+    
     moveSprite(this.game, this.enemy);
 
     this.player = this.game.add.sprite(
       this.game.world.centerX + 200,
       this.game.world.centerY,
-      'sandrock'
+      'ms'
     );
+    this.player.animations.add('walk');
+    this.player.animations.play('walk', 6, true);
     this.player.height = 200;
-    this.player.width = 100;
+    this.player.width = 150;
     this.game.physics.p2.enable(this.player);
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
     this.player.body.collides(
