@@ -1,20 +1,7 @@
 ---
-- block:
-  - debug: msg="Playbook directory- {{playbook_dir}}"
+- debug: msg="Playbook directory- {{playbook_dir}}"
 
-  - name: Copy vagrantfile onto dev machine
-    local_action:
-      template src=Vagrantfile.j2
-      dest={{playbook_dir}}/../Vagrantfile
-
-  - name: Boot up VMs
-    local_action:
-      command vagrant up
-    environment:
-      VAGRANT_CWD: "{{playbook_dir}}/.."
-    register: vagrantUpResults
-
-  - debug: msg="{{vagrantUpResults}}"
-
-  tags:
-  - vagrant
+- name: Render Vagrantfile template onto workstation
+  local_action:
+    template src=Vagrantfile.j2
+    dest={{playbook_dir}}/../Vagrantfile

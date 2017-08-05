@@ -1,0 +1,12 @@
+---
+dependencies:
+  - role: geerlingguy.homebrew
+    homebrew_taps: []
+    homebrew_installed_packages:
+    - git
+    - node
+    - scala
+    homebrew_cask_apps:
+    - java
+    - visual-studio-code
+    when: "ansible_distribution == 'MacOSX'"

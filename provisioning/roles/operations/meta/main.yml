@@ -1,7 +1,6 @@
 ---
 dependencies:
   - role: geerlingguy.homebrew
-    homebrew_taps: []
     homebrew_installed_packages:
     - git
     homebrew_cask_apps:
@@ -12,3 +11,4 @@ dependencies:
     - docker-toolbox
     when: "ansible_distribution == 'MacOSX'"
   - role: FGtatsuro.vagrant
+    when: "ansible_distribution != 'MacOSX'"

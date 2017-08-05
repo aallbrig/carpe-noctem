@@ -1,1 +1,49 @@
+---
+- name: Provision Jenkins VM
+  hosts: jenkins-{{env}}
+  become: True
+  vars:
+    env: dev
+    yes_answer: ["y", "yes"]
+  vars_prompt:
+    - name: JENKINS
+      prompt: Deploy Jenkins (y/n)?
+      default: "n"
+  roles:
+    - role: jenkins
+      when: JENKINS.lower() in yes_answer
 
+- name: Provision Web VM
+  hosts: "web-{{env}}"
+  become: True
+  vars:
+    env: dev
+    yes_answer: ["y", "yes"]
+  vars_prompt:
+    - name: WEB
+      prompt: Deploy Web (y/n)?
+      default: "n"
+  roles:
+    - web
+
+- name: Provision Build VM
+  become: True
+  hosts: "build-{{env}}"
+  vars:
+    env: dev
+    yes_answer: ["y", "yes"]
+  roles:
+    - angstwad.docker_ubuntu
+
+- name: Output information on deployment
+  post_tasks:
+  - local_action: command vagrant port {{ item }}
+    become: "{{ ansible_user_id }}"
+    with_items:
+      - jenkins-dev
+      - web-dev
+      - build-dev
+    register: openPorts
+  - name: Display vagrant ports
+    debug: msg={{ item.stdout }}
+    with_items: "{{ openPorts.results }}"

@@ -20,20 +20,20 @@ function setup_osx {
   fi
 
   # - Setup local machine
-  ansible-playbook provisioning/setup-dev-machine.yml \
+  ansible-playbook provisioning/setup-workstation.yml \
   --ask-sudo-pass \
   --extra-vars "developer=False operations=False artist=False vagrant=False sampleRuns=False"
 
   if [[ $? != 0 ]] ; then
     echo EndOfMessage
-ERROR: Rerun ansible-playbook provisioning/setup-dev-machine.yml --ask-sudo-pass --extra-vars "developer=false operations=false artist=false"
+ERROR: Rerun ansible-playbook provisioning/setup-workstation.yml --ask-sudo-pass --extra-vars "developer=false operations=false artist=false"
 EndOfMessage
     exit 1
   fi
   # - Provision
-  ansible-playbook provisioning/spinup-env.yml --ask-sudo-pass
+  ansible-playbook provisioning/deploy-env.yml --ask-sudo-pass
   if [[ $? != 0 ]] ; then
-    echo "ERROR: Rerun \`ansible-playbook provisioning/spinup-env.yml\`"
+    echo "ERROR: Rerun \`ansible-playbook provisioning/deploy-env.yml\`"
     exit 1
   fi
   # Temporarily add node_modules/.bin to $PATH

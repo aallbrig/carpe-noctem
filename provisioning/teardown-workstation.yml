@@ -1,0 +1,3 @@
+---
+- name: Uninstall project services on workstation
+  hosts: local
