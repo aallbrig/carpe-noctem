@@ -5,9 +5,7 @@ import * as renderer from 'react-test-renderer';
 let navigation:renderer.ReactTestInstance;
 
 beforeEach(() => {
-  navigation = renderer.create(
-    <Navigation />
-  );
+  navigation = renderer.create(<Navigation />);
 });
 
 test('Navigation Snapshot', () => {

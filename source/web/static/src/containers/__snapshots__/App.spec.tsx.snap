@@ -97,9 +97,6 @@ exports[`App Snapshot 1`] = `
       </div>
     </nav>
     <div />
-    <div>
-      Breadcrumbs: 
-    </div>
   </div>
 </div>
 `;

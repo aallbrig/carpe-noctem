@@ -5,9 +5,7 @@ import * as renderer from 'react-test-renderer';
 let home:renderer.ReactTestInstance;
 
 beforeEach(() => {
-  home = renderer.create(
-    <Home />
-  );
+  home = renderer.create(<Home />);
 });
 
 test('Home Snapshot', () => {
