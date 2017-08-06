@@ -7,7 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 interface AppProps {
   location: Location;
 }
-class App extends React.Component<AppProps, any> {
+export class App extends React.Component<AppProps, any> {
   public render() {
     const { children, location: { pathname } } = this.props;
     return (
