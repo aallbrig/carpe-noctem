@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
 import { Row, Col, Panel } from 'react-bootstrap';
 
-interface ISimpleGameContainerProps extends React.Props<any> {};
-class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
+interface IHomeContainerProps extends React.Props<any> {};
+export class HomeContainer extends React.Component<IHomeContainerProps, void> {
   public render() {
     return (
       <Row>
@@ -20,9 +20,9 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   };
 };
 
-const mapStateToProps: MapStateToProps<ISimpleGameContainerProps, {}> = () => ({});
+const mapStateToProps: MapStateToProps<IHomeContainerProps, {}> = () => ({});
 const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = () => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SimpleGameContainer);
+)(HomeContainer);

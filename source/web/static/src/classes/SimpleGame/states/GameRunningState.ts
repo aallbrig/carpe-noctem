@@ -105,6 +105,7 @@ export class GameRunningState extends State {
     }
     if (this.cursors.left.isDown || this.game.input.keyboard.isDown(A)) {
       this.player.body.moveLeft(300);
+      this.player.anchor.setTo(.5, 1);
     } else if (this.cursors.right.isDown || this.game.input.keyboard.isDown(D)) {
       this.player.body.moveRight(300);
     }
