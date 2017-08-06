@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
+import { connect } from 'react-redux';
 import { Row, Col, Panel } from 'react-bootstrap';
 
-interface IHomeContainerProps extends React.Props<any> {};
-export class HomeContainer extends React.Component<IHomeContainerProps, void> {
+export class Home extends React.Component<{}, {}> {
   public render() {
     return (
       <Row>
@@ -20,9 +19,4 @@ export class HomeContainer extends React.Component<IHomeContainerProps, void> {
   };
 };
 
-const mapStateToProps: MapStateToProps<IHomeContainerProps, {}> = () => ({});
-const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = () => ({});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeContainer);
+export default connect()(Home);

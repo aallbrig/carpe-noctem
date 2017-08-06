@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { HomeContainer } from './Home';
+import { Home } from './Home';
 import * as renderer from 'react-test-renderer';
 
-let homeContainer:renderer.ReactTestInstance;
+let home:renderer.ReactTestInstance;
 
 beforeEach(() => {
-  homeContainer = renderer.create(
-    <HomeContainer />
+  home = renderer.create(
+    <Home />
   );
 });
 
 test('Home Snapshot', () => {
-  expect(homeContainer.toJSON()).toMatchSnapshot();
+  expect(home.toJSON()).toMatchSnapshot();
 });
