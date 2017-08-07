@@ -49,7 +49,7 @@ export class GameRunningState extends State {
     this.enemy = this.game.add.sprite(
       this.game.world.centerX,
       this.game.world.centerY,
-      'deathscythe'
+      'ms'
     );
     this.game.physics.p2.enable(this.enemy);
     this.enemy.height = 150;
@@ -60,7 +60,7 @@ export class GameRunningState extends State {
       this.enemyCollisionGroup,
       this.playerCollisionGroup
     ]);
-    ['cyan', 'yellow', 'purple', 'orange'].forEach((color) => {
+    ['cyan', 'yellow', 'orange'].forEach((color) => {
       const enemy = this.game.add.sprite(
         Math.ceil(this.game.world.centerX * Math.random()),
         Math.ceil(this.game.world.centerY * Math.random()),
@@ -84,7 +84,7 @@ export class GameRunningState extends State {
     this.player = this.game.add.sprite(
       this.game.world.centerX + 200,
       this.game.world.centerY,
-      'ms'
+      'ms-purple'
     );
     this.player.animations.add('walk');
     this.player.animations.play('walk', 6, true);
