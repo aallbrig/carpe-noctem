@@ -1,6 +1,6 @@
 {
     "transform": {
-      ".(ts|tsx)": "/Users/aallbrig/development/carpe-noctem/source/web/static/node_modules/ts-jest/preprocessor.js"
+      ".(ts|tsx)": "ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "testPathIgnorePatterns": [
