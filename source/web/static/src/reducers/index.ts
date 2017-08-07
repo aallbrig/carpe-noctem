@@ -41,13 +41,7 @@ export interface IReduxResponsiveState {
   };
 };
 
-export interface IRootReducerState {
-  simpleGame: ISimpleGameState;
-  routing: RouterState;
-  responsive: IReduxResponsiveState;
-};
-
-const responsiveReducer: Reducer<IReduxResponsiveState> = createResponsiveStateReducer(
+const responsiveReducer:Reducer<IReduxResponsiveState> = createResponsiveStateReducer(
   {
     extraSmall: 480,
     small: 768,
@@ -70,10 +64,16 @@ const responsiveReducer: Reducer<IReduxResponsiveState> = createResponsiveStateR
   }
 );
 
-export const rootReducer = combineReducers({
+export interface IRootReducerState {
+  simpleGame: ISimpleGameState;
+  routing: RouterState;
+  responsive: IReduxResponsiveState;
+};
+
+export const rootReducer:Reducer<IRootReducerState> = combineReducers({
   simpleGame: SimpleGameReducer,
   routing: routerReducer,
   responsive: responsiveReducer
 });
 
-export default rootReducer as Reducer<IRootReducerState>;
+export default rootReducer;

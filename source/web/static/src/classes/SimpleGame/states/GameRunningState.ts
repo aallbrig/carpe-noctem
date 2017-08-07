@@ -29,6 +29,10 @@ export class GameRunningState extends State {
     this.game.load.image('sandrock', 'assets/EW-Sandrock-Bazooka-Up.png');
     this.game.load.image('deathscythe', 'assets/deathscythe-2.png');
     this.game.load.spritesheet('ms', 'assets/w500_h486_WalkCycle.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-cyan', 'assets/w500_h486_WalkCycle_cyan.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-orange', 'assets/w500_h486_WalkCycle_orange.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-purple', 'assets/w500_h486_WalkCycle_purple.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-yellow', 'assets/w500_h486_WalkCycle_yellow.png', 500, 486, 10);
   }
   public create() {
     this.titleScreenImage = this.add.sprite(0, 0, 'backgroundImage');
@@ -56,6 +60,24 @@ export class GameRunningState extends State {
       this.enemyCollisionGroup,
       this.playerCollisionGroup
     ]);
+    ['cyan', 'yellow', 'purple', 'orange'].forEach((color) => {
+      const enemy = this.game.add.sprite(
+        Math.ceil(this.game.world.centerX * Math.random()),
+        Math.ceil(this.game.world.centerY * Math.random()),
+        `ms-${color}`
+      );
+      this.game.physics.p2.enable(enemy);
+      enemy.animations.add('walk');
+      enemy.animations.play('walk', Math.random() * 6 + 3, true);
+      enemy.height = 150;
+      enemy.width = 150;
+      enemy.body.setRectangle(100, 100);
+      enemy.body.setCollisionGroup(this.enemyCollisionGroup);
+      enemy.body.collides([
+        this.enemyCollisionGroup,
+        this.playerCollisionGroup
+      ]);
+    });
     
     moveSprite(this.game, this.enemy);
 
