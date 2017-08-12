@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server -d --config webpack.config.js",
     "test": "node_modules/.bin/jest --config=jest.config.json",
-    "compile": "node_modules/.bin/webpack --optimize-minimize",
-    "serveDist": "node_modules/.bin/http-server dist"
+    "compileDist": "node_modules/.bin/webpack --optimize-minimize",
+    "serveDist": "node_modules/.bin/http-server dist",
+    "deployDist": "cp -R dist/. ../../.."
   },
   "author": "Andrew Allbright",
   "repository": {

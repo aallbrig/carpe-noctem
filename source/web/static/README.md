@@ -12,6 +12,10 @@ Run `npm run serveDist` to test that _static_ asserts are serving up correctly.
 
 (Note: you can combine these two commands into a one-liner `npm run compileDist && npm run serveDist`)
 
+Run `npm run deployDist` to copy artifacts to expected GitPage spot (this is a hack.  TODO: Point gitpages to a subdirectory in git repo).
+
+[Live Website Location](https://aallbrig.github.io/carpe-noctem/)
+
 ### Running
 Please run `npm start` to begin development.
 
