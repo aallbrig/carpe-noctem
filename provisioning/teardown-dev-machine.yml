@@ -1,3 +1,0 @@
----
-- name: Uninstall project services on developer machine.
-  hosts: local

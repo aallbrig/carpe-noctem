@@ -1,0 +1,21 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.ssh.insert_key = false
+
+{% for name, config in [("jenkins", jenkins), ("web", web), ("build", build)] %}
+  config.vm.define "{{name}}-{{env}}" do |{{name}}|
+    {{name}}.vm.box = "ubuntu/trusty64"
+    {{name}}.vm.synced_folder ".", "/vagrant", disabled: true
+    {{name}}.vm.network "private_network", ip: "192.168.50.4"
+    {{name}}.vm.provision "ansible" do |ansible|
+    ansible.playbook = {{ dev_machine[name] }}
+    end
+{% for shared_folder in  dev_machine[name].shared_folder %}
+    {{name}}.vm.synced_folder "{{ shared_folder.host }}", "{{ shared_folder.guest }}"
+{% endfor %}
+  end
+
+{% endfor %}
+
+end

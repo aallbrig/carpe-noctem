@@ -1,0 +1,11 @@
+---
+- block:
+  - name: Create directory in case it does not exist.
+    file: path={{jenkins.passwordFileDir}} state=directory
+
+  - name: Copy password file into location
+    template: src=password_file.j2 dest={{jenkins.passwordFileDir}}/{{jenkins.passwordFileName}}
+    become: True
+
+  tags:
+  - jenkins

@@ -3,28 +3,38 @@ import {
   Camera, CursorKeys, Keyboard
 } from 'phaser';
 
-const moveSprite = (game:Game, sprite:Sprite) => game.add.tween(sprite)
-  .to({
-    x: game.world.bounds.width * Math.random(),
-    y: game.world.bounds.height * Math.random()
-  }, 2000, Phaser.Easing.Linear.None, true);
+const moveSprite = (game: Game, sprite: Sprite) => game.add.tween(sprite)
+  .to(
+    {
+      x: game.world.bounds.width * Math.random(),
+      y: game.world.bounds.height * Math.random()
+    },
+    2000,
+    Phaser.Easing.Linear.None,
+    true
+  );
 
 export class GameRunningState extends State {
-  titleScreenImage: Sprite;
-  player: Sprite;
-  enemy: Sprite;
-  playerCollisionGroup: Physics.P2.CollisionGroup;
-  enemyCollisionGroup: Physics.P2.CollisionGroup;
-  cursors: CursorKeys;
+  private titleScreenImage: Sprite;
+  private player: Sprite;
+  private enemy: Sprite;
+  private playerCollisionGroup: Physics.P2.CollisionGroup;
+  private enemyCollisionGroup: Physics.P2.CollisionGroup;
+  private cursors: CursorKeys;
   constructor() {
     super();
   }
-  preload() {
+  public preload() {
     this.load.image('backgroundImage', 'assets/debug-grid-1920x1920.png');
     this.game.load.image('sandrock', 'assets/EW-Sandrock-Bazooka-Up.png');
     this.game.load.image('deathscythe', 'assets/deathscythe-2.png');
+    this.game.load.spritesheet('ms', 'assets/w500_h486_WalkCycle.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-cyan', 'assets/w500_h486_WalkCycle_cyan.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-orange', 'assets/w500_h486_WalkCycle_orange.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-purple', 'assets/w500_h486_WalkCycle_purple.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-yellow', 'assets/w500_h486_WalkCycle_yellow.png', 500, 486, 10);
   }
-  create() {
+  public create() {
     this.titleScreenImage = this.add.sprite(0, 0, 'backgroundImage');
     this.game.world.setBounds(0, 0, 1920, 1920);
     this.game.physics.startSystem(Physics.P2JS);
@@ -39,34 +49,57 @@ export class GameRunningState extends State {
     this.enemy = this.game.add.sprite(
       this.game.world.centerX,
       this.game.world.centerY,
-      'deathscythe'
+      'ms'
     );
     this.game.physics.p2.enable(this.enemy);
     this.enemy.height = 150;
     this.enemy.width = 150;
     this.enemy.body.setRectangle(100, 100);
-    this.enemy.enableBody = true;
-    this.enemy.physicsBodyType = Phaser.Physics.P2JS;
     this.enemy.body.setCollisionGroup(this.enemyCollisionGroup);
     this.enemy.body.collides([
       this.enemyCollisionGroup,
       this.playerCollisionGroup
     ]);
+    ['cyan', 'yellow', 'orange'].forEach((color) => {
+      const enemy = this.game.add.sprite(
+        Math.ceil(this.game.world.centerX * Math.random()),
+        Math.ceil(this.game.world.centerY * Math.random()),
+        `ms-${color}`
+      );
+      this.game.physics.p2.enable(enemy);
+      enemy.animations.add('walk');
+      enemy.animations.play('walk', Math.random() * 6 + 3, true);
+      enemy.height = 150;
+      enemy.width = 150;
+      enemy.body.setRectangle(100, 100);
+      enemy.body.setCollisionGroup(this.enemyCollisionGroup);
+      enemy.body.collides([
+        this.enemyCollisionGroup,
+        this.playerCollisionGroup
+      ]);
+    });
+    
     moveSprite(this.game, this.enemy);
 
     this.player = this.game.add.sprite(
       this.game.world.centerX + 200,
       this.game.world.centerY,
-      'sandrock'
+      'ms-purple'
     );
+    this.player.animations.add('walk');
+    this.player.animations.play('walk', 6, true);
     this.player.height = 200;
-    this.player.width = 100;
+    this.player.width = 150;
     this.game.physics.p2.enable(this.player);
     this.player.body.setCollisionGroup(this.playerCollisionGroup);
-    this.player.body.collides(this.enemyCollisionGroup, function collisionFn() {
-      this.game.camera.shake(0.05, 500);
-      moveSprite(this.game, this.enemy);
-    }, this);
+    this.player.body.collides(
+      this.enemyCollisionGroup,
+      function collisionFn() {
+        this.game.camera.shake(0.05, 500);
+        moveSprite(this.game, this.enemy);
+      },
+      this
+    );
 
     this.game.camera.follow(
       this.player,
@@ -75,11 +108,12 @@ export class GameRunningState extends State {
       0.1
     );
     this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.game.input.touch.enabled = true;
   }
-  render() {
-    this.game.debug.text("(Carpe Noctem::GameRunningState Debugger)", 10, 10);
+  public render() {
+    this.game.debug.text('(Carpe Noctem::GameRunningState Debugger)', 10, 10);
   }
-  update() {
+  public update() {
     const {W, A, S, D} = Keyboard;
     this.game.debug.cameraInfo(this.game.camera, 10, 32);
     this.game.debug.spriteCoords(this.player, 10, 128);

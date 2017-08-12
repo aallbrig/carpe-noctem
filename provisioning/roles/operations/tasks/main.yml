@@ -1,2 +1,3 @@
 ---
-- include: set-docker-toolkit-ENVVARs.yml
+- include: docker.yml
+- include: vagrant.yml

@@ -1,11 +1,8 @@
 ---
 dependencies:
   - role: geerlingguy.homebrew
-    homebrew_taps: []
     homebrew_installed_packages:
     - git
-    - node
-    - scala
     homebrew_cask_apps:
     - visual-studio-code
     - java
@@ -14,3 +11,4 @@ dependencies:
     - docker-toolbox
     when: "ansible_distribution == 'MacOSX'"
   - role: FGtatsuro.vagrant
+    when: "ansible_distribution != 'MacOSX'"

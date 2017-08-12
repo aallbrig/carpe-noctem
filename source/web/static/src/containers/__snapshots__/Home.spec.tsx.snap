@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Snapshot 1`] = `
+<div
+  className="row"
+>
+  <div
+    className="col-xs-12"
+  >
+    <h4
+      className="text-center"
+    >
+       TODO: Place Hero Promotional Image Here For Game 
+    </h4>
+  </div>
+  <div
+    className="col-xs-12"
+  >
+    <div
+      className="panel panel-default"
+      id={undefined}
+    >
+      <div
+        className="panel-heading"
+      >
+        Panel Header
+      </div>
+      <div
+        className="panel-body"
+      >
+        Maybe this panel can be used for something.
+      </div>
+      <div
+        className="panel-footer"
+      >
+        Panel Footer
+      </div>
+    </div>
+  </div>
+</div>
+`;

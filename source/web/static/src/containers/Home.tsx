@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
+import { connect } from 'react-redux';
 import { Row, Col, Panel } from 'react-bootstrap';
-import { IRootReducerState } from '../reducers';
 
-interface ISimpleGameContainerProps extends React.Props<any> {};
-class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
-  render() {
+export class Home extends React.Component<{}, {}> {
+  public render() {
     return (
       <Row>
         <Col xs={12}>
@@ -21,9 +19,4 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   };
 };
 
-const mapStateToProps:MapStateToProps<ISimpleGameContainerProps, {}> = (store:IRootReducerState) => ({});
-const mapDispatchToProps:MapDispatchToPropsFunction<{}, {}> = (dispatch) => ({});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SimpleGameContainer);
+export default connect()(Home);

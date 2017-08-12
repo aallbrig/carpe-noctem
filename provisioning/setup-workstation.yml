@@ -1,0 +1,26 @@
+---
+- name: Install prereq software to get roles up
+  hosts: local
+  vars:
+    yes_answer: ["y", "yes"]
+  vars_prompt:
+    - name: DEVELOPER
+      prompt: Configure developer software (y/n)?
+      default: "n"
+    - name: OPERATIONS
+      prompt: Configure operations software (y/n)?
+      default: "n"
+    - name: ARTIST
+      prompt: Configure artist software (y/n)?
+      default: "n"
+
+  roles:
+    - role: developer
+      when: DEVELOPER.lower() in yes_answer
+    - role: operations
+      when: OPERATIONS.lower() in yes_answer
+    - role: artist
+      when: ARTIST.lower() in yes_answer
+
+  post_tasks:
+  - debug: msg="Setup Dev Machine is complete"

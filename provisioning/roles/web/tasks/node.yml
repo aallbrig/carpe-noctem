@@ -12,15 +12,12 @@
 
   - name: LS
     command: "ls -l {{ web.home }}"
-    register: ls
+    register: debug
 
-  - debug: msg="{{ ls }}"
+  - debug: msg="{{ debug }}"
 
-  # TODO: Find out why I can't "cd" into web.home but I can "ls" it.
-  # - name: Install package.json
-  #   command: npm install
-  #   args:
-  #     chdir: "{{ web.home }}"
+  - name: Install package.json
+    local_action: command npm install chdir="{{playbook_dir}}/../source/web/static"
 
   tags:
   - node

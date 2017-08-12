@@ -1,23 +1,23 @@
-import { Game, State, Sprite, Text } from 'phaser';
+import { Game, State, Text } from 'phaser';
 
 export class TitleScreenState extends State {
-  game: Game;
-  textSprite: Text;
+  public game: Game;
+  private textSprite: Text;
   constructor() {
     super();
   }
-  create() {
+  public create() {
     const text = 'Click/tap to begin';
     const style = {
-      font: "65px Arial", fill: "#ff0000", align: "center"
+      font: '65px Arial', fill: '#ff0000', align: 'center'
     };
     this.textSprite = this.game.add.text(20, 20, text, style);
     this.input.onTap.addOnce(this.titleClicked, this);
   }
-  render() {
-    this.game.debug.text("(Carpe Noctem::TitleScreenState Debugger)", 20, 120);
+  public render() {
+    this.game.debug.text('(Carpe Noctem::TitleScreenState Debugger)', 20, 120);
   }
-  titleClicked() {
+  private titleClicked() {
     this.game.state.start('GameRunningState');
   }
 }

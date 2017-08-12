@@ -1,0 +1,7 @@
+---
+- block:
+  - name: Check if ENVVARs are already set
+    shell: echo "hello"
+
+  tags:
+  - docker

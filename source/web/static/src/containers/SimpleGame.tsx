@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux';
-import { default as SimpleGameStore } from '../store/store';
 import { ISimpleGameState } from '../reducers/SimpleGame';
 import { IReduxResponsiveState, IRootReducerState } from '../reducers';
 import { default as SimpleGameActions } from '../actions/SimpleGame';
 import { SimpleGame } from '../classes';
 
-const getResponsiveWidth = (responsive:IReduxResponsiveState):number => {
+const getResponsiveWidth = (responsive: IReduxResponsiveState): number => {
   if (responsive.is.extraSmall) {
     return responsive.breakpoints.extraSmall;
   } else if (responsive.is.small) {
@@ -19,29 +18,29 @@ const getResponsiveWidth = (responsive:IReduxResponsiveState):number => {
   } else if (responsive.is.extraLarge) {
     return responsive.breakpoints.extraLarge;
   }
-}
+};
 
 interface ISimpleGameContainerProps extends React.Props<any> {
-  game: ISimpleGameState,
-  responsive: IReduxResponsiveState,
-  incrementCounter: Function
+  game: ISimpleGameState;
+  responsive: IReduxResponsiveState;
+  incrementCounter: Function;
 };
 class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, void> {
-  canvasId:string = 'simpleGameCanvas';
-  simpleGame:SimpleGame;
-  componentDidMount() {
+  private canvasId: string = 'simpleGameCanvas';
+  private simpleGame: SimpleGame;
+  public componentDidMount() {
     const canvas = findDOMNode(this.refs[this.canvasId]);
     const width = getResponsiveWidth(this.props.responsive);
-    const height = this.props.responsive.height;
+    const height = this.props.responsive.height - 200;
     this.simpleGame = new SimpleGame(canvas, height, width);
   }
-  update() {
-    console.log('on update');
+  public componentWillUnmount() {
+    this.simpleGame.game.destroy();
   }
-  shouldComponentUpdate() {
+  public shouldComponentUpdate() {
     return false;
   }
-  componentWillReceiveProps(nextProps:ISimpleGameContainerProps) {
+  public componentWillReceiveProps(nextProps: ISimpleGameContainerProps) {
     console.log('receiving new props!');
     if (this.simpleGame.game.height !== nextProps.responsive.height) {
       console.log(' height is not the same!');
@@ -49,19 +48,19 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
       console.log(' width is not the same!');
     }
   }
-  render() {
+  public render() {
     return (
       <div id={this.canvasId} ref={this.canvasId} />
     );
   };
 };
 
-const mapStateToProps:MapStateToProps<{}, {}> = (state:IRootReducerState, componentProps:ISimpleGameContainerProps) => ({
+const mapStateToProps: MapStateToProps<{}, {}> = (state: IRootReducerState) => ({
   game: state.simpleGame,
   responsive: state.responsive,
   width: getResponsiveWidth(state.responsive)
 });
-const mapDispatchToProps:MapDispatchToPropsFunction<{}, {}> = (dispatch) => ({
+const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = (dispatch) => ({
   incrementCounter: dispatch(SimpleGameActions.incrementCounter())
 });
 export default connect(

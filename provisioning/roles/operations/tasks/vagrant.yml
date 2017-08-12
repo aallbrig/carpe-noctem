@@ -1,0 +1,7 @@
+---
+- debug: msg="Playbook directory- {{playbook_dir}}"
+
+- name: Render Vagrantfile template onto workstation
+  local_action:
+    template src=Vagrantfile.j2
+    dest={{playbook_dir}}/../Vagrantfile
