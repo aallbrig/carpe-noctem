@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server -d --config webpack.config.js",
     "test": "node_modules/.bin/jest --config=jest.config.json",
-    "compileDist": "node_modules/.bin/webpack --optimize-minimize",
-    "serveDist": "node_modules/.bin/http-server dist",
+    "compileDist": "webpack --optimize-minimize --define process.env.NODE_ENV=\"'production'\"",
+    "serveDist": "NODE_ENV='production' node_modules/.bin/http-server dist",
     "deployDist": "cp -R dist/. ../../../docs"
   },
   "author": "Andrew Allbright",

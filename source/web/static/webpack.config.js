@@ -79,19 +79,41 @@ module.exports = {
       }
     },
     plugins: [
-      new CopyWebpackPlugin([
-        {
-          from: path.join(__dirname, 'src/assets/*'),
-          to: path.join(__dirname, 'dist/assets'),
-          flatten: true
-        }
-      ]),
-      new HtmlWebpackPlugin({
-        title: 'Carpe Noctem | Static'
-      }),
-      new webpack.HotModuleReplacementPlugin()
-      // TODO: selectively do this if process.env.ENV != 'dev'
-      // new webpack.optimize.OccurrenceOrderPlugin,
-      // new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    ]
+      ...[
+        new CopyWebpackPlugin([
+          {
+            from: path.join(__dirname, 'src/assets/*'),
+            to: path.join(__dirname, 'dist/assets'),
+            flatten: true
+          }
+        ]),
+        new HtmlWebpackPlugin({
+          title: 'Carpe Noctem | Static'
+        }),
+        new webpack.HotModuleReplacementPlugin()
+        // TODO: selectively do this if process.env.ENV != 'dev'
+        // new webpack.optimize.OccurrenceOrderPlugin,
+        // new webpack.optimize.UglifyJsPlugin({minimize: true}),
+      ],
+      ...(
+        (((process || {}).env || {}).NODE_ENV || '').toLowerCase() === 'production' ?
+          (() => {
+            console.log('production!');
+            return [
+              new webpack.DefinePlugin({
+                'process.env': {
+                  NODE_ENV: JSON.stringify('production')
+                }
+              }),
+              new webpack.optimize.UglifyJsPlugin({
+                minimize: true,
+                comments: false,
+                sourceMap: false
+              }),
+              new webpack.optimize.OccurrenceOrderPlugin
+            ];
+          })()
+          : []
+      )
+  ]
 };
