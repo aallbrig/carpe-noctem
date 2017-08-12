@@ -8,3 +8,8 @@
 **/fingerprints/**/*
 **/node_modules/**/*
 **/npm-debug.log
+dist/**
+index.html
+bundle.js
+assets/**
+fonts/**

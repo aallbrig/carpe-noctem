@@ -8,7 +8,7 @@
     "test": "node_modules/.bin/jest --config=jest.config.json",
     "compileDist": "node_modules/.bin/webpack --optimize-minimize",
     "serveDist": "node_modules/.bin/http-server dist",
-    "deployDist": "cp -R dist/. ../../.."
+    "deployDist": "cp -R dist/. ../../../docs"
   },
   "author": "Andrew Allbright",
   "repository": {
