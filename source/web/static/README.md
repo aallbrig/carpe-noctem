@@ -8,3 +8,7 @@ Run `npm install` or `npm i` in this directory to install all required packages.
 Please run `npm start` to begin development.
 
 Please run `TODO add prod to package.json` to start server in production mode.
+
+### Technologies
+1. Webpack
+1. Typescript

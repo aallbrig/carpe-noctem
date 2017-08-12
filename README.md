@@ -1,5 +1,5 @@
 ## Carpe Noctem
-TODO
+![GIF of video game so far](https://user-images.githubusercontent.com/13422887/29242824-d07c0e12-7f61-11e7-883d-923bec4e9fd9.png)
 
 ### config
 The is the main entry point if you want to change system configs.
