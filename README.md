@@ -85,7 +85,6 @@ web-dev | SUCCESS => {
     },
     "changed": false
 }
-
 ```
 ### Core design of system
   The philosophy behind this stem is there exists a automated continuous delivery pipeline that always deploys the latest production artifacts to production.
