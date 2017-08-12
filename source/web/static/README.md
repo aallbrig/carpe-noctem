@@ -1,6 +1,4 @@
 ## Carpe Noctem Static Web Assets
-[Live Website Location](https://aallbrig.github.io/carpe-noctem/)
-
 Assumptions:  All static web assets for this project are organized as a mono repo.  This may not always be true, but for now it is.
 
 This is the folder in the repo for static web assets.  For the uninitiated, this is the source code that ultimately compiles into the raw HTML/CSS/JS that is served to the end user.
