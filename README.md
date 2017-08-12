@@ -14,9 +14,7 @@ The is the main entry point if you want to change system configs.
 TODO
 
 #### Startup
-For static site
-1. `cd ./source/web/static`
-1. `npm i && npm run compile && npm run serve`
+Look in different "source" directories for `README.md` that contain up to date instructions to run applications.
 
 ### Technologies
 1. [Vagrant](https://www.vagrantup.com/) (with Virtualbox VM runner) for development

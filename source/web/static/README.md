@@ -4,6 +4,14 @@ This is the folder for static web assets.  For the uninitiated, this is the sour
 ### Getting Started
 Run `npm install` or `npm i` in this directory to install all required packages.
 
+Run `npm start` for development.
+
+Run `npm run compileDist` to create `dist` folder.
+
+Run `npm run serveDist` to test that _static_ asserts are serving up correctly.
+
+(Note: you can combine these two commands into a one-liner `npm run compileDist && npm run serveDist`)
+
 ### Running
 Please run `npm start` to begin development.
 
