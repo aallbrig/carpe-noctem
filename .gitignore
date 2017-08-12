@@ -6,7 +6,5 @@
 **/builds/**/*
 **/plugins/**/*
 **/fingerprints/**/*
-dist/**/*
 **/node_modules/**/*
-**/dist/**/*
 **/npm-debug.log
