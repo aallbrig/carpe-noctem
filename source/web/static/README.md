@@ -21,10 +21,11 @@ Run `npm run deployDist` to copy artifacts to expected git pages subdirectory.
 (Note: you can combine these two commands into a one-liner `npm run compileDist && npm run deployDist`)
 
 ### Running
-Please run `npm start` to begin development.
-
-Please run `TODO add prod to package.json` to start server in production mode.
+Run `npm start` to begin development.
 
 ### Technologies
-1. Webpack
-1. Typescript
+[Webpack + Node](https://webpack.github.io/) for static site development (see: `source/web/static`)
+  - [TypeScript](https://www.typescriptlang.org/) (ES2015 + types!  It's basically scala!)
+  - [React](https://facebook.github.io/react/) views
+  - [Redux](http://redux.js.org/docs/basics/UsageWithReact.html) for game logic
+  - [Phaser.io](http://phaser.io/) video game runner
