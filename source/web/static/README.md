@@ -27,3 +27,16 @@ Run `npm start` to begin development.
   - [React](https://facebook.github.io/react/) views
   - [Redux](http://redux.js.org/docs/basics/UsageWithReact.html) for game logic
   - [Phaser.io](http://phaser.io/) video game runner
+
+
+### One Liners
+Update dev dependencies to latest major version (assumes `jq` is installed).
+
+    ```
+    cat package.json | jq '.devDependencies' | sed s/\"//g | sed s/://g | sed '1,1d' | sed '$d' | awk '{print $1}' | while read line ; do npm install "$line"@latest --save-dev ; done
+    ```
+Update dependencies to latest major version (assumes `jq` is installed).
+
+    ```
+    cat package.json | jq '.dependencies' | sed s/\"//g | sed s/://g | sed '1,1d' | sed '$d' | awk '{print $1}' | while read line ; do npm install "$line"@latest --save ; done
+    ```

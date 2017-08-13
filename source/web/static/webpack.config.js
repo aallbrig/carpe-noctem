@@ -88,7 +88,8 @@ module.exports = {
           }
         ]),
         new HtmlWebpackPlugin({
-          title: 'Carpe Noctem | Static'
+          title: 'Carpe Noctem | Static',
+          template: 'src/index.template.ejs'
         }),
         new webpack.HotModuleReplacementPlugin()
         // TODO: selectively do this if process.env.ENV != 'dev'
