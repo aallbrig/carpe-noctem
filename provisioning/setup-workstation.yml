@@ -3,16 +3,19 @@
   hosts: local
   vars:
     yes_answer: ["y", "yes"]
+
   vars_prompt:
     - name: DEVELOPER
-      prompt: Configure developer software (y/n)?
+      prompt: Configure developer software? (y/n)
       default: "n"
     - name: OPERATIONS
-      prompt: Configure operations software (y/n)?
+      prompt: Configure operations software? (y/n)
       default: "n"
     - name: ARTIST
-      prompt: Configure artist software (y/n)?
+      prompt: Configure artist software? (y/n)
       default: "n"
+    - name: DATABASE_ADMINISTRATOR
+      prompt: Configure database adminitstrator software? (y/n)
 
   roles:
     - role: developer
@@ -20,6 +23,8 @@
     - role: operations
       when: OPERATIONS.lower() in yes_answer
     - role: artist
+      when: ARTIST.lower() in yes_answer
+    - role: database-administrator
       when: ARTIST.lower() in yes_answer
 
   post_tasks:

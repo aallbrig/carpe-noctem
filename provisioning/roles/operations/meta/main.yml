@@ -3,6 +3,7 @@ dependencies:
   - role: geerlingguy.homebrew
     homebrew_installed_packages:
     - git
+    - jq
     homebrew_cask_apps:
     - visual-studio-code
     - java
