@@ -7,32 +7,37 @@ export class Navigation extends React.Component<{}, {}> {
   public render() {
     return (
         <Navbar inverse collapseOnSelect={true}>
-        <Navbar.Header>
-            <Navbar.Brand>
-            <LinkContainer to='/'>
-                <NavItem>
-                Carpe Noctem
-                </NavItem>
-            </LinkContainer>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-            <Nav>
-            <LinkContainer to='/'>
-                <NavItem>
-                Home
-                </NavItem>
-            </LinkContainer>
-            </Nav>
-            <Nav pullRight>
-            <LinkContainer to='/game'>
-                <NavItem>
-                Play Game
-                </NavItem>
-            </LinkContainer>
-            </Nav>
-        </Navbar.Collapse>
+            <Navbar.Header>
+                <Navbar.Brand>
+                    <LinkContainer to='/'>
+                        <NavItem>
+                            Carpe Noctem
+                        </NavItem>
+                    </LinkContainer>
+                </Navbar.Brand>
+                <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+                <Nav>
+                    <LinkContainer to='/'>
+                        <NavItem>
+                            Home
+                        </NavItem>
+                    </LinkContainer>
+                </Nav>
+                <Nav pullRight>
+                    <LinkContainer to='/simple_game'>
+                        <NavItem>
+                            Simple Game
+                        </NavItem>
+                    </LinkContainer>
+                    <LinkContainer to='/moon_shooter'>
+                        <NavItem>
+                            Moon Shooter
+                        </NavItem>
+                    </LinkContainer>
+                </Nav>
+            </Navbar.Collapse>
         </Navbar>
     );
   };
