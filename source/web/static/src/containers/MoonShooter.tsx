@@ -4,8 +4,8 @@ import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redu
 import { IReduxResponsiveState, IRootReducerState } from '../reducers';
 import { MoonShooter } from '../classes';
 
-type GetResponsiveWidth = (a:IReduxResponsiveState) => number;
-const getResponsiveWidth:GetResponsiveWidth = (responsive) => {
+type GetResponsiveWidth = (a: IReduxResponsiveState) => number;
+const getResponsiveWidth: GetResponsiveWidth = (responsive) => {
   if (responsive.is.extraSmall) {
     return responsive.breakpoints.extraSmall;
   } else if (responsive.is.small) {
@@ -26,12 +26,6 @@ interface IMoonShooterContainerProps extends React.Props<{}> {
 class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, void> {
   private CANVAS_ID: string = 'gameCanvas';
   private phaserGame: MoonShooter;
-  private computeWidth(r:IReduxResponsiveState):number {
-    return getResponsiveWidth(r);
-  }
-  private computeHeight(r:IReduxResponsiveState):number {
-      return r.height - 100;
-  }
   public componentDidMount() {
     const { responsive } = this.props;
     const canvas = findDOMNode(this.refs[this.CANVAS_ID]);
@@ -58,6 +52,12 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
       <div id={this.CANVAS_ID} ref={this.CANVAS_ID} />
     );
   };
+  private computeWidth(r: IReduxResponsiveState): number {
+    return getResponsiveWidth(r);
+  }
+  private computeHeight(r: IReduxResponsiveState): number {
+      return r.height - 100;
+  }
 };
 
 const mapStateToProps: MapStateToProps<{}, {}> = (state: IRootReducerState) => ({
