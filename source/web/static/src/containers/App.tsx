@@ -10,9 +10,7 @@ export class App extends React.Component<{}, {}> {
       <Grid>
         <Row>
           <Navigation />
-          <div>
-            { children }
-          </div>
+          { children }
         </Row>
       </Grid>
     );

@@ -30,7 +30,7 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
     return getResponsiveWidth(r);
   }
   private computeHeight(r:IReduxResponsiveState):number {
-      return r.height;
+      return r.height - 100;
   }
   public componentDidMount() {
     const { responsive } = this.props;

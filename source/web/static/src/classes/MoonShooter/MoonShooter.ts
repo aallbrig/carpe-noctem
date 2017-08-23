@@ -1,6 +1,5 @@
 import { Game } from 'phaser';
 import { Boot, Preload, GameOver, StartScreen, Game as GameState } from './states';
-// import { Store } from 'redux';
 
 export class MoonShooter {
   public game: Game;

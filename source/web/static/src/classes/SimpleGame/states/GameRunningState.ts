@@ -25,14 +25,14 @@ export class GameRunningState extends State {
     super();
   }
   public preload() {
-    this.load.image('backgroundImage', 'assets/debug-grid-1920x1920.png');
-    this.game.load.image('sandrock', 'assets/EW-Sandrock-Bazooka-Up.png');
-    this.game.load.image('deathscythe', 'assets/deathscythe-2.png');
-    this.game.load.spritesheet('ms', 'assets/w500_h486_WalkCycle.png', 500, 486, 10);
-    this.game.load.spritesheet('ms-cyan', 'assets/w500_h486_WalkCycle_cyan.png', 500, 486, 10);
-    this.game.load.spritesheet('ms-orange', 'assets/w500_h486_WalkCycle_orange.png', 500, 486, 10);
-    this.game.load.spritesheet('ms-purple', 'assets/w500_h486_WalkCycle_purple.png', 500, 486, 10);
-    this.game.load.spritesheet('ms-yellow', 'assets/w500_h486_WalkCycle_yellow.png', 500, 486, 10);
+    this.load.image('backgroundImage', 'assets/simpleGame/debug-grid-1920x1920.png');
+    this.game.load.image('sandrock', 'assets/simpleGame/EW-Sandrock-Bazooka-Up.png');
+    this.game.load.image('deathscythe', 'assets/simpleGame/deathscythe-2.png');
+    this.game.load.spritesheet('ms', 'assets/simpleGame/w500_h486_WalkCycle.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-cyan', 'assets/simpleGame/w500_h486_WalkCycle_cyan.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-orange', 'assets/simpleGame/w500_h486_WalkCycle_orange.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-purple', 'assets/simpleGame/w500_h486_WalkCycle_purple.png', 500, 486, 10);
+    this.game.load.spritesheet('ms-yellow', 'assets/simpleGame/w500_h486_WalkCycle_yellow.png', 500, 486, 10);
   }
   public create() {
     this.titleScreenImage = this.add.sprite(0, 0, 'backgroundImage');

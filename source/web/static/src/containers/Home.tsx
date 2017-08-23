@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Panel } from 'react-bootstrap';
+import MarketingBanner from '../components/MarketingBanner';
 
 export class Home extends React.Component<{}, {}> {
   public render() {
     return (
       <Row>
         <Col xs={12}>
-          <h4 className='text-center'> TODO: Place Hero Promotional Image Here For Game </h4>
+          <MarketingBanner />
         </Col>
         <Col xs={12}>
           <Panel header={'Panel Header'} footer={'Panel Footer'}>
