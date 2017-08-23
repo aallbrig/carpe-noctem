@@ -30,13 +30,7 @@ module.exports = {
     module: {
       rules: [
         { test: /\.js$/, use: 'source-map-loader' },
-        {
-          test: /\.js$/,
-          exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: 'babel-loader'
-          }
-        },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
         {
           enforce: 'pre',
           test: /\.ts(x)?$/,

@@ -1,4 +1,4 @@
-import { Game, Sprite, Group, CursorKeys, Key } from 'phaser';
+import { Game, Sprite, Group, CursorKeys, Key, Keyboard } from 'phaser';
 
 type FirePosition = {
     x: number,
@@ -22,9 +22,12 @@ export default class Player extends Sprite {
         this.body.drag.y = 35;
         this.body.collideWorldBounds = true;
 
-        this.speed = 100;
+        this.width = this.width / 1.25;
+        this.height = this.height / 1.25;
+
+        this.speed = 140;
         this.bulletGate = 0;
-        this.shotInterval = 500;
+        this.shotInterval = 740;
         this.bullets = bullets;
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.fireButton = this.game.input.keyboard.addKey(
@@ -40,29 +43,23 @@ export default class Player extends Sprite {
     }
 
     public update() {
-        if (this.cursors.left.isDown) {
-            this.body.velocity.x = -this.speed;
-        }
-
-        if (this.cursors.right.isDown) {
-            this.body.velocity.x = this.speed;
-        }
-
-        if (this.cursors.up.isDown) {
+        const { W, A, S, D } = Keyboard;
+        if (this.cursors.up.isDown || this.game.input.keyboard.isDown(W)) {
             this.body.velocity.y = -this.speed;
-        }
-
-        if (this.cursors.down.isDown) {
+        } else if (this.cursors.down.isDown || this.game.input.keyboard.isDown(S)) {
             this.body.velocity.y = this.speed;
         }
-
+        if (this.cursors.left.isDown || this.game.input.keyboard.isDown(A)) {
+            this.body.velocity.x = -this.speed;
+        } else if (this.cursors.right.isDown || this.game.input.keyboard.isDown(D)) {
+            this.body.velocity.x = this.speed;
+        }
         if (this.fireButton.isDown) {
             this.fire();
         }
     }
 
     private fire() {
-
         if (this.game.time.now > this.bulletGate) {
             let bullet = this.bullets.getFirstDead();
             if (bullet) {

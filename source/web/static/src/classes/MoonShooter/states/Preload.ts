@@ -11,9 +11,8 @@ export class Preload extends State {
         this.load.image('explosion', 'assets/moonShooter/explosion.png');
         this.load.image('hexagon', 'assets/moonShooter/hexagon_particle.png');
         this.load.image('bullet', 'assets/moonShooter/bullet.png');
-        this.load.image('enemyBullet', 'assets/moonShooter/enemyBullet.png');
+        this.load.image('enemy_bullet', 'assets/moonShooter/enemy_bullet.png');
         this.load.image('bg', 'assets/moonShooter/bg.png');
-
         this.load.image('health_bar', 'assets/moonShooter/health_bar.png');
         this.load.image('health_holder', 'assets/moonShooter/health_holder.png');
         this.load.image('circle', 'assets/moonShooter/circle.png');
@@ -21,7 +20,6 @@ export class Preload extends State {
 
     public create() {
         this.add.sprite(0, 0, 'loading_bg');
-
         this.loadingBar = this.add.sprite(
             this.game.width / 2,
             this.game.height / 2,

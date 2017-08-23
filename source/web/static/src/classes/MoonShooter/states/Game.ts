@@ -18,6 +18,7 @@ export class Game extends State {
     private scoreField: NumberBox;
     private explosions: Particles.Arcade.Emitter;
     private waveTimer: Timer;
+
     public create() {
         this.spawnChance = .02;
         this.score = 0;
@@ -29,7 +30,7 @@ export class Game extends State {
         this.bullets = this.add.group();
         this.enemyBullets = this.add.group();
   
-        //add player
+        // Add the player
         this.player = new Player(this.game, 0, this.game.height / 2, this.bullets);
         this.game.add.existing(this.player);
         
@@ -44,15 +45,14 @@ export class Game extends State {
             this.enemies.add(enemy);
         }
   
-        //add the explosions
-        this.explosions = this.game.add.emitter(0, 0, 200);
+        // Add the explosions FX
+        this.explosions = this.game.add.emitter(0, 0, 240);
         this.explosions.makeParticles('hexagon');
         this.explosions.setAlpha(1, .2, 2000);
   
-        //add UI
         this.setupUI();
   
-        //wave timer
+        // Enemy wave timer
         this.waveTimer = this.game.time.create(false);
         this.waveTimer.loop(20000, this.incrementWave, this);
         this.waveTimer.start();
@@ -62,7 +62,12 @@ export class Game extends State {
       this.bg.tilePosition.x -= .5;
   
       if (Math.random() < this.spawnChance) {
-        const enemy = new Enemy(this.game, this.game.width + 100 + (Math.random() * 400), Math.random() * this.game.height, this.enemyBullets);
+        const enemy = new Enemy(
+            this.game,
+            this.game.width + 100 + (Math.random() * 400),
+            Math.random() * this.game.height,
+            this.enemyBullets
+        );
         this.enemies.add(enemy);
       }
   

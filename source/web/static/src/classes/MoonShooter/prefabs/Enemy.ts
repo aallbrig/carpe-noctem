@@ -8,12 +8,11 @@ export default class Enemy extends Phaser.Sprite {
     constructor(game: Game, x: number, y: number, bulletLayer: Group) {  
         super(game, x, y, 'enemy');
 
-        // initialize your prefab here
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
-
+        this.width = this.width / 1.25;
+        this.height = this.height / 1.25;
         this.body.velocity.x = -175;
         this.bounceTick = Math.random() * 2;
-
         this.bulletLayer = bulletLayer;
 
         this.outOfBoundsKill = true;
@@ -33,7 +32,7 @@ export default class Enemy extends Phaser.Sprite {
     }
 
     private fireShot() {
-        const bullet = this.bulletLayer.create(this.x, this.y, 'enemyBullet');
+        const bullet = this.bulletLayer.create(this.x, this.y, 'enemy_bullet');
         this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
         bullet.outOfBoundsKill = true;
         bullet.checkWorldBounds = true;

@@ -9,7 +9,7 @@
     "compileDist": "NODE_ENV='production' webpack --optimize-minimize",
     "serveDist": "NODE_ENV='production' node_modules/.bin/http-server dist",
     "serveDocs": "NODE_ENV='production' node_modules/.bin/http-server ../../../docs",
-    "deployDist": "cp -R dist/. ../../../docs"
+    "deployDist": "rm -rf ../../../docs && cp -R dist/. ../../../docs"
   },
   "author": "Andrew Allbright",
   "repository": {
@@ -39,12 +39,12 @@
     "@types/webpack": "^2.2.14",
     "autoprefixer": "6.4.1",
     "awesome-typescript-loader": "^3.0.4-rc.2",
-    "babel-core": "^6.24.0",
+    "babel-core": "^6.26.0",
     "babel-eslint": "7.1.0",
     "babel-jest": "^20.0.3",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-imports": "^1.1.0",
-    "babel-preset-env": "^1.3.2",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-native-modules": "^6.9.4",
     "babel-preset-react": "^6.11.1",
