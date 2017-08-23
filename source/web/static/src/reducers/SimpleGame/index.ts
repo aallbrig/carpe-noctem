@@ -3,7 +3,7 @@ import constants from  '../../constants/SimpleGame';
 export interface ISimpleGameState {
   count: number;
 }
-const INITIAL_STATE:ISimpleGameState = {
+const INITIAL_STATE: ISimpleGameState = {
   count: 0
 };
 
