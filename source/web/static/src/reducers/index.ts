@@ -16,7 +16,7 @@ export interface IReduxResponsiveState {
     medium: number;
     large: number;
     extraLarge: number;
-    infinity: number;  // Why track this value?
+    infinity: number;
   };
   is: {
     extraSmall: boolean;
