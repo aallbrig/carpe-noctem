@@ -20,16 +20,16 @@ export default class Player extends Sprite {
         super(game, x, y, 'player', 0);
         
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
-        this.body.drag.x = 35;
-        this.body.drag.y = 35;
+        this.body.drag.x = 0;
+        this.body.drag.y = 0;
         this.body.collideWorldBounds = true;
 
-        this.width = this.width / 1.25;
-        this.height = this.height / 1.25;
+        this.width = this.width / 1.5;
+        this.height = this.height / 1.5;
 
-        this.speed = 140;
+        this.speed = 100;
         this.bulletGate = 0;
-        this.shotInterval = 740;
+        this.shotInterval = 500;
         this.bullets = bullets;
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.swipe = new (require('phaser-swipe'))(this.game);
@@ -63,13 +63,13 @@ export default class Player extends Sprite {
             || (direction && direction.direction === DIRECTION_UP)
         ) {
             // Up ^
-            this.body.velocity.y = -this.speed;
+            this.body.velocity.y = -this.speed * 1.5;
         } else if (
             this.cursors.down.isDown || this.game.input.keyboard.isDown(S)
             || (direction && direction.direction === DIRECTION_DOWN)
         ) {
             // Down v
-            this.body.velocity.y = this.speed;
+            this.body.velocity.y = this.speed * 2;
         }
         if (
             this.cursors.left.isDown || this.game.input.keyboard.isDown(A)
@@ -125,7 +125,7 @@ export default class Player extends Sprite {
                 this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
                 bullet.outOfBoundsKill = true;
                 bullet.checkWorldBounds = true;
-                bullet.body.velocity.x = 250;
+                bullet.body.velocity.x = 1000;
             }
 
             this.bulletGate = this.game.time.now + this.shotInterval;   
