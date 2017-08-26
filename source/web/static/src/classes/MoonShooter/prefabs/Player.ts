@@ -4,17 +4,11 @@ import {
 } from 'phaser';
 import Swipe from 'phaser-swipe';
 
-type FirePosition = {
-    x: number,
-    y: number
-};
-
 export default class Player extends Sprite {
     public weapon: Weapon;
     private speed: number;
     private cursors: CursorKeys;
     private fireButton: Key;
-    private fireposition: FirePosition;
     private swipe: Swipe;
 
     constructor(game: Game, x: number, y: number) {  
@@ -46,10 +40,6 @@ export default class Player extends Sprite {
 
         this.health = 10;
         this.maxHealth = 10;
-        this.fireposition = {
-            x: 108,
-            y: 4
-        };
     }
 
     public update() {
