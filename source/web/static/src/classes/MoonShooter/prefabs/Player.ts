@@ -1,4 +1,4 @@
-import { Game, Sprite, Group, CursorKeys, Key, Keyboard } from 'phaser';
+import { Game, Sprite, Group, CursorKeys, Key, Keyboard, Rectangle } from 'phaser';
 
 type FirePosition = {
     x: number,
@@ -44,6 +44,11 @@ export default class Player extends Sprite {
 
     public update() {
         const { W, A, S, D } = Keyboard;
+        if (
+            this.game.input.pointer1.isDown || this.game.input.mousePointer.isDown
+        ) {
+            this.game.physics.arcade.moveToPointer(this, this.speed);
+        }
         if (this.cursors.up.isDown || this.game.input.keyboard.isDown(W)) {
             this.body.velocity.y = -this.speed;
         } else if (this.cursors.down.isDown || this.game.input.keyboard.isDown(S)) {
@@ -54,7 +59,11 @@ export default class Player extends Sprite {
         } else if (this.cursors.right.isDown || this.game.input.keyboard.isDown(D)) {
             this.body.velocity.x = this.speed;
         }
-        if (this.fireButton.isDown) {
+        if (
+            (Rectangle.contains(this.body, this.game.input.x, this.game.input.y)
+            && (this.game.input.pointer1.isDown || this.game.input.mousePointer.isDown))
+            || this.fireButton.isDown
+        ) {
             this.fire();
         }
     }
