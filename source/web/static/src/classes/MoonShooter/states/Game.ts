@@ -9,7 +9,8 @@ import { times } from 'lodash';
 export class Game extends State {
     private spawnChance: number;
     private score: number;
-    private bg: TileSprite;
+    private space: TileSprite;
+    private moon: TileSprite;
     private player: Player;
     private healthBar: HealthBar;
 
@@ -26,7 +27,8 @@ export class Game extends State {
     public create() {
         this.spawnChance = .02;
         this.score = 0;
-        this.bg = this.add.tileSprite(0, 0, 1024, 768, 'bg');
+        this.space = this.add.tileSprite(0, 0, 1024, 768, 'bg');
+        this.moon = this.add.tileSprite(256, 380, 1024, 768, 'moon');
   
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.bullets = this.add.group();
@@ -78,7 +80,8 @@ export class Game extends State {
     }
   
     public update() {
-      this.bg.tilePosition.x -= .5;
+      this.space.tilePosition.x -= .5;
+      this.moon.tilePosition.x -= .05;
   
       if (Math.random() < this.spawnChance) {
         const enemy = new Enemy(

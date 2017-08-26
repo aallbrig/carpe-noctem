@@ -6,3 +6,6 @@
 ## Project Board location
 [Git Project](https://github.com/aallbrig/carpe-noctem/projects)
 [Trello](https://trello.com/6videogame1)
+
+## Contributing
+
