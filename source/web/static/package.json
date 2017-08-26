@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server -d --config webpack.config.js",
     "test": "node_modules/.bin/jest --config=jest.config.json",
+    "test-update-ui-snapshots": "node_modules/.bin/jest -u --config=jest.config.json",
     "compileDist": "NODE_ENV='production' webpack --optimize-minimize",
     "serveDist": "NODE_ENV='production' node_modules/.bin/http-server dist",
     "serveDocs": "NODE_ENV='production' node_modules/.bin/http-server ../../../docs",

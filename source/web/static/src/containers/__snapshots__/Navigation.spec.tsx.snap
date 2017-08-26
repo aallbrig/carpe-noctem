@@ -83,7 +83,21 @@ exports[`Navigation Snapshot 1`] = `
             onClick={[Function]}
             role="button"
           >
-            Play Game
+            Simple Game
+          </a>
+        </li>
+        <li
+          className=""
+          role="presentation"
+          style={undefined}
+        >
+          <a
+            action="push"
+            href="#"
+            onClick={[Function]}
+            role="button"
+          >
+            Moon Shooter
           </a>
         </li>
       </ul>

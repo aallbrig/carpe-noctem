@@ -7,11 +7,25 @@ exports[`Home Snapshot 1`] = `
   <div
     className="col-xs-12"
   >
-    <h4
-      className="text-center"
+    <div
+      className="jumbotron"
     >
-       TODO: Place Hero Promotional Image Here For Game 
-    </h4>
+      <h3>
+        (Game Title) Video Game Released! (...not)
+      </h3>
+      <p>
+        (Copy describing video game)
+      </p>
+      <p>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          type="button"
+        >
+          Purchase Today!
+        </button>
+      </p>
+    </div>
   </div>
   <div
     className="col-xs-12"
