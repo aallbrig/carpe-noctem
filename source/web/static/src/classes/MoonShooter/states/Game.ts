@@ -3,6 +3,7 @@ import Player from '../prefabs/Player';
 import Enemy from '../prefabs/Enemy';
 import NumberBox from '../prefabs/NumberBox';
 import HealthBar from '../prefabs/HealthBar';
+import { times } from 'lodash';
 
 export class Game extends State {
     private spawnChance: number;
@@ -22,11 +23,9 @@ export class Game extends State {
     public create() {
         this.spawnChance = .02;
         this.score = 0;
-  
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-  
         this.bg = this.add.tileSprite(0, 0, 1024, 768, 'bg');
   
+        this.physics.startSystem(Phaser.Physics.ARCADE);
         this.bullets = this.add.group();
         this.enemyBullets = this.add.group();
   
@@ -35,7 +34,7 @@ export class Game extends State {
         this.game.add.existing(this.player);
         
         this.enemies = this.add.group();
-        for (let i = 0; i < 5; i++) {
+        times(5, () => {
             const enemy = new Enemy(
                 this.game,
                 this.game.width + 100 + (Math.random() * 400),
@@ -43,7 +42,7 @@ export class Game extends State {
                 this.enemyBullets
             );
             this.enemies.add(enemy);
-        }
+        });
   
         // Add the explosions FX
         this.explosions = this.game.add.emitter(0, 0, 240);
@@ -80,12 +79,15 @@ export class Game extends State {
       this.spawnChance *= 1.2;
     }
   
-    private damagePlayer(playerRef: Player, enemyRef: Enemy) {
-        playerRef.damage(1);
+    private damagePlayer(player: Player, enemy: Enemy) {
+        this.explosions.x = player.x + 100;
+        this.explosions.y = player.y;
+        this.explosions.explode(2000, 5);
+        player.damage(1);
         this.healthBar.setValue(
             this.player.health / this.player.maxHealth
         );
-        enemyRef.kill();
+        enemy.kill();
   
         if (this.player.health <= 0) {
           this.game.state.start('gameOver');
@@ -95,8 +97,7 @@ export class Game extends State {
     private damageEnemy(enemy: Enemy, bullet: Sprite) {
         this.explosions.x = enemy.x;
         this.explosions.y = enemy.y;
-  
-        this.explosions.explode(2000, 4);
+        this.explosions.explode(2000, 3);
   
         enemy.kill();
         bullet.kill();
