@@ -94,6 +94,7 @@
     "lodash": "^4.17.4",
     "phase-2-e": "^0.2.0",
     "phaser": "^2.6.2",
+    "phaser-swipe": "^1.0.4",
     "react": "^15.6.0",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.6.0",
