@@ -1,12 +1,10 @@
 ---
 dependencies:
   - role: geerlingguy.homebrew
-    homebrew_taps: []
+    homebrew_taps:
+    - homebrew/services
     homebrew_installed_packages:
-    - git
-    - node
-    - scala
+    - mysql
     homebrew_cask_apps:
-    - java
-    - visual-studio-code
+    - datagrip
     when: "ansible_distribution == 'MacOSX'"

@@ -6,6 +6,7 @@ dependencies:
     - git
     - node
     - scala
+    - jq
     homebrew_cask_apps:
     - java
     - visual-studio-code

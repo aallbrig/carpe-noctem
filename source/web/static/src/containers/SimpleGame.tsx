@@ -6,17 +6,18 @@ import { IReduxResponsiveState, IRootReducerState } from '../reducers';
 import { default as SimpleGameActions } from '../actions/SimpleGame';
 import { SimpleGame } from '../classes';
 
-const getResponsiveWidth = (responsive: IReduxResponsiveState): number => {
+type GetResponsiveWidth = (a: IReduxResponsiveState) => number;
+const getResponsiveWidth: GetResponsiveWidth = (responsive) => {
   if (responsive.is.extraSmall) {
-    return responsive.breakpoints.extraSmall;
+    return 320;
   } else if (responsive.is.small) {
-    return responsive.breakpoints.small;
+    return 480;
   } else if (responsive.is.medium) {
-    return responsive.breakpoints.medium;
+    return 750;
   } else if (responsive.is.large) {
-    return responsive.breakpoints.large;
+    return 970;
   } else if (responsive.is.extraLarge) {
-    return responsive.breakpoints.extraLarge;
+    return 1170;
   }
 };
 

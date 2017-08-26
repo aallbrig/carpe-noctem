@@ -24,7 +24,8 @@
     "node"
   ],
   "typeroots": [
-    "node_modules/@types"
+    "node_modules/@types",
+    "@types"
   ],
   "files": [
     "node_modules/phaser/typescript/phaser.d.ts"

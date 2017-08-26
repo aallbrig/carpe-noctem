@@ -10,13 +10,14 @@ const phaser = path.join(phaserModule, 'build/custom/phaser-split.js');
 const pixi = path.join(phaserModule, 'build/custom/pixi.js');
 const p2 = path.join(phaserModule, 'build/custom/p2.js');
 
+const IS_PROD = (((process || {}).env || {}).NODE_ENV || '').toLowerCase() === 'production';
+
 module.exports = {
     entry: path.join(__dirname, 'src/index.tsx'),
     output: {
       path: `${__dirname}/dist`,
       filename: 'bundle.js',
     },
-    // devtool: 'source-map',
     devServer: {
       host: process.env.HOST || '0.0.0.0',
       port: process.env.PORT || '3000',
@@ -29,13 +30,7 @@ module.exports = {
     module: {
       rules: [
         { test: /\.js$/, use: 'source-map-loader' },
-        {
-          test: /\.js$/,
-          exclude: /(node_modules|bower_components)/,
-          use: {
-            loader: 'babel-loader'
-          }
-        },
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
         {
           enforce: 'pre',
           test: /\.ts(x)?$/,
@@ -79,19 +74,36 @@ module.exports = {
       }
     },
     plugins: [
-      new CopyWebpackPlugin([
-        {
-          from: path.join(__dirname, 'src/assets/*'),
-          to: path.join(__dirname, 'dist/assets'),
-          flatten: true
-        }
-      ]),
-      new HtmlWebpackPlugin({
-        title: 'Carpe Noctem | Static'
-      }),
-      new webpack.HotModuleReplacementPlugin()
-      // TODO: selectively do this if process.env.ENV != 'dev'
-      // new webpack.optimize.OccurrenceOrderPlugin,
-      // new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    ]
+      ...[
+        new webpack.EnvironmentPlugin({
+          NODE_ENV: process.env.NODE_ENV || 'dev'
+        }),
+        new CopyWebpackPlugin([
+          {
+            from: path.join(__dirname, 'src/assets'),
+            to: path.join(__dirname, 'dist/assets'),
+            force: true
+          }
+        ]),
+        new HtmlWebpackPlugin({
+          title: 'Carpe Noctem | Static',
+          template: 'src/index.template.ejs'
+        })
+      ],
+      ...(IS_PROD ?
+        [
+          new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            comments: false,
+            sourceMap: true
+          }),
+          new webpack.optimize.OccurrenceOrderPlugin()
+        ]
+        : [
+          new webpack.HotModuleReplacementPlugin(),
+          new webpack.SourceMapDevToolPlugin(),
+          new webpack.NoEmitOnErrorsPlugin()
+        ]
+      )
+  ]
 };
