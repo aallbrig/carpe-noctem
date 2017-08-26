@@ -1,4 +1,7 @@
-import { Game, Sprite, Group, CursorKeys, Key, Keyboard, Rectangle } from 'phaser';
+import {
+    Game, Sprite, CursorKeys, Key, Keyboard, Rectangle,
+    Weapon, Physics
+} from 'phaser';
 import Swipe from 'phaser-swipe';
 
 type FirePosition = {
@@ -7,30 +10,34 @@ type FirePosition = {
 };
 
 export default class Player extends Sprite {
+    public weapon: Weapon;
     private speed: number;
-    private bulletGate: number;
-    private shotInterval: number;
-    private bullets: Group;
     private cursors: CursorKeys;
     private fireButton: Key;
     private fireposition: FirePosition;
     private swipe: Swipe;
 
-    constructor(game: Game, x: number, y: number, bullets: Group) {  
+    constructor(game: Game, x: number, y: number) {  
         super(game, x, y, 'player', 0);
         
-        this.game.physics.enable(this, Phaser.Physics.ARCADE);
-        this.body.drag.x = 0;
-        this.body.drag.y = 0;
+        this.game.physics.enable(this, Physics.ARCADE);
+        
+        this.weapon = game.add.weapon(30, 'bullet');
+        this.weapon.bulletKillType = Weapon.KILL_WORLD_BOUNDS;
+        this.weapon.bulletAngleVariance = 6;
+        this.weapon.fireRate = 600;
+        this.weapon.fireAngle = Phaser.ANGLE_RIGHT;
+        this.weapon.trackSprite(this, 100, 16);
+
+        this.body.drag.x = 35;
+        this.body.drag.y = 35;
+
         this.body.collideWorldBounds = true;
 
         this.width = this.width / 1.5;
         this.height = this.height / 1.5;
 
         this.speed = 100;
-        this.bulletGate = 0;
-        this.shotInterval = 500;
-        this.bullets = bullets;
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.swipe = new (require('phaser-swipe'))(this.game);
         this.fireButton = this.game.input.keyboard.addKey(
@@ -105,30 +112,7 @@ export default class Player extends Sprite {
             && (this.game.input.pointer1.isDown || this.game.input.mousePointer.isDown))
             || this.fireButton.isDown
         ) {
-            this.fire();
-        }
-    }
-
-    private fire() {
-        if (this.game.time.now > this.bulletGate) {
-            let bullet = this.bullets.getFirstDead();
-            if (bullet) {
-                bullet.x = this.x + this.fireposition.x;
-                bullet.y = this.y + this.fireposition.y;
-                bullet.revive();
-            } else {
-                bullet = this.bullets.create(
-                    this.x + this.fireposition.x,
-                    this.y + this.fireposition.y,
-                    'bullet'
-                );
-                this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
-                bullet.outOfBoundsKill = true;
-                bullet.checkWorldBounds = true;
-                bullet.body.velocity.x = 1000;
-            }
-
-            this.bulletGate = this.game.time.now + this.shotInterval;   
+            this.weapon.fire();
         }
     }
 }

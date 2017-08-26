@@ -3,4 +3,5 @@ dependencies:
   - role: geerlingguy.homebrew
     homebrew_cask_apps:
     - adobe-creative-cloud
+    - tiled
     when: "ansible_distribution == 'MacOSX'"

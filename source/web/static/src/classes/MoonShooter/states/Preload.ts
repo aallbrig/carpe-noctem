@@ -10,6 +10,7 @@ export class Preload extends State {
         this.load.image('enemy', 'assets/moonShooter/enemy.png');
         this.load.image('hexagon', 'assets/moonShooter/hexagon_particle.png');
         this.load.image('bullet', 'assets/moonShooter/bullet.png');
+        this.load.image('power_up', 'assets/moonShooter/power_up_standup.png');
         this.load.image('enemy_bullet', 'assets/moonShooter/enemy_bullet.png');
         this.load.image('bg', 'assets/moonShooter/bg.png');
         this.load.image('health_bar', 'assets/moonShooter/health_bar.png');

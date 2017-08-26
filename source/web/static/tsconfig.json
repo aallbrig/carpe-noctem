@@ -24,10 +24,10 @@
     "node"
   ],
   "typeroots": [
-    "node_modules/@types",
-    "@types"
+    "node_modules/@types"
   ],
   "files": [
-    "node_modules/phaser/typescript/phaser.d.ts"
+    "node_modules/phaser/typescript/phaser.d.ts",
+    "@types/phaser-swipe/index.d.ts"
   ]
 }

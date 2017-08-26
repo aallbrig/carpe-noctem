@@ -3,7 +3,7 @@ export default class Enemy extends Phaser.Sprite {
     private bounceTick: number;
     private bulletLayer: Group;
     private willFire: boolean;
-    private fireTimer: Timer;
+    public fireTimer: Timer;
 
     constructor(game: Game, x: number, y: number, bulletLayer: Group) {  
         super(game, x, y, 'enemy');

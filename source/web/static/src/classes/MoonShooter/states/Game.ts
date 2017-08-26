@@ -3,6 +3,7 @@ import Player from '../prefabs/Player';
 import Enemy from '../prefabs/Enemy';
 import NumberBox from '../prefabs/NumberBox';
 import HealthBar from '../prefabs/HealthBar';
+import PowerUp from '../prefabs/PowerUp';
 import { times } from 'lodash';
 
 export class Game extends State {
@@ -14,11 +15,13 @@ export class Game extends State {
 
     private bullets: Group;
     private enemies: Group;
+    private powerUps: Group;
     private enemyBullets: Group;
     private guiLayer: Group;
     private scoreField: NumberBox;
     private explosions: Particles.Arcade.Emitter;
     private waveTimer: Timer;
+    private powerUpTimer: Timer;
 
     public create() {
         this.spawnChance = .02;
@@ -30,7 +33,7 @@ export class Game extends State {
         this.enemyBullets = this.add.group();
   
         // Add the player
-        this.player = new Player(this.game, 0, this.game.height / 2, this.bullets);
+        this.player = new Player(this.game, 0, this.game.height / 2);
         this.game.add.existing(this.player);
         
         this.enemies = this.add.group();
@@ -53,8 +56,25 @@ export class Game extends State {
   
         // Enemy wave timer
         this.waveTimer = this.game.time.create(false);
-        this.waveTimer.loop(20000, this.incrementWave, this);
+        this.waveTimer.loop(20 * Timer.SECOND, this.incrementWave, this);
         this.waveTimer.start();
+
+        // Power up & timer
+        this.powerUps = this.add.group();
+        this.powerUpTimer = this.game.time.create(false);
+        this.powerUpTimer.loop(
+            20 * Timer.SECOND,
+            () => {
+                const powerUp = new PowerUp(
+                    this.game,
+                    this.game.width,
+                    Math.random() * this.game.height
+                );
+                this.powerUps.add(powerUp);
+            },
+            this
+        );
+        this.powerUpTimer.start();
     }
   
     public update() {
@@ -70,9 +90,30 @@ export class Game extends State {
         this.enemies.add(enemy);
       }
   
-      this.physics.arcade.overlap(this.enemies, this.bullets, this.damageEnemy, null, this);
+      this.physics.arcade.overlap(this.enemies, this.player.weapon.bullets, this.damageEnemy, null, this);
       this.physics.arcade.overlap(this.player, this.enemies, this.damagePlayer, null, this);
       this.physics.arcade.overlap(this.player, this.enemyBullets, this.damagePlayer, null, this);
+      this.physics.arcade.overlap(
+          this.player,
+          this.powerUps,
+          (player: Player, powerUp: PowerUp) => {
+            powerUp.kill();
+            const timer: Timer = this.game.time.create(false);
+            const temp = this.player.weapon.fireRate;
+            timer.add(
+                3500,
+                () => {
+                    player.weapon.fireRate = temp;
+                    timer.destroy();
+                },
+                this
+            );
+            timer.start();
+            player.weapon.fireRate = temp / 4;
+          },
+          null,
+          this
+      );
     }
   
     private incrementWave() {
@@ -98,7 +139,7 @@ export class Game extends State {
         this.explosions.x = enemy.x;
         this.explosions.y = enemy.y;
         this.explosions.explode(2000, 3);
-  
+        
         enemy.kill();
         bullet.kill();
   
@@ -122,7 +163,7 @@ export class Game extends State {
             'health_holder'
         );
         this.guiLayer.add(this.healthBar);
-      }
+    }
 }
 
 export default Game;
