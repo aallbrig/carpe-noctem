@@ -1,5 +1,5 @@
 import {
-    Game, Sprite, CursorKeys, Key, Keyboard, Rectangle,
+    Game, Sprite, CursorKeys, Key, Keyboard,
     Weapon, Physics
 } from 'phaser';
 import Swipe from 'phaser-swipe';
@@ -25,13 +25,15 @@ export default class Player extends Sprite {
 
         this.body.drag.x = 35;
         this.body.drag.y = 35;
+        // this.body.friction.x = this.body.friction.x * 2;
+        // this.body.friction.y = this.body.friction.y * 2;
 
         this.body.collideWorldBounds = true;
 
         this.width = this.width / 1.5;
         this.height = this.height / 1.5;
 
-        this.speed = 100;
+        this.speed = 70;
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.swipe = new (require('phaser-swipe'))(this.game);
         this.fireButton = this.game.input.keyboard.addKey(
@@ -98,8 +100,7 @@ export default class Player extends Sprite {
             this.body.velocity.y = -this.speed;
         }
         if (
-            (Rectangle.contains(this.body, this.game.input.x, this.game.input.y)
-            && (this.game.input.pointer1.isDown || this.game.input.mousePointer.isDown))
+            (this.game.input.pointer1.isDown || this.game.input.mousePointer.isDown)
             || this.fireButton.isDown
         ) {
             this.weapon.fire();

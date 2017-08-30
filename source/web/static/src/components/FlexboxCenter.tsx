@@ -4,7 +4,8 @@ export const FlexboxCenter = ({ children }: React.HTMLProps<HTMLDivElement>) => 
     <div style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flexDirection: 'column'
     }}>{ children }</div>
 );
 

@@ -9,6 +9,11 @@ exports[`App Snapshot 1`] = `
   >
     <nav
       className="navbar navbar-inverse"
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
     >
       <div
         className="container"
@@ -111,5 +116,8 @@ exports[`App Snapshot 1`] = `
       </div>
     </nav>
   </div>
+  <div
+    className="row"
+  />
 </div>
 `;

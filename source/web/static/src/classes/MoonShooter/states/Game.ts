@@ -1,4 +1,4 @@
-import { State, Group, TileSprite, Sprite, Particles, Timer } from 'phaser';
+import { State, Group, TileSprite, Sprite, Image, Particles, Timer } from 'phaser';
 import Player from '../prefabs/Player';
 import Enemy from '../prefabs/Enemy';
 import NumberBox from '../prefabs/NumberBox';
@@ -10,7 +10,7 @@ export class Game extends State {
     private spawnChance: number;
     private score: number;
     private space: TileSprite;
-    private moon: TileSprite;
+    private moon: Image;
     private player: Player;
     private healthBar: HealthBar;
 
@@ -27,8 +27,12 @@ export class Game extends State {
     public create() {
         this.spawnChance = .02;
         this.score = 0;
-        this.space = this.add.tileSprite(0, 0, 1024, 768, 'bg');
-        this.moon = this.add.tileSprite(256, 380, 1024, 768, 'moon');
+        this.space = this.add.tileSprite(0, 0, 1440, this.game.height, 'bg');
+        this.moon = this.add.image(
+            this.game.width / 5,
+            this.game.height * (7/8),
+            'moon'
+        );
   
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.bullets = this.add.group();
@@ -81,7 +85,7 @@ export class Game extends State {
   
     public update() {
       this.space.tilePosition.x -= .5;
-      this.moon.tilePosition.x -= .05;
+      this.moon.x -= .05;
   
       if (Math.random() < this.spawnChance) {
         const enemy = new Enemy(

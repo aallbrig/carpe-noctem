@@ -3,7 +3,7 @@ import { Boot, Preload, GameOver, StartScreen, Game as GameState } from './state
 
 export class MoonShooter {
   public game: Game;
-  constructor(canvas: Element, height: number, width: number) {
+  constructor(canvas: Element, height: number | string, width: number | string) {
     this.game = new Game(
       width,
       height,

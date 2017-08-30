@@ -3,6 +3,11 @@
 exports[`Navigation Snapshot 1`] = `
 <nav
   className="navbar navbar-inverse"
+  style={
+    Object {
+      "marginBottom": 0,
+    }
+  }
 >
   <div
     className="container"
