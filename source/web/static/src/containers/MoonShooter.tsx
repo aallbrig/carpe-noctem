@@ -30,7 +30,8 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
     const { responsive } = this.props;
     const canvas = findDOMNode(this.refs[this.CANVAS_ID]);
     const width = this.computeWidth(responsive);
-    this.phaserGame = new MoonShooter(canvas, responsive.height - 52, width);
+    const height = this.computeHeight(responsive);
+    this.phaserGame = new MoonShooter(canvas, height, width);
   }
   public componentWillUnmount() {
     this.phaserGame.game.destroy();
@@ -38,14 +39,6 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
   public shouldComponentUpdate() { 
     return false;
   }
-  // public componentWillReceiveProps(nextProps: IMoonShooterContainerProps) {
-  //   console.log('receiving new props!');
-  //   if (this.phaserGame.game.height !== nextProps.responsive.height) {
-  //     console.log(' height is not the same!');
-  //   } else if (this.phaserGame.game.width !== nextProps.responsive.width) {
-  //     console.log(' width is not the same!');
-  //   }
-  // }
   public render() {
     return (
       <div id={this.CANVAS_ID} ref={this.CANVAS_ID} />
@@ -54,9 +47,9 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
   private computeWidth(r: IReduxResponsiveState): number {
     return getResponsiveWidth(r);
   }
-  // private computeHeight(r: IReduxResponsiveState): number {
-  //     return r.height - 100;
-  // }
+  private computeHeight(r: IReduxResponsiveState): number {
+      return r.height - 52;
+  }
 };
 
 const mapStateToProps: MapStateToProps<{}, {}> = (state: IRootReducerState) => ({
