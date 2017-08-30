@@ -25,6 +25,9 @@ export default class Player extends Sprite {
 
         this.body.drag.x = 35;
         this.body.drag.y = 35;
+        this.body.gravity.y = 50;
+        this.body.collideWorldBounds = true
+        this.body.maxVelocity.set(200);
         // this.body.friction.x = this.body.friction.x * 2;
         // this.body.friction.y = this.body.friction.y * 2;
 
@@ -33,7 +36,7 @@ export default class Player extends Sprite {
         this.width = this.width / 1.5;
         this.height = this.height / 1.5;
 
-        this.speed = 70;
+        this.speed = 84;
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.swipe = new (require('phaser-swipe'))(this.game);
         this.fireButton = this.game.input.keyboard.addKey(
@@ -62,13 +65,13 @@ export default class Player extends Sprite {
             || (direction && direction.direction === DIRECTION_UP)
         ) {
             // Up ^
-            this.body.velocity.y = -this.speed * 1.5;
+            this.body.velocity.y = -this.speed;
         } else if (
             this.cursors.down.isDown || this.game.input.keyboard.isDown(S)
             || (direction && direction.direction === DIRECTION_DOWN)
         ) {
             // Down v
-            this.body.velocity.y = this.speed * 2;
+            this.body.velocity.y = this.speed;
         }
         if (
             this.cursors.left.isDown || this.game.input.keyboard.isDown(A)
@@ -81,7 +84,7 @@ export default class Player extends Sprite {
             || (direction && direction.direction === DIRECTION_RIGHT)
         ) {
             // Right >
-            this.body.velocity.x = this.speed;
+            this.body.velocity.x = this.speed * 1.2;
         }
         if ((direction && direction.direction === DIRECTION_DOWN_LEFT)) {
             this.body.velocity.x = -this.speed;

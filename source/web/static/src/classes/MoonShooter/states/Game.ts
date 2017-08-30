@@ -106,17 +106,20 @@ export class Game extends State {
           (player: Player, powerUp: PowerUp) => {
             powerUp.kill();
             const timer: Timer = this.game.time.create(false);
-            const temp = this.player.weapon.fireRate;
+            const tempFireRate = this.player.weapon.fireRate;
+            const tempBulletVariance = this.player.weapon.bulletAngleVariance;
             timer.add(
-                3500,
+                4200,
                 () => {
-                    player.weapon.fireRate = temp;
+                    player.weapon.fireRate = tempFireRate;
+                    player.weapon.bulletAngleVariance = tempBulletVariance;
                     timer.destroy();
                 },
                 this
             );
             timer.start();
-            player.weapon.fireRate = temp / 4;
+            player.weapon.fireRate = tempFireRate / 4;
+            player.weapon.bulletAngleVariance = tempBulletVariance * 3
           },
           null,
           this
