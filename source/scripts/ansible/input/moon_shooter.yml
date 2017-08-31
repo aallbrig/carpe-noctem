@@ -1,0 +1,24 @@
+# struct
+# voice_actor (-v)
+# rate (-r) (words per minute)
+# dialogue
+script:
+- voice_actor: Trinoids
+  rate: 300
+  dialogue: >
+    I am going to take over your lunar bases, then your world
+- voice_actor: Kyoko
+  rate: 200
+  dialogue: >
+    We must rally together, for the sake of science and for the sake of
+    surviving!
+- voice_actor: Yuri
+  rate: 325
+  dialogue: >
+    No, I can't fix this!  It's broken to ten different pieces and it
+    has an alien spike splitting the robot's abdomen in half!
+- voice_actor: Sin-ji
+  rate: 200
+  dialogue: >
+    Man, I'm really not a creative script writer but I can certainly figure
+    out the technical solutions to these creative problems.
