@@ -1,0 +1,23 @@
+{
+  "name": "carpe-noctem-static-site-assets",
+  "description": "Static web assets generated for site using webpack to developer and publish dist artifacts.",
+  "main": "src/index.tsx",
+  "authors": [
+    "Andrew Allbright"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Video",
+    "Game",
+    "Example"
+  ],
+  "homepage": "https://aallbrig.github.io/carpe-noctem",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
