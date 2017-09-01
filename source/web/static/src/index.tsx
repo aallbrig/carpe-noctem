@@ -2,6 +2,10 @@ import 'bootswatch/united/bootstrap.css';
 import 'pixi';
 import 'p2';
 import 'phaser';
+import 'slick-ui';
+// Hack! :D :) >:o
+// (window as any).SlickUI = (Phaser.Plugin as any).SlickUI;
+// end hack
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
