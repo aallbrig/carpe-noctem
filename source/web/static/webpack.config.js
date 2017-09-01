@@ -58,7 +58,33 @@ module.exports = {
         { test: /\.css$/, use: ['style-loader', 'css-loader'] },
         { test: /pixi\.js/, use: 'expose-loader?PIXI' },
         { test: /phaser-split\.js$/, use: 'expose-loader?Phaser' },
-        { test: /p2\.js/, use: 'expose-loader?p2' }
+        { test: /p2\.js/, use: 'expose-loader?p2' },
+        {
+          test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|txt)(\?.*)?$/,
+          include: path.join(__dirname, 'src'),
+          use: {
+            loader: 'file-loader',
+            query: {
+              name: 'assets/[name].[hash:8].[ext]'
+            }
+          }
+        },
+        {
+          test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
+          include: path.join(__dirname, 'src'),
+          use: {
+            loader: 'url-loader',
+            query: {
+              limit: 10000,
+              name: 'assets/[name].[hash:8].[ext]'
+            }
+          }
+        },
+        {
+          test: /\.json$/,
+          include: path.join(__dirname, 'src'),
+          use: 'json-loader'
+        }
       ]
     },
     resolve: {
@@ -78,13 +104,6 @@ module.exports = {
         new webpack.EnvironmentPlugin({
           NODE_ENV: process.env.NODE_ENV || 'dev'
         }),
-        new CopyWebpackPlugin([
-          {
-            from: path.join(__dirname, 'src/assets'),
-            to: path.join(__dirname, 'dist/assets'),
-            force: true
-          }
-        ]),
         new HtmlWebpackPlugin({
           title: 'Carpe Noctem | Static',
           template: 'src/index.template.ejs'
