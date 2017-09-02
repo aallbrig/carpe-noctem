@@ -3,7 +3,7 @@ import { Boot, Preload, GameOver, StartScreen, Game as GameState } from './state
 
 export class MoonShooter {
   public game: Game;
-  constructor(canvas: Element, height: number, width: number) {
+  constructor(canvas: Element, height: number | string, width: number | string) {
     this.game = new Game(
       width,
       height,
@@ -14,7 +14,7 @@ export class MoonShooter {
     this.game.state.add('preload', Preload);
     this.game.state.add('game', GameState);
     this.game.state.add('gameOver', GameOver);
-    this.game.state.add('startScreen', StartScreen);
+    this.game.state.add('starting-screen', StartScreen);
     this.game.state.start('boot');
   }
 }

@@ -7,9 +7,9 @@ import { MoonShooter } from '../classes';
 type GetResponsiveWidth = (a: IReduxResponsiveState) => number;
 const getResponsiveWidth: GetResponsiveWidth = (responsive) => {
   if (responsive.is.extraSmall) {
-    return 320;
+    return responsive.width;
   } else if (responsive.is.small) {
-    return 480;
+    return responsive.width;
   } else if (responsive.is.medium) {
     return 750;
   } else if (responsive.is.large) {
@@ -36,16 +36,8 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
   public componentWillUnmount() {
     this.phaserGame.game.destroy();
   }
-  public shouldComponentUpdate() {
+  public shouldComponentUpdate() { 
     return false;
-  }
-  public componentWillReceiveProps(nextProps: IMoonShooterContainerProps) {
-    console.log('receiving new props!');
-    if (this.phaserGame.game.height !== nextProps.responsive.height) {
-      console.log(' height is not the same!');
-    } else if (this.phaserGame.game.width !== nextProps.responsive.width) {
-      console.log(' width is not the same!');
-    }
   }
   public render() {
     return (
@@ -56,7 +48,7 @@ class MoonShooterContainer extends React.Component<IMoonShooterContainerProps, v
     return getResponsiveWidth(r);
   }
   private computeHeight(r: IReduxResponsiveState): number {
-      return r.height - 100;
+      return r.height - 52;
   }
 };
 

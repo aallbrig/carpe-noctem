@@ -1,0 +1,35 @@
+---
+- name: >
+    Read through "script" using robot voice actors
+    to generate audio asset files for later use.
+  hosts: local
+  vars_files:
+    - input/moon_shooter.yml
+  vars:
+    yes_answer: ["y", "yes"]
+    output_directory: "output"
+    output_file_type: mp4
+
+  tasks:
+  - name: Ensure output directory has been generated
+    local_action: >
+      file
+      path="{{ output_directory }}"
+      state="directory"
+      mode=0755
+
+  - name: Read through the moon shooter script and generate audio assets
+    local_action: >
+      shell say
+      -v {{ item.1.voice_actor }}
+      "{{ item.1.dialogue }}"
+      -r "{{ item.1.rate }}"
+      -o "{{ output_directory }}"/"{{ item.0 }}"."{{ output_file_type }}"
+    with_indexed_items: "{{ script }}"
+
+  post_tasks:
+  - debug:
+      msg: >
+        Output "{{ output_file_type }}" have been generated.  Check out
+        "{{ output_directory }}" folder for assets
+        

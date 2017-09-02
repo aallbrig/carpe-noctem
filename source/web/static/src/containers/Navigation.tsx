@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+
+const styles = {
+    navbarOverride: {
+        marginBottom: 0
+    }
+};
+
 export class Navigation extends React.Component<{}, {}> {
   public render() {
     return (
-        <Navbar inverse collapseOnSelect={true}>
+        <Navbar inverse collapseOnSelect={true} style={styles.navbarOverride}>
             <Navbar.Header>
                 <Navbar.Brand>
                     <LinkContainer to='/'>

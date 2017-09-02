@@ -1,4 +1,4 @@
-import { State, Group, TileSprite, Sprite, Particles, Timer } from 'phaser';
+import { State, Group, TileSprite, Sprite, Image, Particles, Timer } from 'phaser';
 import Player from '../prefabs/Player';
 import Enemy from '../prefabs/Enemy';
 import NumberBox from '../prefabs/NumberBox';
@@ -9,7 +9,8 @@ import { times } from 'lodash';
 export class Game extends State {
     private spawnChance: number;
     private score: number;
-    private bg: TileSprite;
+    private space: TileSprite;
+    private moon: Image;
     private player: Player;
     private healthBar: HealthBar;
 
@@ -26,7 +27,12 @@ export class Game extends State {
     public create() {
         this.spawnChance = .02;
         this.score = 0;
-        this.bg = this.add.tileSprite(0, 0, 1024, 768, 'bg');
+        this.space = this.add.tileSprite(0, 0, 1440, this.game.height, 'bg');
+        this.moon = this.add.image(
+            this.game.width / 5,
+            this.game.height * (7/8),
+            'moon'
+        );
   
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.bullets = this.add.group();
@@ -78,7 +84,8 @@ export class Game extends State {
     }
   
     public update() {
-      this.bg.tilePosition.x -= .5;
+      this.space.tilePosition.x -= .5;
+      this.moon.x -= .05;
   
       if (Math.random() < this.spawnChance) {
         const enemy = new Enemy(
@@ -99,17 +106,20 @@ export class Game extends State {
           (player: Player, powerUp: PowerUp) => {
             powerUp.kill();
             const timer: Timer = this.game.time.create(false);
-            const temp = this.player.weapon.fireRate;
+            const tempFireRate = this.player.weapon.fireRate;
+            const tempBulletVariance = this.player.weapon.bulletAngleVariance;
             timer.add(
-                3500,
+                4200,
                 () => {
-                    player.weapon.fireRate = temp;
+                    player.weapon.fireRate = tempFireRate;
+                    player.weapon.bulletAngleVariance = tempBulletVariance;
                     timer.destroy();
                 },
                 this
             );
             timer.start();
-            player.weapon.fireRate = temp / 4;
+            player.weapon.fireRate = tempFireRate / 4;
+            player.weapon.bulletAngleVariance = tempBulletVariance * 3
           },
           null,
           this

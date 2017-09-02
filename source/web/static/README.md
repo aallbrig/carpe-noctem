@@ -40,3 +40,14 @@ Update dependencies to latest major version (assumes `jq` is installed).
     ```
     cat package.json | jq '.dependencies' | sed s/\"//g | sed s/://g | sed '1,1d' | sed '$d' | awk '{print $1}' | while read line ; do npm install "$line"@latest --save ; done
     ```
+Update test UI snapshots
+
+    ```
+    npm run test-update-ui-snapshots
+    ```
+
+Run tests
+
+    ```
+    npm test
+    ```

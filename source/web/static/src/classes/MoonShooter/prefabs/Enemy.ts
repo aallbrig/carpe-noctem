@@ -11,7 +11,7 @@ export default class Enemy extends Phaser.Sprite {
         this.game.physics.enable(this, Phaser.Physics.ARCADE);
         this.width = this.width / 1.25;
         this.height = this.height / 1.25;
-        this.body.velocity.x = -175;
+        this.body.velocity.x = -160;
         this.bounceTick = Math.random() * 2;
         this.bulletLayer = bulletLayer;
 
@@ -36,6 +36,6 @@ export default class Enemy extends Phaser.Sprite {
         this.game.physics.enable(bullet, Phaser.Physics.ARCADE);
         bullet.outOfBoundsKill = true;
         bullet.checkWorldBounds = true;
-        bullet.body.velocity.x = -250;
+        bullet.body.velocity.x = -125;
     }
 }

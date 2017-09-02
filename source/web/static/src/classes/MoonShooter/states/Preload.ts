@@ -5,17 +5,18 @@ export class Preload extends State {
     private ready: boolean = false;
 
     public preload() {
-        this.load.image('loading_bg', 'assets/moonShooter/loading_bg.jpg');
-        this.load.image('player', 'assets/moonShooter/player.png');
-        this.load.image('enemy', 'assets/moonShooter/enemy.png');
-        this.load.image('hexagon', 'assets/moonShooter/hexagon_particle.png');
-        this.load.image('bullet', 'assets/moonShooter/bullet.png');
-        this.load.image('power_up', 'assets/moonShooter/power_up_standup.png');
-        this.load.image('enemy_bullet', 'assets/moonShooter/enemy_bullet.png');
-        this.load.image('bg', 'assets/moonShooter/bg.png');
-        this.load.image('health_bar', 'assets/moonShooter/health_bar.png');
-        this.load.image('health_holder', 'assets/moonShooter/health_holder.png');
-        this.load.image('circle', 'assets/moonShooter/circle.png');
+        this.load.image('loading_bg', require('../assets/loading_bg.jpg'));
+        this.load.image('player', require('../assets/player.png'));
+        this.load.image('enemy', require('../assets/enemy.png'));
+        this.load.image('hexagon', require('../assets/hexagon_particle.png'));
+        this.load.image('bullet', require('../assets/bullet.png'));
+        this.load.image('moon', require('../assets/moon.png'));
+        this.load.image('power_up', require('../assets/power_up_standup.png'));
+        this.load.image('enemy_bullet', require('../assets/enemy_bullet.png'));
+        this.load.image('bg', require('../assets/bg.png'));
+        this.load.image('health_bar', require('../assets/health_bar.png'));
+        this.load.image('health_holder', require('../assets/health_holder.png'));
+        this.load.image('circle', require('../assets/circle.png'));
     }
 
     public create() {
@@ -33,7 +34,7 @@ export class Preload extends State {
 
     public update() {
         if (this.ready) {
-            this.game.state.start('game');
+            this.game.state.start('starting-screen');
         }
     }
 

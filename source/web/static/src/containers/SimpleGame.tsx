@@ -30,9 +30,10 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
   private canvasId: string = 'simpleGameCanvas';
   private simpleGame: SimpleGame;
   public componentDidMount() {
+    const { responsive } = this.props;
     const canvas = findDOMNode(this.refs[this.canvasId]);
     const width = getResponsiveWidth(this.props.responsive);
-    const height = this.props.responsive.height - 200;
+    const height = this.computeHeight(responsive);
     this.simpleGame = new SimpleGame(canvas, height, width);
   }
   public componentWillUnmount() {
@@ -54,6 +55,9 @@ class SimpleGameContainer extends React.Component<ISimpleGameContainerProps, voi
       <div id={this.canvasId} ref={this.canvasId} />
     );
   };
+  private computeHeight(r: IReduxResponsiveState): number {
+    return r.height - 52;
+  }
 };
 
 const mapStateToProps: MapStateToProps<{}, {}> = (state: IRootReducerState) => ({
