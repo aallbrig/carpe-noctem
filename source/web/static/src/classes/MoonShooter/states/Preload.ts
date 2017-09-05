@@ -34,7 +34,7 @@ export class Preload extends State {
 
     public update() {
         if (this.ready) {
-            this.game.state.start('starting-screen');
+            this.game.state.start('game');
         }
     }
 

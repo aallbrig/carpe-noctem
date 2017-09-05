@@ -14,7 +14,7 @@ export class MoonShooter {
     this.game.state.add('preload', Preload);
     this.game.state.add('game', GameState);
     this.game.state.add('gameOver', GameOver);
-    this.game.state.add('starting-screen', StartScreen);
+    this.game.state.add('startScreen', StartScreen);
     this.game.state.start('boot');
   }
 }
