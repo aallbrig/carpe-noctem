@@ -11,6 +11,9 @@ const pixi = path.join(phaserModule, 'build/custom/pixi.js');
 const p2 = path.join(phaserModule, 'build/custom/p2.js');
 
 const IS_PROD = (((process || {}).env || {}).NODE_ENV || '').toLowerCase() === 'production';
+const EXCLUDE = /(node_modules|bower_components)/;
+// [alias] - for easier to read JSON blocks
+const exclude = EXCLUDE;
 
 module.exports = {
     entry: path.join(__dirname, 'src/index.tsx'),
@@ -30,12 +33,12 @@ module.exports = {
     module: {
       rules: [
         { test: /\.js$/, use: 'source-map-loader' },
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+        { test: /\.js$/, exclude, loader: 'babel-loader' },
         {
           enforce: 'pre',
           test: /\.ts(x)?$/,
           loader: 'tslint-loader',
-          exclude: /(node_modules)/,
+          exclude,
           options: {
             tsConfigFile: 'tsconfig.json',
             tslint: {
@@ -44,24 +47,23 @@ module.exports = {
             }
           }
         },
-        {
-          test: /\.ts(x)?$/,
-          use: 'ts-loader',
-          exclude: /(node_modules)/
-        },
-        { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
-        {
-          test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          use: "file-loader?name=fonts/[name].[ext]"
-        },
+        { test: /\.ts(x)?$/, use: 'ts-loader', exclude },
+        { test: /\.less$/, use: [
+          'style-loader', 'css-loader', 'less-loader'
+        ] },
         { test: /bootstrap\/dist\/js\/umd\//, use: 'imports?jQuery=jquery' },
-        { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+        { test: /\.css$/, use: [
+          'style-loader', 'css-loader'
+        ] },
         { test: /pixi\.js/, use: 'expose-loader?PIXI' },
         { test: /phaser-split\.js$/, use: 'expose-loader?Phaser' },
         { test: /p2\.js/, use: 'expose-loader?p2' },
         {
+          test: /\.(woff2?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: 'file-loader?name=fonts/[name].[ext]'
+        },
+        {
           test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|txt)(\?.*)?$/,
-          include: path.join(__dirname, 'src'),
           use: {
             loader: 'file-loader',
             query: {
@@ -71,7 +73,6 @@ module.exports = {
         },
         {
           test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-          include: path.join(__dirname, 'src'),
           use: {
             loader: 'url-loader',
             query: {
@@ -82,13 +83,14 @@ module.exports = {
         },
         {
           test: /\.json$/,
-          include: path.join(__dirname, 'src'),
           use: 'json-loader'
         }
       ]
     },
     resolve: {
-      extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+      extensions: [
+        '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.json'
+      ],
       modules: [
         path.join(__dirname, 'src'),
         'node_modules'
@@ -96,7 +98,7 @@ module.exports = {
       alias: {
         'phaser': phaser,
         'pixi': pixi,
-        'p2': p2,
+        'p2': p2
       }
     },
     plugins: [
