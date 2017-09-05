@@ -1,4 +1,5 @@
 .vscode
-typings
+typings/**
 dist/**
 node_modules/**
+bower_components/**
