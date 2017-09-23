@@ -8,13 +8,4 @@
 [Trello](https://trello.com/6videogame1)
 
 ## Contributing
-I'm glad you're interested in contributing to this project!  Here is an outline of the process of contributing.
 
-[ ] Fork from this repo
-[ ] Make your changes
-[ ] Submit PR
-
-At this point a review of your new code will begin.  A recommended check list is:
-[ ] No code lint errors or warnings are displayed
-[ ] No tests exhibit errors or warnings
-[ ] 
