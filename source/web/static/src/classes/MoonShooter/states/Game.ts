@@ -119,7 +119,7 @@ export class Game extends State {
             );
             timer.start();
             player.weapon.fireRate = tempFireRate / 4;
-            player.weapon.bulletAngleVariance = tempBulletVariance * 3
+            player.weapon.bulletAngleVariance = tempBulletVariance * 3;
           },
           null,
           this
